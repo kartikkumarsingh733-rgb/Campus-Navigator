@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusNav - NSUT Smart Campus Navigation & Resource Optimizer</title>
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="leaflet.css">
+  
+  <!-- App Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="light">
+
+  <!-- ========================================================================= -->
+  <!-- 1. TOP GLOBAL NAVBAR                                                      -->
+  <!-- ========================================================================= -->
+  <header id="top-navbar">
+    <div class="nav-brand">
+      <div class="brand-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">CampusNav</span>
+        <span class="brand-subtitle">Navigation System</span>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-view="view-campus-map" title="Interactive Campus Map">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span class="tab-text-full">Campus Map</span>
+        <span class="tab-text-short">Map</span>
+      </button>
+      <button class="nav-tab" data-view="view-find-route" title="Shortest Route Finder">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a4.5 4.5 0 0 0 0-9H5"/><circle cx="18" cy="5" r="3"/><path d="M12 5H6a3 3 0 0 0-3 3v2"/></svg>
+        <span class="tab-text-full">Find Route</span>
+        <span class="tab-text-short">Route</span>
+      </button>
+      <button class="nav-tab" data-view="view-directory" title="Campus Facilities Directory">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        <span class="tab-text-full">Directory</span>
+        <span class="tab-text-short">List</span>
+      </button>
+    </nav>
+
+    <!-- Right Controls -->
+    <div class="nav-actions">
+      <button class="nav-pill-btn" id="btn-open-viva-modal" title="Viva Sandbox & Algorithm Optimizer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span class="btn-text-full">Viva Sandbox</span>
+        <span class="btn-text-short">Viva</span>
+      </button>
+      <button class="icon-btn" id="theme-toggle" title="Toggle Dark/Light Mode">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 2. MAIN APPLICATION VIEWS CONTAINER                                       -->
+  <!-- ========================================================================= -->
+  <main id="main-views-container">
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- VIEW 1: CAMPUS MAP (Interactive Campus Map)                           -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="view-campus-map" class="app-view active">
+      <div class="view-header">
+        <div class="header-left">
+          <h2 class="view-title">
+            <svg class="title-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Interactive Campus Map
+          </h2>
+          <p class="view-subtitle">Powered by OpenStreetMap & Carto. Click markers to inspect details or set route points.</p>
+        </div>
+        <div class="header-right">
+          <div class="search-box">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="map-search-input" placeholder="Search map..." autocomplete="off">
+          </div>
+          <div class="category-select-wrapper">
+            <select id="map-category-filter" class="custom-select-small">
+              <option value="all">All Types (28)</option>
+              <option value="Academic">Academic</option>
+              <option value="Hostels">Hostels</option>
+              <option value="Food & Hangouts">Food & Hangouts</option>
+              <option value="Admin">Admin</option>
+              <option value="Sports">Sports</option>
+              <option value="Gates">Gates</option>
+              <option value="Landmarks">Landmarks</option>
+              <option value="Utility">Utility</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="view-content-map">
+        <!-- Left: Map Card -->
+        <div class="map-viewport-card">
+          <div id="campus-map-wrapper" class="map-wrapper">
+            <!-- Leaflet #map is dynamically placed here -->
+            <div id="map">
+              <!-- Star Compass (Top Right) -->
+              <div class="map-compass">
+                <svg class="compass-star" viewBox="0 0 100 100" fill="none">
+                  <circle cx="50" cy="50" r="42" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+                  <path d="M50 8 L57 43 L92 50 L57 57 L50 92 L43 57 L8 50 L43 43 Z" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.5"/>
+                  <path d="M50 8 L57 43 L50 50 Z" fill="#ffffff"/>
+                  <path d="M50 92 L43 57 L50 50 Z" fill="#ffffff"/>
+                  <path d="M8 50 L43 43 L50 50 Z" fill="#ffffff"/>
+                  <path d="M92 50 L57 57 L50 50 Z" fill="#ffffff"/>
+                  <circle cx="50" cy="50" r="6" fill="#f59e0b"/>
+                  <text x="50" y="24" fill="#0f172a" font-size="14" font-weight="900" text-anchor="middle" font-family="sans-serif">N</text>
+                </svg>
+              </div>
+
+              <!-- Map Style Switcher (Street Map vs Satellite View) -->
+              <div class="style-switcher-pill">
+                <button class="style-btn active" data-style="street">🗺️ Street Map</button>
+                <button class="style-btn" data-style="satellite">🛰️ Satellite View</button>
+              </div>
+
+              <!-- Live Geo Status Banner -->
+              <div class="geo-status-banner" id="geo-status-banner">
+                <span class="dot-live" id="geo-status-dot"></span>
+                <span id="geo-status-text">Locating your position...</span>
+                <button class="geo-status-close" id="btn-close-geo-banner" title="Dismiss">✕</button>
+              </div>
+
+              <!-- Floating Quick Controls -->
+              <div class="map-floating-panel">
+                <div class="floating-btn-group">
+                  <button class="icon-btn" id="btn-locate-me" title="Locate Me (Current GPS Location)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
+                  </button>
+                  <button class="icon-btn" id="btn-live-tracking" title="Toggle Live Walk Tracking">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7.54 16.59L12 22l7.54-3.41A10 10 0 0 0 12 2z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </button>
+                  <button class="icon-btn" id="btn-recenter" title="Recenter Campus">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                  </button>
+                  <button class="icon-btn" id="btn-toggle-buildings" title="Toggle Building Outlines">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="15" y1="22" x2="15" y2="2"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
+                  </button>
+                  <button class="icon-btn" id="btn-toggle-network" title="Toggle Full Walking Network Mesh">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Detail Card + Locations List -->
+        <div class="map-sidebar">
+          <!-- Selected Location Card -->
+          <div class="selected-location-card" id="selected-location-card">
+            <div class="card-top-row">
+              <span class="badge" id="sel-loc-badge">Academic</span>
+              <button class="close-card-btn" id="btn-close-loc-card" title="Deselect">✕</button>
+            </div>
+            <h3 class="location-name" id="sel-loc-name">Block 6 (COE / IT / MPAE)</h3>
+            <div class="location-submeta">
+              <span class="meta-item" id="sel-loc-building">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="9" x2="9" y1="22" y2="2"/><line x1="15" x2="15" y1="22" y2="2"/></svg>
+                Academic North Block
+              </span>
+              <span class="meta-item" id="sel-loc-zone">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                Floor: Ground to 3rd Floor
+              </span>
+            </div>
+            <div class="location-coords" id="sel-loc-coords">Coordinates: 28.610590, 77.037850</div>
+            <p class="location-desc" id="sel-loc-desc">Top academic block housing Computer Engineering, Information Technology, and Division of Manufacturing Processes.</p>
+            <div class="card-action-btns">
+              <button class="btn-action-green" id="btn-set-start-from-card">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                Set Start
+              </button>
+              <button class="btn-action-blue" id="btn-set-dest-from-card">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                Set Dest
+              </button>
+            </div>
+          </div>
+
+          <!-- Locations (28) List Card -->
+          <div class="locations-list-card">
+            <div class="locations-card-header">
+              <h4>LOCATIONS (<span id="locations-count">28</span>)</h4>
+            </div>
+            <div class="locations-scroll-list" id="map-locations-scroll-list">
+              <!-- Populated dynamically via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- VIEW 2: FIND ROUTE (Campus Shortest Route Finder)                     -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="view-find-route" class="app-view" style="display: none;">
+      <div class="view-header">
+        <div class="header-left">
+          <h2 class="view-title">
+            <svg class="title-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a4.5 4.5 0 0 0 0-9H5"/><circle cx="18" cy="5" r="3"/><path d="M12 5H6a3 3 0 0 0-3 3v2"/></svg>
+            Campus Shortest Route Finder
+          </h2>
+          <p class="view-subtitle">Dijkstra's algorithm calculates the optimal walking path and displays it on the interactive map.</p>
+        </div>
+      </div>
+
+      <div class="view-content-route">
+        <!-- Left: Route Parameters Column -->
+        <div class="route-parameters-column">
+          <!-- Parameters Card -->
+          <div class="route-parameters-card">
+            <div class="card-inner-header">
+              <h4>ROUTE PARAMETERS</h4>
+            </div>
+
+            <div class="route-inputs-box">
+              <!-- Origin Selection -->
+              <div class="input-group">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <label class="input-label"><span class="dot-green"></span> Start Location (Origin)</label>
+                  <button type="button" class="btn-text-action" id="btn-use-current-loc" title="Use current GPS position">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
+                    Use My Location
+                  </button>
+                </div>
+                <div class="select-wrapper">
+                  <select id="start-select" class="custom-select">
+                    <option value="" disabled selected>-- Choose Starting Point --</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Swap Button -->
+              <div class="swap-wrapper">
+                <button class="swap-btn" id="swap-points" title="Swap Origin & Destination">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+                </button>
+              </div>
+
+              <!-- Destination Selection -->
+              <div class="input-group">
+                <label class="input-label"><span class="dot-red"></span> Destination Location</label>
+                <div class="select-wrapper">
+                  <select id="end-select" class="custom-select">
+                    <option value="" disabled selected>-- Choose Target Destination --</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Algorithm Picker -->
+              <div class="algo-picker">
+                <span class="label-title">Graph Routing Algorithm</span>
+                <div class="algo-options">
+                  <div class="algo-chip active" data-algo="dijkstra">Dijkstra (Heap)</div>
+                  <div class="algo-chip" data-algo="astar">A* (Heuristic)</div>
+                  <div class="algo-chip" data-algo="bfs">BFS (Hops)</div>
+                  <div class="algo-chip" data-algo="dfs">DFS (Path)</div>
+                </div>
+              </div>
+
+              <!-- Routing Preferences -->
+              <div class="pref-toggles">
+                <div class="toggle-item">
+                  <span>Wheelchair / Accessible (No stairs)</span>
+                  <label class="switch">
+                    <input type="checkbox" id="pref-accessible">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Action Button -->
+              <button id="btn-find-route" class="btn-primary">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                Find Shortest Route
+              </button>
+            </div>
+          </div>
+
+          <!-- Route Results Card -->
+          <div id="route-results" class="route-summary" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <h4 style="font-size: 14px; font-weight: 700;">Route Overview</h4>
+              <button id="btn-compare-all" class="link-btn">Compare All Algorithms</button>
+            </div>
+
+            <div class="summary-stats">
+              <div class="stat-item">
+                <div class="stat-val" id="stat-dist">0 m</div>
+                <div class="stat-lbl">Distance</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-val" id="stat-time">0 min</div>
+                <div class="stat-lbl">Walk Time</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-val" id="stat-speed">0 ms</div>
+                <div class="stat-lbl">Compute Time</div>
+              </div>
+            </div>
+
+            <div id="stat-details" class="stat-details-badge">
+              Algorithm: <strong>Dijkstra's Algorithm</strong> • Visited Nodes: <strong>0</strong>
+            </div>
+
+            <h5 style="font-size: 12px; font-weight: 700; margin-top: 10px; text-transform: uppercase;">Turn-by-Turn Waypoint Directions</h5>
+            <div class="directions-list" id="directions-container">
+              <!-- Dynamically populated directions -->
+            </div>
+
+            <!-- Live Walk Simulation Trigger -->
+            <div style="margin-top: 12px; border-top: 1px solid var(--card-border); padding-top: 10px;">
+              <button class="btn-secondary" id="btn-simulate-walk" style="margin-bottom: 0;">
+                <span style="display: flex; align-items: center; gap: 6px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  Simulate Live Walking
+                </span>
+                <span id="sim-walk-badge" style="font-size: 11px; font-weight: 700; color: var(--primary);">Start Walk</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Live Route Visualization Card -->
+        <div class="route-visualization-card">
+          <div class="card-inner-header">
+            <span class="dot-live"></span>
+            <h4>Live Route Visualization</h4>
+          </div>
+          <div id="route-map-wrapper" class="map-wrapper">
+            <!-- #map will be moved here when switching to Find Route tab -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+    <!-- VIEW 3: DIRECTORY (Campus Location Directory)                         -->
+    <!-- --------------------------------------------------------------------- -->
+    <section id="view-directory" class="app-view" style="display: none;">
+      <div class="view-header">
+        <div class="header-left">
+          <h2 class="view-title">
+            <svg class="title-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            Campus Location Directory
+          </h2>
+          <p class="view-subtitle">Browse and search academic blocks, administrative offices, laboratories, and student facilities.</p>
+        </div>
+        <div class="header-right">
+          <div class="search-box">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="directory-search-input" placeholder="Search directory..." autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Pills Row -->
+      <div class="directory-filters-row">
+        <div class="filter-pills" id="directory-filter-pills">
+          <button class="filter-pill active" data-cat="all">All Locations (<span id="dir-all-count">28</span>)</button>
+          <button class="filter-pill" data-cat="Academic">Academic</button>
+          <button class="filter-pill" data-cat="Hostels">Hostels</button>
+          <button class="filter-pill" data-cat="Food & Hangouts">Food & Hangouts</button>
+          <button class="filter-pill" data-cat="Admin">Admin</button>
+          <button class="filter-pill" data-cat="Landmarks">Landmarks</button>
+          <button class="filter-pill" data-cat="Sports">Sports</button>
+          <button class="filter-pill" data-cat="Gates">Gates</button>
+          <button class="filter-pill" data-cat="Utility">Utility</button>
+        </div>
+      </div>
+
+      <!-- Count Label -->
+      <div class="directory-count-label" id="directory-count-label">
+        Showing 28 of 28 campus facilities
+      </div>
+
+      <!-- Responsive Grid of 28 Facility Cards -->
+      <div class="directory-grid-container" id="directory-cards-grid">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- 3. MODAL: Viva Sandbox & Campus Optimizer                                 -->
+  <!-- ========================================================================= -->
+  <div class="modal-overlay" id="modal-viva">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Viva Simulation Sandbox & Campus Optimizer</h2>
+        <button class="icon-btn close-modal" data-modal="modal-viva">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.45;">
+          Demonstrate dynamic graph behavior, edge weight modifications, path closures, and advanced optimization algorithms for examiners and project evaluators.
+        </p>
+
+        <div class="sim-btn-group" style="margin-top: 12px;">
+          <span class="label-title">Simulate Road Closures / Construction</span>
+          <button class="btn-secondary" id="sim-block-admin">
+            <span>Admin Fountain Corridor Closed</span>
+            <span id="badge-block-admin" style="font-size: 11px; color: var(--text-muted);">Normal</span>
+          </button>
+          <button class="btn-secondary" id="sim-block-moksha">
+            <span>Moksha Ground Path Closed (Fest Setup)</span>
+            <span id="badge-block-moksha" style="font-size: 11px; color: var(--text-muted);">Normal</span>
+          </button>
+
+          <span class="label-title" style="margin-top: 10px;">Dynamic Edge Weight Multipliers</span>
+          <button class="btn-secondary" id="sim-toggle-rain">
+            <span>Weather: Monsoon Rain (Unpaved Mud)</span>
+            <span id="badge-rain" style="font-size: 11px; color: var(--text-muted);">Off</span>
+          </button>
+          <button class="btn-secondary" id="sim-toggle-rush">
+            <span>Rush Hour Congestion (Class Change)</span>
+            <span id="badge-rush" style="font-size: 11px; color: var(--text-muted);">Off</span>
+          </button>
+        </div>
+
+        <div style="border-top: 1px solid var(--card-border); padding-top: 14px; margin-top: 14px; display: flex; flex-direction: column; gap: 8px;">
+          <span class="label-title">Campus Network & Resource Optimization</span>
+          <button class="btn-secondary" id="btn-show-mst">
+            <span style="display: flex; align-items: center; gap: 6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><circle cx="6" cy="19" r="3"/><circle cx="18" cy="19" r="3"/><path d="M12 8v4"/><path d="m8 16 2-4"/><path d="m16 16-2-4"/></svg>
+              Compute Campus MST (Kruskal/Prim)
+            </span>
+            <span style="font-size: 11px; color: var(--primary);">Open</span>
+          </button>
+
+          <button class="btn-secondary" id="btn-show-dp">
+            <span style="display: flex; align-items: center; gap: 6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Resource / Fest Event Scheduler (DP)
+            </span>
+            <span style="font-size: 11px; color: var(--primary);">Open</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------- MODAL: Algorithm Comparison Benchmark ----------------- -->
+  <div class="modal-overlay" id="modal-benchmark">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Algorithm Performance Benchmark (Viva Analysis)</h2>
+        <button class="icon-btn close-modal" data-modal="modal-benchmark">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 13px; color: var(--text-muted);">
+          Comparative analysis executed on the live graph for the route between <strong id="bm-src">Source</strong> and <strong id="bm-dst">Destination</strong>.
+        </p>
+
+        <table class="benchmark-table">
+          <thead>
+            <tr>
+              <th>Algorithm</th>
+              <th>Total Distance</th>
+              <th>Nodes Visited</th>
+              <th>Execution Time</th>
+              <th>Optimality Guarantee</th>
+            </tr>
+          </thead>
+          <tbody id="benchmark-tbody">
+            <!-- Dynamic Benchmark Rows -->
+          </tbody>
+        </table>
+
+        <div style="background: var(--primary-light); padding: 14px; border-radius: var(--radius-md); font-size: 12px; line-height: 1.5; margin-top: 12px;">
+          <strong>Examiner Notes:</strong>
+          <ul style="margin-left: 18px; margin-top: 6px;">
+            <li><strong>Dijkstra's Algorithm (Min-Heap):</strong> Guarantees the absolute minimum distance on non-negative weighted graphs (O((V + E) log V)).</li>
+            <li><strong>A* Search:</strong> Uses Haversine Euclidean distance heuristic h(n) to direct exploration toward target, visiting fewer total nodes.</li>
+            <li><strong>BFS:</strong> Guarantees minimum number of intermediate road intersections/hops, but does not consider edge physical length in meters.</li>
+            <li><strong>DFS:</strong> Traverses deeply along path branches; fast path discovery but produces non-optimal physical walking distances.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------- MODAL: Campus Network Planning (MST) ----------------- -->
+  <div class="modal-overlay" id="modal-mst">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Campus Infrastructure Connectivity (Minimum Spanning Tree)</h2>
+        <button class="icon-btn close-modal" data-modal="modal-mst">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 13px; color: var(--text-muted);">
+          Solves the network planning problem for campus administrators (laying high-speed fiber optic internet or water pipeline connecting all 28 campus landmarks with zero cycles and minimum total installation cost).
+        </p>
+
+        <div style="display: flex; gap: 12px; align-items: center; margin: 12px 0;">
+          <button class="btn-primary" id="btn-run-kruskal" style="margin-top: 0; width: auto; padding: 8px 16px;">
+            Run Kruskal's (DSU)
+          </button>
+          <button class="btn-secondary" id="btn-run-prim" style="width: auto; padding: 8px 16px;">
+            Run Prim's (Min-Heap)
+          </button>
+          <span id="mst-status" style="font-size: 13px; font-weight: 600; color: var(--secondary);"></span>
+        </div>
+
+        <div class="summary-stats">
+          <div class="stat-item">
+            <div class="stat-val" id="mst-length">0 m</div>
+            <div class="stat-lbl">Total Cable Length</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val" id="mst-cost">₹0</div>
+            <div class="stat-lbl">Estimated Est. Cost</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val" id="mst-landmarks">28 / 28</div>
+            <div class="stat-lbl">Connected Landmarks</div>
+          </div>
+        </div>
+
+        <div style="max-height: 200px; overflow-y: auto; border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 10px; margin-top: 12px;">
+          <table class="benchmark-table" style="font-size: 12px;">
+            <thead>
+              <tr>
+                <th>Segment</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Distance (m)</th>
+              </tr>
+            </thead>
+            <tbody id="mst-table-body">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------- MODAL: Resource & Event Allocation (DP) ----------------- -->
+  <div class="modal-overlay" id="modal-dp">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Smart Campus Event & Resource Optimizer (Dynamic Programming)</h2>
+        <button class="icon-btn close-modal" data-modal="modal-dp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 13px; color: var(--text-muted);">
+          Optimal venue and hall allocation using <strong>Dynamic Programming (Weighted Interval Scheduling)</strong>. Multiple college societies (Moksha, Taarangana, CSI, IEEE, Rotaract) request venues (Admin Audi, APJ Complex, SAC, Moksha Ground) with time intervals and expected utility scores.
+        </p>
+
+        <button class="btn-primary" id="btn-run-dp" style="margin: 12px 0; width: auto; padding: 10px 18px;">
+          Execute DP Schedule Optimization
+        </button>
+
+        <div id="dp-results-box" style="display: none; flex-direction: column; gap: 10px;">
+          <div class="summary-stats">
+            <div class="stat-item">
+              <div class="stat-val" id="dp-score">0 pts</div>
+              <div class="stat-lbl">Maximized Utility</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-val" id="dp-count">0 / 0</div>
+              <div class="stat-lbl">Events Approved</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-val">100%</div>
+              <div class="stat-lbl">Zero Time Conflicts</div>
+            </div>
+          </div>
+
+          <table class="benchmark-table" style="font-size: 12px; margin-top: 10px;">
+            <thead>
+              <tr>
+                <th>Event Name</th>
+                <th>Society</th>
+                <th>Venue</th>
+                <th>Time Slot</th>
+                <th>Utility Score</th>
+              </tr>
+            </thead>
+            <tbody id="dp-schedule-tbody">
+              <!-- DP result rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="leaflet.js"></script>
+
+  <!-- Campus Dataset & Graph -->
+  <script src="graphData.js"></script>
+
+  <!-- Graph Algorithms & Optimization Module -->
+  <script src="algorithms.js"></script>
+
+  <!-- Application Controller -->
+  <script src="app.js"></script>
+</body>
+</html>

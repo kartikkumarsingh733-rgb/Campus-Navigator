@@ -1,0 +1,1370 @@
+[
+  {
+    "type": "node",
+    "id": 2129002331,
+    "name": "NSUT North Gate",
+    "tags": {
+      "access": "private",
+      "barrier": "gate",
+      "entrance": "secondary",
+      "name": "NSUT North Gate"
+    },
+    "coord": [
+      28.6131747,
+      77.0336268
+    ]
+  },
+  {
+    "type": "node",
+    "id": 2129002378,
+    "name": "NSUT Main Gate",
+    "tags": {
+      "access": "private",
+      "barrier": "gate",
+      "entrance": "main",
+      "name": "NSUT Main Gate"
+    },
+    "coord": [
+      28.608484,
+      77.0352513
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5123958188,
+    "name": "Mohit Nagar",
+    "tags": {
+      "name": "Mohit Nagar",
+      "place": "locality"
+    },
+    "coord": [
+      28.609052,
+      77.0335311
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5592114103,
+    "name": "Dwarka Sector 13 MIG Flats",
+    "tags": {
+      "bench": "yes",
+      "bus": "yes",
+      "highway": "bus_stop",
+      "name": "Dwarka Sector 13 MIG Flats",
+      "public_transport": "platform",
+      "shelter": "yes"
+    },
+    "coord": [
+      28.6055417,
+      77.0364103
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5592114110,
+    "name": "NSUT",
+    "tags": {
+      "bench": "yes",
+      "bus": "yes",
+      "highway": "bus_stop",
+      "name": "NSUT",
+      "public_transport": "platform",
+      "shelter": "yes",
+      "tactile_paving": "no"
+    },
+    "coord": [
+      28.6082819,
+      77.0350079
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5592115633,
+    "name": "Sector 13 Dwarka",
+    "tags": {
+      "bench": "yes",
+      "bus": "yes",
+      "highway": "bus_stop",
+      "name": "Sector 13 Dwarka",
+      "public_transport": "platform",
+      "shelter": "yes",
+      "tactile_paving": "no"
+    },
+    "coord": [
+      28.6058267,
+      77.0363145
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5592115634,
+    "name": "Dwarka Sector 13 MRV School",
+    "tags": {
+      "bench": "yes",
+      "bus": "yes",
+      "highway": "bus_stop",
+      "name": "Dwarka Sector 13 MRV School",
+      "public_transport": "platform",
+      "shelter": "yes"
+    },
+    "coord": [
+      28.6040391,
+      77.0390183
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5592717080,
+    "name": "NSUT / Sulahkul Mandir",
+    "tags": {
+      "bench": "yes",
+      "bus": "yes",
+      "highway": "bus_stop",
+      "name": "NSUT / Sulahkul Mandir",
+      "public_transport": "platform",
+      "shelter": "yes"
+    },
+    "coord": [
+      28.6075397,
+      77.0350116
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8809215759,
+    "name": "Central Fountain",
+    "tags": {
+      "amenity": "fountain",
+      "name": "Central Fountain",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.6100564,
+      77.0379677
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8812964998,
+    "name": "National Flag",
+    "tags": {
+      "alt_name": "Tiranga",
+      "country": "IN",
+      "flag:name": "India",
+      "flag:type": "national",
+      "flag:wikidata": "Q41673",
+      "height": "50",
+      "lit": "yes",
+      "man_made": "flagpole",
+      "name": "National Flag",
+      "operator": "NSUT",
+      "start_date": "2021-01-23",
+      "subject": "India",
+      "subject:wikidata": "Q668"
+    },
+    "coord": [
+      28.6096591,
+      77.0364119
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8812964999,
+    "name": "State Bank of India",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:full": "Netaji Subhas University of Technology, Azad Hind Fauj Marg, Sector-3, Dwarka, South West Delhi, National Capital Territory of Delhi - 110078",
+      "addr:postcode": "110078",
+      "addr:street": "Azad Hind Fauj Marg",
+      "addr:suburb": "Sector 3, Dwarka",
+      "amenity": "bank",
+      "atm": "yes",
+      "branch": "NSUT;NSIT",
+      "brand": "State Bank of India",
+      "brand:wikidata": "Q1340361",
+      "brand:wikipedia": "en:State Bank of India",
+      "drive_through": "no",
+      "level": "-1",
+      "name": "State Bank of India",
+      "short_name": "SBI"
+    },
+    "coord": [
+      28.6096158,
+      77.0370442
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8812965172,
+    "name": "Student Activity Centre",
+    "tags": {
+      "air_conditioning": "yes",
+      "leisure": "sports_centre",
+      "level": "-1",
+      "name": "Student Activity Centre",
+      "operator": "NSUT",
+      "sport": "badminton;table_tennis;gym;billiards;dance;carrom;chess"
+    },
+    "coord": [
+      28.6103864,
+      77.0393099
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8812965173,
+    "name": "Central Library",
+    "tags": {
+      "air_conditioning": "yes",
+      "amenity": "library",
+      "level": "1;2",
+      "name": "Central Library",
+      "operator": "NSUT",
+      "operator:type": "government"
+    },
+    "coord": [
+      28.6103953,
+      77.0389687
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8958296015,
+    "name": "Union Bank of India",
+    "tags": {
+      "addr:city": "New Delhi",
+      "addr:postcode": "110078",
+      "amenity": "bank",
+      "branch": "NSIT;NSUT",
+      "brand": "Union Bank of India",
+      "brand:wikidata": "Q2004078",
+      "brand:wikipedia": "en:Union Bank of India",
+      "level": "-1",
+      "name": "Union Bank of India"
+    },
+    "coord": [
+      28.6096323,
+      77.0371165
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8958296016,
+    "name": "State Bank of India",
+    "tags": {
+      "amenity": "atm",
+      "brand": "State Bank of India",
+      "brand:en": "State Bank of India",
+      "brand:wikidata": "Q1340361",
+      "brand:wikipedia": "en:State Bank of India",
+      "cash_in": "no",
+      "currency:INR": "yes",
+      "drive_through": "no",
+      "indoor": "yes",
+      "name": "State Bank of India",
+      "note": "Contributors are requested to not edit the \"brand\", \"brand:en\", \"brand:wikidata\", \"operator\", \"operator:en\" and \"operator:wikidata\" tags. (2025/02/19)",
+      "opening_hours": "24/7",
+      "operator": "State Bank of India",
+      "operator:en": "State Bank of India",
+      "operator:wikidata": "Q1340361",
+      "operator:wikipedia": "en:State Bank of India",
+      "short_name": "SBI"
+    },
+    "coord": [
+      28.6130743,
+      77.0336395
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8958441917,
+    "name": "Netaji Subhas Chandra Bose Statue",
+    "tags": {
+      "artwork_type": "statue",
+      "name": "Netaji Subhas Chandra Bose Statue",
+      "subject:wikidata": "Q2153",
+      "subject:wikipedia": "en:Subhas Chandra Bose",
+      "tourism": "artwork"
+    },
+    "coord": [
+      28.6093078,
+      77.0350316
+    ]
+  },
+  {
+    "type": "node",
+    "id": 9044613459,
+    "name": "Auditorium",
+    "tags": {
+      "air_conditioning": "yes",
+      "amenity": "theatre",
+      "name": "Auditorium",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.6099203,
+      77.0369267
+    ]
+  },
+  {
+    "type": "node",
+    "id": 9044613460,
+    "name": "Mini Auditorium",
+    "tags": {
+      "air_conditioning": "yes",
+      "amenity": "theatre",
+      "name": "Mini Auditorium",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.6095946,
+      77.0380655
+    ]
+  },
+  {
+    "type": "node",
+    "id": 9052128313,
+    "name": "Union Bank of India",
+    "tags": {
+      "amenity": "atm",
+      "brand": "Union Bank of India",
+      "brand:wikidata": "Q2004078",
+      "brand:wikipedia": "en:Union Bank of India",
+      "name": "Union Bank of India",
+      "operator": "Union Bank of India",
+      "operator:wikidata": "Q2004078",
+      "operator:wikipedia": "en:Union Bank of India"
+    },
+    "coord": [
+      28.6082668,
+      77.0351862
+    ]
+  },
+  {
+    "type": "node",
+    "id": 10606496417,
+    "name": "Girl's Hostel 3",
+    "tags": {
+      "addr:housenumber": "21,26",
+      "addr:street": "Type V Quarters",
+      "name": "Girl's Hostel 3",
+      "operator": "NSUT",
+      "ref": "GH 3",
+      "tourism": "hostel"
+    },
+    "coord": [
+      28.6067365,
+      77.0370008
+    ]
+  },
+  {
+    "type": "node",
+    "id": 10949022874,
+    "name": "Ashfaq Ullah Khan",
+    "tags": {
+      "historic": "memorial",
+      "memorial": "plaque",
+      "name": "Ashfaq Ullah Khan",
+      "subject:wikidata": "Q1571670",
+      "subject:wikipedia": "en:Ashfaqulla Khan"
+    },
+    "coord": [
+      28.6096598,
+      77.0397627
+    ]
+  },
+  {
+    "type": "node",
+    "id": 10992246632,
+    "name": "Sulahkul Mandir",
+    "tags": {
+      "amenity": "place_of_worship",
+      "name": "Sulahkul Mandir",
+      "name:hi": "सुलहाकुल मन्दिर",
+      "religion": "hindu"
+    },
+    "coord": [
+      28.6070869,
+      77.0346835
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11007819680,
+    "name": "Physiotherapy Centre",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:housenumber": "V-13",
+      "addr:postcode": "110078",
+      "healthcare": "physiotherapist",
+      "name": "Physiotherapy Centre",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.6077097,
+      77.0368833
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11935445080,
+    "name": "Boys Hostel",
+    "tags": {
+      "name": "Boys Hostel",
+      "tourism": "hostel",
+      "wheelchair": "limited"
+    },
+    "coord": [
+      28.6062081,
+      77.0390247
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12218183773,
+    "name": "Deen Dayal Upadhyaya",
+    "tags": {
+      "artwork_type": "statue",
+      "material": "stone",
+      "name": "Deen Dayal Upadhyaya",
+      "subject:wikidata": "Q3631426",
+      "subject:wikipedia": "en:Deendayal Upadhyaya",
+      "tourism": "artwork"
+    },
+    "coord": [
+      28.6050445,
+      77.0381503
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488414554,
+    "name": "Pabrai's Fresh And Naturelle",
+    "tags": {
+      "amenity": "ice_cream",
+      "check_date": "2025-01-10",
+      "name": "Pabrai's Fresh And Naturelle"
+    },
+    "coord": [
+      28.6105364,
+      77.033661
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12543291383,
+    "name": "Safal",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:postcode": "110078",
+      "addr:street": "Azad Hind Fauj Marg",
+      "name": "Safal",
+      "operator": "NSUT",
+      "shop": "greengrocer"
+    },
+    "coord": [
+      28.612143,
+      77.0363525
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12582070370,
+    "name": "Mother Dairy",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:postcode": "110078",
+      "addr:street": "Azad Hind Fauj Marg",
+      "brand": "Mother Dairy",
+      "brand:wikidata": "Q6917320",
+      "name": "Mother Dairy",
+      "operator": "NSUT",
+      "shop": "dairy"
+    },
+    "coord": [
+      28.6121472,
+      77.0363524
+    ]
+  },
+  {
+    "type": "node",
+    "id": 13131304832,
+    "name": "buggu cafe",
+    "tags": {
+      "name": "buggu cafe"
+    },
+    "coord": [
+      28.6045914,
+      77.0375407
+    ]
+  },
+  {
+    "type": "node",
+    "id": 13647498111,
+    "name": "Phase 1",
+    "tags": {
+      "name": "Phase 1",
+      "place": "locality"
+    },
+    "coord": [
+      28.6046477,
+      77.0362529
+    ]
+  },
+  {
+    "type": "node",
+    "id": 13647498112,
+    "name": "Dwarka Sector-3",
+    "tags": {
+      "name": "Dwarka Sector-3",
+      "place": "locality"
+    },
+    "coord": [
+      28.6077066,
+      77.0402808
+    ]
+  },
+  {
+    "type": "way",
+    "id": 24576821,
+    "name": "Azad Hind Fauj Marg",
+    "tags": {
+      "cycleway:both": "no",
+      "highway": "secondary",
+      "lit": "yes",
+      "name": "Azad Hind Fauj Marg",
+      "name:etymology:wikidata": "Q156062",
+      "oneway": "yes",
+      "sidewalk:left": "yes",
+      "surface": "asphalt"
+    },
+    "coord": [
+      28.612131642857143,
+      77.03358594761904
+    ]
+  },
+  {
+    "type": "way",
+    "id": 168951962,
+    "name": "Sector 3 Road",
+    "tags": {
+      "highway": "residential",
+      "name": "Sector 3 Road"
+    },
+    "coord": [
+      28.60497804285714,
+      77.04071037142856
+    ]
+  },
+  {
+    "type": "way",
+    "id": 209499017,
+    "name": "Deen Dayal Upadhyay College",
+    "tags": {
+      "amenity": "college",
+      "barrier": "wall",
+      "name": "Deen Dayal Upadhyay College",
+      "name:etymology:wikidata": "Q3631426",
+      "short_name": "DDUC"
+    },
+    "coord": [
+      28.60551575,
+      77.0379603
+    ]
+  },
+  {
+    "type": "way",
+    "id": 351081649,
+    "name": "Main Electric Substation",
+    "tags": {
+      "building": "service",
+      "name": "Main Electric Substation",
+      "operator": "NSUT",
+      "power": "substation",
+      "start_date": "1999-04-26"
+    },
+    "coord": [
+      28.60766946,
+      77.04082944000001
+    ]
+  },
+  {
+    "type": "way",
+    "id": 351554984,
+    "name": "Gahlan Apartment",
+    "tags": {
+      "addr:city": "Dwarka",
+      "addr:housenumber": "Kh No. 27/24",
+      "addr:postcode": "110078",
+      "addr:street": "Azad Hind Fauj Marg",
+      "addr:unit": "Mohit Nagar",
+      "building": "yes",
+      "name": "Gahlan Apartment"
+    },
+    "coord": [
+      28.608184819999998,
+      77.03401782
+    ]
+  },
+  {
+    "type": "way",
+    "id": 352511730,
+    "name": "Admin Block",
+    "tags": {
+      "building": "office",
+      "name": "Admin Block",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.609846721153847,
+      77.03708175961539
+    ]
+  },
+  {
+    "type": "way",
+    "id": 815127175,
+    "name": "Mall Road",
+    "tags": {
+      "highway": "secondary",
+      "name": "Mall Road",
+      "oneway": "yes"
+    },
+    "coord": [
+      28.60511875,
+      77.037107325
+    ]
+  },
+  {
+    "type": "way",
+    "id": 951821835,
+    "name": "Vice Chancellor's House",
+    "tags": {
+      "addr:city": "Dwarka",
+      "addr:district": "South West Delhi",
+      "addr:postcode": "110078",
+      "addr:street": "NSUT Main Road",
+      "building": "yes",
+      "building:levels": "3",
+      "height": "15",
+      "name": "Vice Chancellor's House"
+    },
+    "coord": [
+      28.606763400000002,
+      77.03629412941176
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148762,
+    "name": "Dr AP.J Abdul Kalam Lecture Theatre Complex",
+    "tags": {
+      "building": "university",
+      "name": "Dr AP.J Abdul Kalam Lecture Theatre Complex",
+      "operator": "NSUT",
+      "ref": "APJ",
+      "start_date": "2021-01-23"
+    },
+    "coord": [
+      28.61197383,
+      77.03706281999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148763,
+    "name": "Students' Centre",
+    "tags": {
+      "amenity": "cafe",
+      "building": "yes",
+      "name": "Students' Centre",
+      "operational_status": "closed",
+      "operator": "NSUT",
+      "outdoor_seating": "yes",
+      "start_date": "2018-09-26"
+    },
+    "coord": [
+      28.611663088888886,
+      77.03691145555555
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148764,
+    "name": "Smart Class",
+    "tags": {
+      "alt_name": "S Block",
+      "building": "university",
+      "name": "Smart Class",
+      "operator": "NSUT",
+      "start_date": "2016-03-09"
+    },
+    "coord": [
+      28.6120106375,
+      77.0376644625
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148766,
+    "name": "Fashion Technology Block",
+    "tags": {
+      "alt_name": "Multi Purpose Centre",
+      "building": "university",
+      "name": "Fashion Technology Block",
+      "operator": "NSUT",
+      "ref": "MPC"
+    },
+    "coord": [
+      28.611370964285715,
+      77.03907032857144
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148767,
+    "name": "Parking for Govt. Vehicles",
+    "tags": {
+      "access": "private",
+      "foot": "yes",
+      "highway": "service",
+      "incline": "up",
+      "level": "-1;0",
+      "name": "Parking for Govt. Vehicles",
+      "service": "parking_aisle"
+    },
+    "coord": [
+      28.6094923,
+      77.03683405
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148789,
+    "name": "towards SAC",
+    "tags": {
+      "highway": "steps",
+      "incline": "down",
+      "name": "towards SAC"
+    },
+    "coord": [
+      28.61028215,
+      77.03884694999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148794,
+    "name": "Training and Placement Building",
+    "tags": {
+      "building": "university",
+      "name": "Training and Placement Building",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.60857012105263,
+      77.03957289473685
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148795,
+    "name": "Alaknanda Hostel",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:postcode": "110078",
+      "building": "yes",
+      "guest_house": "student_accommodation",
+      "name": "Alaknanda Hostel",
+      "operator": "NSUT",
+      "tourism": "hostel"
+    },
+    "coord": [
+      28.608039029999997,
+      77.03957097
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148796,
+    "name": "Parking for Deans & HODs",
+    "tags": {
+      "access": "private",
+      "foot": "yes",
+      "highway": "service",
+      "incline": "up",
+      "level": "-1;0",
+      "name": "Parking for Deans & HODs",
+      "service": "parking_aisle"
+    },
+    "coord": [
+      28.610015349999998,
+      77.03666824999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398066,
+    "name": "Kaveri Hostel",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:postcode": "110078",
+      "air_conditioning": "yes",
+      "building": "yes",
+      "guest_house": "student_accommodation",
+      "name": "Kaveri Hostel",
+      "old_name": "Type I Quarters",
+      "operator": "NSUT",
+      "ref": "GH 2",
+      "tourism": "hostel"
+    },
+    "coord": [
+      28.613742226666666,
+      77.03844978222222
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398067,
+    "name": "Type II Quarters",
+    "tags": {
+      "addr:flats": "1-32",
+      "building": "apartments",
+      "building:levels": "4",
+      "name": "Type II Quarters"
+    },
+    "coord": [
+      28.613590197959184,
+      77.03780179183673
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398069,
+    "name": "Type II + III Quarters",
+    "tags": {
+      "addr:flats": "1-24",
+      "building": "apartments",
+      "building:levels": "4",
+      "name": "Type II + III Quarters"
+    },
+    "coord": [
+      28.613276112121213,
+      77.03795941212121
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398072,
+    "name": "Electric Substation",
+    "tags": {
+      "building": "service",
+      "name": "Electric Substation",
+      "power": "substation"
+    },
+    "coord": [
+      28.61344656,
+      77.03670264
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398073,
+    "name": "Type II + III Quarters",
+    "tags": {
+      "addr:flats": "25-48",
+      "building": "apartments",
+      "building:levels": "4",
+      "name": "Type II + III Quarters"
+    },
+    "coord": [
+      28.612924624324325,
+      77.03804022162163
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398080,
+    "name": "Guest House",
+    "tags": {
+      "access": "private",
+      "building": "yes",
+      "building:levels": "2",
+      "guest_house": "guest_house",
+      "name": "Guest House",
+      "operator": "NSUT",
+      "tourism": "guest_house"
+    },
+    "coord": [
+      28.608123040625,
+      77.038167521875
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398088,
+    "name": "J. C. Bose Hostel",
+    "tags": {
+      "building": "yes",
+      "guest_house": "student_accommodation",
+      "name": "J. C. Bose Hostel",
+      "operator": "NSUT",
+      "tourism": "hostel"
+    },
+    "coord": [
+      28.613635476923076,
+      77.03431358461538
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398096,
+    "name": "Electric Substation",
+    "tags": {
+      "building": "service",
+      "name": "Electric Substation",
+      "operator": "NSUT",
+      "power": "substation"
+    },
+    "coord": [
+      28.60849107142857,
+      77.0373518
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398104,
+    "name": "Parking for Faculty & Students",
+    "tags": {
+      "amenity": "parking",
+      "name": "Parking for Faculty & Students",
+      "operator": "NSUT",
+      "operator:type": "university"
+    },
+    "coord": [
+      28.6106085375,
+      77.0359701
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398106,
+    "name": "Electric Substation",
+    "tags": {
+      "building": "yes",
+      "name": "Electric Substation",
+      "operator": "NSUT",
+      "power": "substation"
+    },
+    "coord": [
+      28.61151985714286,
+      77.03807232857142
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398107,
+    "name": "Medical Centre",
+    "tags": {
+      "building": "yes",
+      "healthcare": "clinic",
+      "name": "Medical Centre",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.611698399999998,
+      77.03858936666667
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952634312,
+    "name": "DDUC Sports Complex",
+    "tags": {
+      "building": "school",
+      "building:levels": "2",
+      "name": "DDUC Sports Complex"
+    },
+    "coord": [
+      28.605995673333332,
+      77.03882067333333
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952634325,
+    "name": "Parking for Staff & Students",
+    "tags": {
+      "amenity": "parking",
+      "name": "Parking for Staff & Students",
+      "operator": "NSUT",
+      "operator:type": "university"
+    },
+    "coord": [
+      28.60903480416667,
+      77.03616267083333
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952787109,
+    "name": "Electric Substation",
+    "tags": {
+      "building": "service",
+      "name": "Electric Substation",
+      "operator": "NSUT",
+      "power": "substation"
+    },
+    "coord": [
+      28.607741299999997,
+      77.03599077999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 984175156,
+    "name": "Kabaddi Ground",
+    "tags": {
+      "leisure": "pitch",
+      "name": "Kabaddi Ground",
+      "sport": "kabaddi"
+    },
+    "coord": [
+      28.60953318,
+      77.0410124
+    ]
+  },
+  {
+    "type": "way",
+    "id": 984175157,
+    "name": "Sports Complex",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "Sports Complex",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.610393675,
+      77.0413652375
+    ]
+  },
+  {
+    "type": "way",
+    "id": 989260087,
+    "name": "Pump House",
+    "tags": {
+      "building": "service",
+      "man_made": "pumping_station",
+      "name": "Pump House",
+      "pumping_station": "water",
+      "start_date": "1999-04-26"
+    },
+    "coord": [
+      28.6118836,
+      77.03910514
+    ]
+  },
+  {
+    "type": "way",
+    "id": 989260092,
+    "name": "Shopping Complex",
+    "tags": {
+      "building": "retail",
+      "name": "Shopping Complex"
+    },
+    "coord": [
+      28.612320795238094,
+      77.03752564761905
+    ]
+  },
+  {
+    "type": "way",
+    "id": 997968123,
+    "name": "Shaheed Ashfaq Ullah Fitness Park",
+    "tags": {
+      "fitness_station": "yes",
+      "leisure": "park",
+      "name": "Shaheed Ashfaq Ullah Fitness Park",
+      "name:etymology:wikidata": "Q1571670",
+      "operator": "NSUT",
+      "start_date": "2021-10-22"
+    },
+    "coord": [
+      28.609363533333333,
+      77.0395632
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1082242339,
+    "name": "Sector 3 Road",
+    "tags": {
+      "highway": "residential",
+      "name": "Sector 3 Road"
+    },
+    "coord": [
+      28.6060589,
+      77.04172015
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1082242340,
+    "name": "Sector 3 Road",
+    "tags": {
+      "bridge": "yes",
+      "highway": "residential",
+      "layer": "1",
+      "name": "Sector 3 Road"
+    },
+    "coord": [
+      28.606059899999998,
+      77.04186960000001
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1159245450,
+    "name": "Sulahkul Bridge",
+    "tags": {
+      "bridge": "yes",
+      "highway": "footway",
+      "layer": "1",
+      "level": "1",
+      "name": "Sulahkul Bridge",
+      "name:hi": "सुलहाकुल सेतु"
+    },
+    "coord": [
+      28.60778565,
+      77.0350766
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1175625276,
+    "name": "Shaheed Vatika",
+    "tags": {
+      "leisure": "garden",
+      "name": "Shaheed Vatika",
+      "operator": "NSUT",
+      "start_date": "2022-03-23"
+    },
+    "coord": [
+      28.608855996875,
+      77.035895353125
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178272974,
+    "name": "PWD",
+    "tags": {
+      "building": "yes",
+      "name": "PWD",
+      "name:full": "Public Works Department"
+    },
+    "coord": [
+      28.6135222,
+      77.03396255714286
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355677,
+    "name": "Guard House",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.607206280000003,
+      77.04081156
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355678,
+    "name": "CCTV Control Room",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:postcode": "110078",
+      "addr:street": "Azad Hind Fauj Marg",
+      "building": "service",
+      "name": "CCTV Control Room",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.61140138,
+      77.03963139999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355679,
+    "name": "Water Treatment Plant",
+    "tags": {
+      "building": "service",
+      "man_made": "wastewater_plant",
+      "name": "Water Treatment Plant",
+      "operator": "Hari Ions (India) Pvt. Ltd."
+    },
+    "coord": [
+      28.61179902,
+      77.03922659999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355685,
+    "name": "Guard House",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.611422600000004,
+      77.03927926
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355688,
+    "name": "Guard House",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.61032836,
+      77.04231922
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355689,
+    "name": "Pump House",
+    "tags": {
+      "building": "service",
+      "man_made": "pumping_station",
+      "name": "Pump House",
+      "pumping_station": "water"
+    },
+    "coord": [
+      28.6098261,
+      77.04228592000001
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355690,
+    "name": "Guard House",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.61361716,
+      77.03669704
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178384228,
+    "name": "Guard House",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.60722108,
+      77.03946579999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1179782163,
+    "name": "Pump House",
+    "tags": {
+      "building": "construction",
+      "man_made": "pumping_station",
+      "name": "Pump House",
+      "pumping_station": "water"
+    },
+    "coord": [
+      28.615465410000002,
+      77.03830922
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1180003054,
+    "name": "Guard House",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.61314064,
+      77.03370795999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1184939747,
+    "name": "Guard House",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.608541179999996,
+      77.03524908
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1184939748,
+    "name": "Guard House",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.60844196,
+      77.03528157999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1428925100,
+    "name": "Old Palam Road",
+    "tags": {
+      "highway": "tertiary",
+      "name": "Old Palam Road"
+    },
+    "coord": [
+      28.605951633333333,
+      77.03494586666666
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1474140344,
+    "name": "Mall Road",
+    "tags": {
+      "highway": "secondary",
+      "name": "Mall Road",
+      "oneway": "yes"
+    },
+    "coord": [
+      28.60536135,
+      77.03701405000001
+    ]
+  }
+]

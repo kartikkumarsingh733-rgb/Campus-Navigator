@@ -1,0 +1,4158 @@
+[
+  {
+    "type": "node",
+    "id": 2129002331,
+    "name": "NSUT North Gate",
+    "category": "other",
+    "tags": {
+      "access": "private",
+      "barrier": "gate",
+      "entrance": "secondary",
+      "name": "NSUT North Gate"
+    },
+    "coord": [
+      28.6131747,
+      77.0336268
+    ]
+  },
+  {
+    "type": "node",
+    "id": 2129002378,
+    "name": "NSUT Main Gate",
+    "category": "other",
+    "tags": {
+      "access": "private",
+      "barrier": "gate",
+      "entrance": "main",
+      "name": "NSUT Main Gate"
+    },
+    "coord": [
+      28.608484,
+      77.0352513
+    ]
+  },
+  {
+    "type": "node",
+    "id": 2633413046,
+    "name": "Sector 3",
+    "category": "other",
+    "tags": {
+      "name": "Sector 3",
+      "place": "locality"
+    },
+    "coord": [
+      28.6075594,
+      77.0437918
+    ]
+  },
+  {
+    "type": "node",
+    "id": 3840245895,
+    "name": "Sewak Park",
+    "category": "other",
+    "tags": {
+      "name": "Sewak Park",
+      "place": "locality"
+    },
+    "coord": [
+      28.6174028,
+      77.0337013
+    ]
+  },
+  {
+    "type": "node",
+    "id": 3840245897,
+    "name": "Suraj Vihar",
+    "category": "other",
+    "tags": {
+      "name": "Suraj Vihar",
+      "place": "locality"
+    },
+    "coord": [
+      28.6128277,
+      77.0318333
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5123958188,
+    "name": "Mohit Nagar",
+    "category": "other",
+    "tags": {
+      "name": "Mohit Nagar",
+      "place": "locality"
+    },
+    "coord": [
+      28.609052,
+      77.0335311
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5592111624,
+    "name": "सूरज विहार",
+    "category": "bus_stop",
+    "tags": {
+      "bench": "no",
+      "bin": "no",
+      "bus": "yes",
+      "highway": "bus_stop",
+      "lit": "no",
+      "name": "सूरज विहार",
+      "public_transport": "platform",
+      "shelter": "no"
+    },
+    "coord": [
+      28.6130867,
+      77.0334559
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5592114103,
+    "name": "Dwarka Sector 13 MIG Flats",
+    "category": "bus_stop",
+    "tags": {
+      "bench": "yes",
+      "bus": "yes",
+      "highway": "bus_stop",
+      "name": "Dwarka Sector 13 MIG Flats",
+      "public_transport": "platform",
+      "shelter": "yes"
+    },
+    "coord": [
+      28.6055417,
+      77.0364103
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5592114110,
+    "name": "NSUT",
+    "category": "bus_stop",
+    "tags": {
+      "bench": "yes",
+      "bus": "yes",
+      "highway": "bus_stop",
+      "name": "NSUT",
+      "public_transport": "platform",
+      "shelter": "yes",
+      "tactile_paving": "no"
+    },
+    "coord": [
+      28.6082819,
+      77.0350079
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5592115633,
+    "name": "Sector 13 Dwarka",
+    "category": "bus_stop",
+    "tags": {
+      "bench": "yes",
+      "bus": "yes",
+      "highway": "bus_stop",
+      "name": "Sector 13 Dwarka",
+      "public_transport": "platform",
+      "shelter": "yes",
+      "tactile_paving": "no"
+    },
+    "coord": [
+      28.6058267,
+      77.0363145
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5592115634,
+    "name": "Dwarka Sector 13 MRV School",
+    "category": "bus_stop",
+    "tags": {
+      "bench": "yes",
+      "bus": "yes",
+      "highway": "bus_stop",
+      "name": "Dwarka Sector 13 MRV School",
+      "public_transport": "platform",
+      "shelter": "yes"
+    },
+    "coord": [
+      28.6040391,
+      77.0390183
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5592717079,
+    "name": "Suraj Vihar",
+    "category": "bus_stop",
+    "tags": {
+      "bench": "no",
+      "bin": "no",
+      "bus": "yes",
+      "highway": "bus_stop",
+      "lit": "no",
+      "name": "Suraj Vihar",
+      "public_transport": "platform",
+      "shelter": "no"
+    },
+    "coord": [
+      28.6134029,
+      77.03311
+    ]
+  },
+  {
+    "type": "node",
+    "id": 5592717080,
+    "name": "NSUT / Sulahkul Mandir",
+    "category": "bus_stop",
+    "tags": {
+      "bench": "yes",
+      "bus": "yes",
+      "highway": "bus_stop",
+      "name": "NSUT / Sulahkul Mandir",
+      "public_transport": "platform",
+      "shelter": "yes"
+    },
+    "coord": [
+      28.6075397,
+      77.0350116
+    ]
+  },
+  {
+    "type": "node",
+    "id": 7543715666,
+    "name": "Dr. Atul Anand",
+    "category": "doctors",
+    "tags": {
+      "addr:district": "West Delhi",
+      "addr:full": "Guru Harikishan Nagar, Matiala Extension, Sukh Ram Park, Matiala",
+      "addr:postcode": "110059",
+      "addr:state": "Delhi",
+      "amenity": "doctors",
+      "name": "Dr. Atul Anand",
+      "source": "Local Knowledge"
+    },
+    "coord": [
+      28.6139464,
+      77.044331
+    ]
+  },
+  {
+    "type": "node",
+    "id": 7543715682,
+    "name": "Sumiti Vishal Charitable Hospital",
+    "category": "hospital",
+    "tags": {
+      "addr:district": "West Delhi",
+      "addr:full": "D/108, Matiala Extension, Block D, Matiala",
+      "addr:postcode": "110059",
+      "addr:state": "Delhi",
+      "amenity": "hospital",
+      "name": "Sumiti Vishal Charitable Hospital",
+      "source": "Local Knowledge"
+    },
+    "coord": [
+      28.6137065,
+      77.044482
+    ]
+  },
+  {
+    "type": "node",
+    "id": 7545203232,
+    "name": "Dwarka Hospital",
+    "category": "hospital",
+    "tags": {
+      "addr:district": "South West Delhi",
+      "addr:full": "B-92, Pipe Line, Patel Garden, Kakrola",
+      "addr:postcode": "110059",
+      "addr:state": "Delhi",
+      "amenity": "hospital",
+      "check_date": "2024-05-10",
+      "name": "Dwarka Hospital",
+      "source": "Local Knowledge"
+    },
+    "coord": [
+      28.6166831,
+      77.0316366
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8809215759,
+    "name": "Central Fountain",
+    "category": "fountain",
+    "tags": {
+      "amenity": "fountain",
+      "name": "Central Fountain",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.6100564,
+      77.0379677
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8812964998,
+    "name": "National Flag",
+    "category": "other",
+    "tags": {
+      "alt_name": "Tiranga",
+      "country": "IN",
+      "flag:name": "India",
+      "flag:type": "national",
+      "flag:wikidata": "Q41673",
+      "height": "50",
+      "lit": "yes",
+      "man_made": "flagpole",
+      "name": "National Flag",
+      "operator": "NSUT",
+      "start_date": "2021-01-23",
+      "subject": "India",
+      "subject:wikidata": "Q668"
+    },
+    "coord": [
+      28.6096591,
+      77.0364119
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8812964999,
+    "name": "State Bank of India",
+    "category": "bank",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:full": "Netaji Subhas University of Technology, Azad Hind Fauj Marg, Sector-3, Dwarka, South West Delhi, National Capital Territory of Delhi - 110078",
+      "addr:postcode": "110078",
+      "addr:street": "Azad Hind Fauj Marg",
+      "addr:suburb": "Sector 3, Dwarka",
+      "amenity": "bank",
+      "atm": "yes",
+      "branch": "NSUT;NSIT",
+      "brand": "State Bank of India",
+      "brand:wikidata": "Q1340361",
+      "brand:wikipedia": "en:State Bank of India",
+      "drive_through": "no",
+      "level": "-1",
+      "name": "State Bank of India",
+      "short_name": "SBI"
+    },
+    "coord": [
+      28.6096158,
+      77.0370442
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8812965172,
+    "name": "Student Activity Centre",
+    "category": "sports_centre",
+    "tags": {
+      "air_conditioning": "yes",
+      "leisure": "sports_centre",
+      "level": "-1",
+      "name": "Student Activity Centre",
+      "operator": "NSUT",
+      "sport": "badminton;table_tennis;gym;billiards;dance;carrom;chess"
+    },
+    "coord": [
+      28.6103864,
+      77.0393099
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8812965173,
+    "name": "Central Library",
+    "category": "library",
+    "tags": {
+      "air_conditioning": "yes",
+      "amenity": "library",
+      "level": "1;2",
+      "name": "Central Library",
+      "operator": "NSUT",
+      "operator:type": "government"
+    },
+    "coord": [
+      28.6103953,
+      77.0389687
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8958296015,
+    "name": "Union Bank of India",
+    "category": "bank",
+    "tags": {
+      "addr:city": "New Delhi",
+      "addr:postcode": "110078",
+      "amenity": "bank",
+      "branch": "NSIT;NSUT",
+      "brand": "Union Bank of India",
+      "brand:wikidata": "Q2004078",
+      "brand:wikipedia": "en:Union Bank of India",
+      "level": "-1",
+      "name": "Union Bank of India"
+    },
+    "coord": [
+      28.6096323,
+      77.0371165
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8958296016,
+    "name": "State Bank of India",
+    "category": "atm",
+    "tags": {
+      "amenity": "atm",
+      "brand": "State Bank of India",
+      "brand:en": "State Bank of India",
+      "brand:wikidata": "Q1340361",
+      "brand:wikipedia": "en:State Bank of India",
+      "cash_in": "no",
+      "currency:INR": "yes",
+      "drive_through": "no",
+      "indoor": "yes",
+      "name": "State Bank of India",
+      "note": "Contributors are requested to not edit the \"brand\", \"brand:en\", \"brand:wikidata\", \"operator\", \"operator:en\" and \"operator:wikidata\" tags. (2025/02/19)",
+      "opening_hours": "24/7",
+      "operator": "State Bank of India",
+      "operator:en": "State Bank of India",
+      "operator:wikidata": "Q1340361",
+      "operator:wikipedia": "en:State Bank of India",
+      "short_name": "SBI"
+    },
+    "coord": [
+      28.6130743,
+      77.0336395
+    ]
+  },
+  {
+    "type": "node",
+    "id": 8958441917,
+    "name": "Netaji Subhas Chandra Bose Statue",
+    "category": "other",
+    "tags": {
+      "artwork_type": "statue",
+      "name": "Netaji Subhas Chandra Bose Statue",
+      "subject:wikidata": "Q2153",
+      "subject:wikipedia": "en:Subhas Chandra Bose",
+      "tourism": "artwork"
+    },
+    "coord": [
+      28.6093078,
+      77.0350316
+    ]
+  },
+  {
+    "type": "node",
+    "id": 9044613459,
+    "name": "Auditorium",
+    "category": "theatre",
+    "tags": {
+      "air_conditioning": "yes",
+      "amenity": "theatre",
+      "name": "Auditorium",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.6099203,
+      77.0369267
+    ]
+  },
+  {
+    "type": "node",
+    "id": 9044613460,
+    "name": "Mini Auditorium",
+    "category": "theatre",
+    "tags": {
+      "air_conditioning": "yes",
+      "amenity": "theatre",
+      "name": "Mini Auditorium",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.6095946,
+      77.0380655
+    ]
+  },
+  {
+    "type": "node",
+    "id": 9052128313,
+    "name": "Union Bank of India",
+    "category": "atm",
+    "tags": {
+      "amenity": "atm",
+      "brand": "Union Bank of India",
+      "brand:wikidata": "Q2004078",
+      "brand:wikipedia": "en:Union Bank of India",
+      "name": "Union Bank of India",
+      "operator": "Union Bank of India",
+      "operator:wikidata": "Q2004078",
+      "operator:wikipedia": "en:Union Bank of India"
+    },
+    "coord": [
+      28.6082668,
+      77.0351862
+    ]
+  },
+  {
+    "type": "node",
+    "id": 9692661617,
+    "name": "Sai Dham",
+    "category": "other",
+    "tags": {
+      "addr:housenumber": "12",
+      "addr:postcode": "110078",
+      "addr:street": "Chandra Park",
+      "name": "Sai Dham",
+      "name:en": "Sai Dham Apartment",
+      "tourism": "apartment"
+    },
+    "coord": [
+      28.6106965,
+      77.032443
+    ]
+  },
+  {
+    "type": "node",
+    "id": 9694067517,
+    "name": "Sai Aashray Apartment",
+    "category": "other",
+    "tags": {
+      "addr:housenumber": "10 and 11",
+      "addr:postcode": "110078",
+      "name": "Sai Aashray Apartment",
+      "tourism": "apartment"
+    },
+    "coord": [
+      28.6107342,
+      77.0322728
+    ]
+  },
+  {
+    "type": "node",
+    "id": 9694069017,
+    "name": "Sai Apartment",
+    "category": "other",
+    "tags": {
+      "addr:housenumber": "31-32",
+      "addr:postcode": "110078",
+      "addr:street": "Chandra Park",
+      "check_date": "2025-01-10",
+      "name": "Sai Apartment",
+      "name:en": "Sai Apartment",
+      "name:hi": "साईं अपार्टमेंट",
+      "tourism": "apartment"
+    },
+    "coord": [
+      28.6109002,
+      77.0322917
+    ]
+  },
+  {
+    "type": "node",
+    "id": 9694584317,
+    "name": "Singla General Store",
+    "category": "other",
+    "tags": {
+      "addr:housenumber": "7-8",
+      "addr:postcode": "110078",
+      "addr:street": "Chandra Park",
+      "name": "Singla General Store",
+      "tourism": "apartment"
+    },
+    "coord": [
+      28.6105839,
+      77.0323694
+    ]
+  },
+  {
+    "type": "node",
+    "id": 10606496417,
+    "name": "Girl's Hostel 3",
+    "category": "other",
+    "tags": {
+      "addr:housenumber": "21,26",
+      "addr:street": "Type V Quarters",
+      "name": "Girl's Hostel 3",
+      "operator": "NSUT",
+      "ref": "GH 3",
+      "tourism": "hostel"
+    },
+    "coord": [
+      28.6067365,
+      77.0370008
+    ]
+  },
+  {
+    "type": "node",
+    "id": 10949022874,
+    "name": "Ashfaq Ullah Khan",
+    "category": "other",
+    "tags": {
+      "historic": "memorial",
+      "memorial": "plaque",
+      "name": "Ashfaq Ullah Khan",
+      "subject:wikidata": "Q1571670",
+      "subject:wikipedia": "en:Ashfaqulla Khan"
+    },
+    "coord": [
+      28.6096598,
+      77.0397627
+    ]
+  },
+  {
+    "type": "node",
+    "id": 10992246632,
+    "name": "Sulahkul Mandir",
+    "category": "place_of_worship",
+    "tags": {
+      "amenity": "place_of_worship",
+      "name": "Sulahkul Mandir",
+      "name:hi": "सुलहाकुल मन्दिर",
+      "religion": "hindu"
+    },
+    "coord": [
+      28.6070869,
+      77.0346835
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11007819680,
+    "name": "Physiotherapy Centre",
+    "category": "other",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:housenumber": "V-13",
+      "addr:postcode": "110078",
+      "healthcare": "physiotherapist",
+      "name": "Physiotherapy Centre",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.6077097,
+      77.0368833
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11698102385,
+    "name": "sparkling spa",
+    "category": "resort",
+    "tags": {
+      "leisure": "resort",
+      "name": "sparkling spa"
+    },
+    "coord": [
+      28.6040317,
+      77.0442268
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11738436718,
+    "name": "Punjab National Bank",
+    "category": "bank",
+    "tags": {
+      "amenity": "bank",
+      "brand": "Punjab National Bank",
+      "brand:wikidata": "Q2743499",
+      "check_date": "2025-01-10",
+      "name": "Punjab National Bank"
+    },
+    "coord": [
+      28.6117674,
+      77.0331845
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11738436720,
+    "name": "Dwarka Mor Sub Post Office",
+    "category": "post_office",
+    "tags": {
+      "amenity": "post_office",
+      "check_date": "2025-01-10",
+      "name": "Dwarka Mor Sub Post Office"
+    },
+    "coord": [
+      28.6117672,
+      77.0331883
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11915129544,
+    "name": "Ekart",
+    "category": "fixme",
+    "tags": {
+      "amenity": "fixme",
+      "check_date": "2024-05-18",
+      "fixme": "type",
+      "fixme:type": "delivery hub",
+      "name": "Ekart"
+    },
+    "coord": [
+      28.6178468,
+      77.031527
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11915140323,
+    "name": "Goyal Book Depot",
+    "category": "books",
+    "tags": {
+      "check_date": "2024-05-18",
+      "name": "Goyal Book Depot",
+      "payment:cash": "yes",
+      "payment:upi": "yes",
+      "shop": "books"
+    },
+    "coord": [
+      28.6169438,
+      77.0317972
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11915255194,
+    "name": "The Kangra Co-operative Bank Limited",
+    "category": "bank",
+    "tags": {
+      "amenity": "bank",
+      "check_date": "2024-05-18",
+      "name": "The Kangra Co-operative Bank Limited",
+      "opening_hours": "Mo-Fr 10:00-16:00; Su off"
+    },
+    "coord": [
+      28.6179852,
+      77.0315065
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11916041165,
+    "name": "K D banquet Hall",
+    "category": "events_venue",
+    "tags": {
+      "amenity": "events_venue",
+      "check_date": "2024-05-18",
+      "name": "K D banquet Hall"
+    },
+    "coord": [
+      28.6167136,
+      77.0324414
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11916092190,
+    "name": "Bajaj",
+    "category": "car",
+    "tags": {
+      "check_date": "2024-05-18",
+      "name": "Bajaj",
+      "shop": "car"
+    },
+    "coord": [
+      28.6165903,
+      77.0325228
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11935081100,
+    "name": "Paint Shop",
+    "category": "paint",
+    "tags": {
+      "check_date": "2024-05-26",
+      "name": "Paint Shop",
+      "shop": "paint"
+    },
+    "coord": [
+      28.615783,
+      77.0319431
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11935081101,
+    "name": "Ascento School",
+    "category": "other",
+    "tags": {
+      "addr:floor": "1",
+      "check_date": "2024-05-26",
+      "level": "1",
+      "name": "Ascento School",
+      "office": "educational_institution"
+    },
+    "coord": [
+      28.6157607,
+      77.0319469
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11935081102,
+    "name": "Guruji Motors",
+    "category": "car",
+    "tags": {
+      "check_date": "2024-05-26",
+      "name": "Guruji Motors",
+      "second_hand": "only",
+      "shop": "car"
+    },
+    "coord": [
+      28.6157396,
+      77.0319526
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11935081103,
+    "name": "Star Car Accessories",
+    "category": "car_parts",
+    "tags": {
+      "check_date": "2024-05-26",
+      "name": "Star Car Accessories",
+      "shop": "car_parts"
+    },
+    "coord": [
+      28.6156694,
+      77.0319748
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11935084575,
+    "name": "Royal Garden",
+    "category": "events_venue",
+    "tags": {
+      "amenity": "events_venue",
+      "check_date": "2024-05-26",
+      "name": "Royal Garden"
+    },
+    "coord": [
+      28.6155592,
+      77.0320102
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11935088006,
+    "name": "Rahul Battery And Motors",
+    "category": "fixme",
+    "tags": {
+      "amenity": "fixme",
+      "check_date": "2024-05-26",
+      "fixme": "type",
+      "fixme:type": "shop",
+      "name": "Rahul Battery And Motors"
+    },
+    "coord": [
+      28.6170204,
+      77.0317849
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11935088007,
+    "name": "RG Motors And Car Accessories",
+    "category": "car_parts",
+    "tags": {
+      "check_date": "2024-05-26",
+      "name": "RG Motors And Car Accessories",
+      "shop": "car_parts"
+    },
+    "coord": [
+      28.6170569,
+      77.0317741
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11935088008,
+    "name": "ABC Travels",
+    "category": "travel_agency",
+    "tags": {
+      "check_date": "2024-05-26",
+      "name": "ABC Travels",
+      "shop": "travel_agency"
+    },
+    "coord": [
+      28.6170935,
+      77.0317636
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11935102880,
+    "name": "Somany Grandé;Supreme Field Developers;Road 2 Abroad",
+    "category": "fixme",
+    "tags": {
+      "addr:floor": "G;1;2",
+      "amenity": "fixme",
+      "check_date": "2024-05-26",
+      "fixme": "type",
+      "fixme:type": "shop;visa consultant",
+      "level": "0;1;2",
+      "name": "Somany Grandé;Supreme Field Developers;Road 2 Abroad",
+      "office": "estate_agent"
+    },
+    "coord": [
+      28.6159463,
+      77.0318638
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11935102883,
+    "name": "The Grand Castle",
+    "category": "events_venue",
+    "tags": {
+      "amenity": "events_venue",
+      "check_date": "2024-05-26",
+      "name": "The Grand Castle"
+    },
+    "coord": [
+      28.6158485,
+      77.0318875
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11935445080,
+    "name": "Boys Hostel",
+    "category": "other",
+    "tags": {
+      "name": "Boys Hostel",
+      "tourism": "hostel",
+      "wheelchair": "limited"
+    },
+    "coord": [
+      28.6062081,
+      77.0390247
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946557046,
+    "name": "Agilus Diagnostics",
+    "category": "fixme",
+    "tags": {
+      "amenity": "fixme",
+      "check_date": "2024-05-31",
+      "fixme": "type",
+      "fixme:type": "diagnosticlabs",
+      "name": "Agilus Diagnostics",
+      "phone": "+91 72900 23950"
+    },
+    "coord": [
+      28.6136028,
+      77.0326455
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946727005,
+    "name": "Dental Paradise",
+    "category": "dentist",
+    "tags": {
+      "amenity": "dentist",
+      "check_date": "2024-05-31",
+      "description": "Cosmetic implant and laser dentistry..",
+      "healthcare": "dentist",
+      "healthcare:speciality": "orthodontics",
+      "name": "Dental Paradise",
+      "phone": "+91 95601 94463"
+    },
+    "coord": [
+      28.6136028,
+      77.0326455
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946731810,
+    "name": "प्राचीन शिव मंदिर",
+    "category": "place_of_worship",
+    "tags": {
+      "amenity": "place_of_worship",
+      "check_date": "2024-05-31",
+      "name": "प्राचीन शिव मंदिर",
+      "religion": "hindu"
+    },
+    "coord": [
+      28.613301,
+      77.0327734
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946762183,
+    "name": "Triumph Motorcycle Showroom",
+    "category": "motorcycle",
+    "tags": {
+      "brand": "Triumph",
+      "check_date": "2024-05-31",
+      "name": "Triumph Motorcycle Showroom",
+      "shop": "motorcycle",
+      "wheelchair": "yes"
+    },
+    "coord": [
+      28.6128472,
+      77.0329293
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946762184,
+    "name": "बाबा स्टोर",
+    "category": "general",
+    "tags": {
+      "check_date": "2024-05-31",
+      "name": "बाबा स्टोर",
+      "shop": "general"
+    },
+    "coord": [
+      28.6129918,
+      77.0329023
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946762185,
+    "name": "Deals On Wheels",
+    "category": "car",
+    "tags": {
+      "check_date": "2024-05-31",
+      "name": "Deals On Wheels",
+      "second_hand": "only",
+      "shop": "car"
+    },
+    "coord": [
+      28.6130286,
+      77.0328941
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946762186,
+    "name": "Fortisvet",
+    "category": "veterinary",
+    "tags": {
+      "amenity": "veterinary",
+      "check_date": "2024-05-31",
+      "name": "Fortisvet"
+    },
+    "coord": [
+      28.6130787,
+      77.0328734
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946762187,
+    "name": "पतंजलि चिकित्सालय",
+    "category": "other",
+    "tags": {
+      "check_date": "2024-05-31",
+      "healthcare": "alternative",
+      "healthcare:speciality": "ayurveda",
+      "name": "पतंजलि चिकित्सालय"
+    },
+    "coord": [
+      28.613125,
+      77.0328607
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946765621,
+    "name": "Arouse Automotive(Multi-brand Car Company)",
+    "category": "other",
+    "tags": {
+      "check_date": "2024-05-31",
+      "name": "Arouse Automotive(Multi-brand Car Company)",
+      "office": "company",
+      "source": "survey"
+    },
+    "coord": [
+      28.6137375,
+      77.0326164
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946767210,
+    "name": "Surya Green",
+    "category": "events_venue",
+    "tags": {
+      "amenity": "events_venue",
+      "check_date": "2024-05-31",
+      "name": "Surya Green",
+      "website": "http://www.suryagrand.com/surya-green-banquet.html",
+      "wheelchair": "no"
+    },
+    "coord": [
+      28.6134539,
+      77.0326633
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946769021,
+    "name": "Dance and Fitness Studio। Western Dance Academy",
+    "category": "dancing_school",
+    "tags": {
+      "amenity": "dancing_school",
+      "check_date": "2024-05-31",
+      "name": "Dance and Fitness Studio। Western Dance Academy",
+      "phone": "+91 98101 72950"
+    },
+    "coord": [
+      28.6137326,
+      77.0325805
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946769022,
+    "name": "World View, Shipping And Logistics Pvt Ltd",
+    "category": "other",
+    "tags": {
+      "check_date": "2024-05-31",
+      "name": "World View, Shipping And Logistics Pvt Ltd",
+      "office": "company"
+    },
+    "coord": [
+      28.6138301,
+      77.0325762
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946772369,
+    "name": "Benison IVF & Healthcare Clinic",
+    "category": "clinic",
+    "tags": {
+      "amenity": "clinic",
+      "check_date": "2024-05-31",
+      "healthcare": "clinic",
+      "healthcare:speciality": "fertility",
+      "name": "Benison IVF & Healthcare Clinic",
+      "operator": "Datta Healthcare",
+      "operator:type": "private",
+      "phone": "+91 72900 23950",
+      "website": "https://www.benisonivf.com"
+    },
+    "coord": [
+      28.6136582,
+      77.0326356
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946773317,
+    "name": "Ganesh Collection",
+    "category": "clothes",
+    "tags": {
+      "check_date": "2024-05-31",
+      "name": "Ganesh Collection",
+      "shop": "clothes"
+    },
+    "coord": [
+      28.6139517,
+      77.0325597
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946783881,
+    "name": "Trinity Delhi Cycle",
+    "category": "bicycle",
+    "tags": {
+      "check_date": "2024-05-31",
+      "name": "Trinity Delhi Cycle",
+      "name:hi": "ट्रिनिटी दिल्ली सायकल",
+      "shop": "bicycle"
+    },
+    "coord": [
+      28.6137419,
+      77.032617
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946785826,
+    "name": "Aquarium And Dog Products Home",
+    "category": "fixme",
+    "tags": {
+      "amenity": "fixme",
+      "check_date": "2024-05-31",
+      "fixme": "type",
+      "fixme:type": "pet foods and aquarium shop",
+      "name": "Aquarium And Dog Products Home",
+      "phone": "+91 97172 90351"
+    },
+    "coord": [
+      28.6138847,
+      77.0325636
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946787420,
+    "name": "yuma",
+    "category": "fixme",
+    "tags": {
+      "amenity": "fixme",
+      "check_date": "2024-05-31",
+      "fixme": "type",
+      "fixme:type": "battery swapping station",
+      "name": "yuma",
+      "name:hi": "यूमा"
+    },
+    "coord": [
+      28.6138636,
+      77.0332577
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946806995,
+    "name": "Disha Technologies",
+    "category": "hardware",
+    "tags": {
+      "check_date": "2024-05-31",
+      "name": "Disha Technologies",
+      "shop": "hardware",
+      "website": "https://www.dishamachine.com"
+    },
+    "coord": [
+      28.6138847,
+      77.0325636
+    ]
+  },
+  {
+    "type": "node",
+    "id": 11946806996,
+    "name": "Adish Jain & Co",
+    "category": "other",
+    "tags": {
+      "check_date": "2024-05-31",
+      "description": "Chartered accountant",
+      "name": "Adish Jain & Co",
+      "office": "tax_advisor",
+      "phone": "+91 92509 16125"
+    },
+    "coord": [
+      28.6138861,
+      77.0325644
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12218183773,
+    "name": "Deen Dayal Upadhyaya",
+    "category": "other",
+    "tags": {
+      "artwork_type": "statue",
+      "material": "stone",
+      "name": "Deen Dayal Upadhyaya",
+      "subject:wikidata": "Q3631426",
+      "subject:wikipedia": "en:Deendayal Upadhyaya",
+      "tourism": "artwork"
+    },
+    "coord": [
+      28.6050445,
+      77.0381503
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12390139062,
+    "name": "NDNC Diagnostics",
+    "category": "other",
+    "tags": {
+      "check_date": "2024-12-02",
+      "healthcare": "laboratory",
+      "healthcare:speciality": "blood_check;diagnostic_radiology",
+      "name": "NDNC Diagnostics"
+    },
+    "coord": [
+      28.6152289,
+      77.0328443
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12390169339,
+    "name": "Puran",
+    "category": "supermarket",
+    "tags": {
+      "check_date": "2025-03-03",
+      "name": "Puran",
+      "opening_hours": "10:00-22:00",
+      "payment:cash": "yes",
+      "payment:credit_cards": "yes",
+      "payment:debit_cards": "yes",
+      "shop": "supermarket",
+      "wheelchair": "yes"
+    },
+    "coord": [
+      28.6153723,
+      77.0329255
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12390169340,
+    "name": "Keshav Sahkari Bank Limited",
+    "category": "bank",
+    "tags": {
+      "addr:housenumber": "A-1/87/A",
+      "addr:street": "Service Road",
+      "amenity": "bank",
+      "check_date": "2025-03-03",
+      "level": "0",
+      "name": "Keshav Sahkari Bank Limited"
+    },
+    "coord": [
+      28.6151209,
+      77.0329206
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12390182094,
+    "name": "Dr Pathak Clinic",
+    "category": "clinic",
+    "tags": {
+      "amenity": "clinic",
+      "check_date": "2024-12-02",
+      "healthcare": "clinic",
+      "name": "Dr Pathak Clinic"
+    },
+    "coord": [
+      28.6149948,
+      77.0329543
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12390182095,
+    "name": "Guruji Book Depot",
+    "category": "books",
+    "tags": {
+      "check_date": "2024-12-02",
+      "name": "Guruji Book Depot",
+      "shop": "books"
+    },
+    "coord": [
+      28.614928,
+      77.0329573
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12393601797,
+    "name": "Khurana Stationary And All In One",
+    "category": "stationery",
+    "tags": {
+      "check_date": "2024-12-03",
+      "level": "0",
+      "name": "Khurana Stationary And All In One",
+      "shop": "stationery"
+    },
+    "coord": [
+      28.6148076,
+      77.0331088
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12393601798,
+    "name": "Rajan Confectionery Store",
+    "category": "confectionery",
+    "tags": {
+      "check_date": "2024-12-03",
+      "level": "0",
+      "name": "Rajan Confectionery Store",
+      "shop": "confectionery"
+    },
+    "coord": [
+      28.6148665,
+      77.0331033
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12393726134,
+    "name": "Verma Shoker And Kamani Repair",
+    "category": "car_repair",
+    "tags": {
+      "check_date": "2024-12-03",
+      "name": "Verma Shoker And Kamani Repair",
+      "shop": "car_repair"
+    },
+    "coord": [
+      28.6148425,
+      77.0329882
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12393726135,
+    "name": "Manoj Automobiles",
+    "category": "car_repair",
+    "tags": {
+      "check_date": "2024-12-03",
+      "name": "Manoj Automobiles",
+      "shop": "car_repair"
+    },
+    "coord": [
+      28.6148287,
+      77.0329875
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12393726136,
+    "name": "Juice And Shakes",
+    "category": "fast_food",
+    "tags": {
+      "amenity": "fast_food",
+      "check_date": "2024-12-03",
+      "cuisine": "juice",
+      "name": "Juice And Shakes"
+    },
+    "coord": [
+      28.6147983,
+      77.0329999
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12393735107,
+    "name": "Perfect Deals",
+    "category": "other",
+    "tags": {
+      "check_date": "2024-12-03",
+      "level": "1",
+      "name": "Perfect Deals",
+      "office": "estate_agent"
+    },
+    "coord": [
+      28.6148288,
+      77.0331109
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12393738167,
+    "name": "Sewak Park",
+    "category": "other",
+    "tags": {
+      "name": "Sewak Park",
+      "power": "substation",
+      "voltage": "11000"
+    },
+    "coord": [
+      28.6147361,
+      77.0330375
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12393738168,
+    "name": "The Hair Lounge",
+    "category": "hairdresser",
+    "tags": {
+      "check_date": "2024-12-03",
+      "level": "0",
+      "name": "The Hair Lounge",
+      "shop": "hairdresser"
+    },
+    "coord": [
+      28.6147391,
+      77.0331408
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12393738169,
+    "name": "Aashiyana Dream Buildcon Pvt Ltd",
+    "category": "other",
+    "tags": {
+      "check_date": "2024-12-03",
+      "level": "1",
+      "name": "Aashiyana Dream Buildcon Pvt Ltd",
+      "office": "estate_agent"
+    },
+    "coord": [
+      28.6147391,
+      77.0331408
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12393748479,
+    "name": "Ganapati Associates",
+    "category": "other",
+    "tags": {
+      "check_date": "2024-12-03",
+      "level": "0",
+      "name": "Ganapati Associates",
+      "office": "estate_agent"
+    },
+    "coord": [
+      28.6148494,
+      77.0331014
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12393748480,
+    "name": "CravEat",
+    "category": "restaurant",
+    "tags": {
+      "amenity": "restaurant",
+      "check_date": "2024-12-03",
+      "level": "0",
+      "name": "CravEat"
+    },
+    "coord": [
+      28.6151272,
+      77.0331382
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12393748481,
+    "name": "Emaret Resources",
+    "category": "other",
+    "tags": {
+      "check_date": "2024-12-03",
+      "name": "Emaret Resources",
+      "office": "company"
+    },
+    "coord": [
+      28.6150794,
+      77.0331382
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12424520101,
+    "name": "Saras Medical Services",
+    "category": "other",
+    "tags": {
+      "addr:floor": "G",
+      "addr:housenumber": "D-40",
+      "addr:street": "Service Road",
+      "check_date": "2024-12-17",
+      "email": "sarasmedicalservice@gmail.com",
+      "healthcare": "sample_collection",
+      "level": "0",
+      "name": "Saras Medical Services",
+      "opening_hours": "Mo-Sa 09:00-18:00",
+      "phone": "+91 77038 86671; +91 93105 06206",
+      "wheelchair": "yes"
+    },
+    "coord": [
+      28.6159765,
+      77.0315945
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12424520102,
+    "name": "Om Sai Auto Electricals",
+    "category": "electrical",
+    "tags": {
+      "addr:floor": "G",
+      "check_date": "2024-12-17",
+      "level": "0",
+      "name": "Om Sai Auto Electricals",
+      "shop": "electrical"
+    },
+    "coord": [
+      28.6159938,
+      77.031433
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12430610197,
+    "name": "GoodYear Autocare",
+    "category": "car_repair",
+    "tags": {
+      "check_date": "2024-12-18",
+      "name": "GoodYear Autocare",
+      "shop": "car_repair"
+    },
+    "coord": [
+      28.6178838,
+      77.0320556
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12430610198,
+    "name": "Jagadamba Auto Sales",
+    "category": "car_repair",
+    "tags": {
+      "check_date": "2024-12-18",
+      "name": "Jagadamba Auto Sales",
+      "shop": "car_repair"
+    },
+    "coord": [
+      28.6178274,
+      77.0320438
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12430666770,
+    "name": "Chaudhary Bus Service",
+    "category": "travel_agency",
+    "tags": {
+      "check_date": "2024-12-18",
+      "name": "Chaudhary Bus Service",
+      "shop": "travel_agency"
+    },
+    "coord": [
+      28.6174596,
+      77.0321497
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12430666827,
+    "name": "Teaवानि",
+    "category": "cafe",
+    "tags": {
+      "amenity": "cafe",
+      "check_date": "2024-12-18",
+      "name": "Teaवानि"
+    },
+    "coord": [
+      28.6179673,
+      77.0319903
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12430713360,
+    "name": "Lucky Butter Momos",
+    "category": "fast_food",
+    "tags": {
+      "amenity": "fast_food",
+      "check_date": "2024-12-18",
+      "fixme": "type",
+      "fixme:type": "momos",
+      "name": "Lucky Butter Momos"
+    },
+    "coord": [
+      28.6176367,
+      77.0321066
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12430719158,
+    "name": "Aaradhya Book Depot",
+    "category": "books",
+    "tags": {
+      "addr:housenumber": "B-11, Sewak Park",
+      "addr:street": "Service Road",
+      "check_date": "2024-12-18",
+      "name": "Aaradhya Book Depot",
+      "shop": "books"
+    },
+    "coord": [
+      28.617663,
+      77.0320925
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12430719159,
+    "name": "Chaurasia Junction",
+    "category": "general",
+    "tags": {
+      "check_date": "2024-12-18",
+      "name": "Chaurasia Junction",
+      "shop": "general"
+    },
+    "coord": [
+      28.6177293,
+      77.0320716
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12430740812,
+    "name": "VI Mini Store",
+    "category": "mobile_phone",
+    "tags": {
+      "brand": "Vodafone Idea",
+      "brand:wikidata": "Q1656673",
+      "check_date": "2024-12-18",
+      "name": "VI Mini Store",
+      "shop": "mobile_phone"
+    },
+    "coord": [
+      28.617615,
+      77.0321134
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451071173,
+    "name": "The Daily Dose Cafe",
+    "category": "cafe",
+    "tags": {
+      "amenity": "cafe",
+      "check_date": "2024-12-25",
+      "name": "The Daily Dose Cafe"
+    },
+    "coord": [
+      28.6169987,
+      77.033025
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451071174,
+    "name": "Sai Electricals",
+    "category": "electrical",
+    "tags": {
+      "check_date": "2024-12-25",
+      "name": "Sai Electricals",
+      "shop": "electrical"
+    },
+    "coord": [
+      28.6170293,
+      77.0330265
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451128964,
+    "name": "The Hunger's Door",
+    "category": "restaurant",
+    "tags": {
+      "amenity": "restaurant",
+      "check_date": "2024-12-25",
+      "name": "The Hunger's Door"
+    },
+    "coord": [
+      28.6166139,
+      77.0331512
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451141764,
+    "name": "Lunch Ladies",
+    "category": "restaurant",
+    "tags": {
+      "amenity": "restaurant",
+      "check_date": "2024-12-25",
+      "name": "Lunch Ladies"
+    },
+    "coord": [
+      28.6171382,
+      77.0331711
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451149111,
+    "name": "Mr. Southwala",
+    "category": "restaurant",
+    "tags": {
+      "amenity": "restaurant",
+      "check_date": "2024-12-25",
+      "cuisine": "indian",
+      "name": "Mr. Southwala"
+    },
+    "coord": [
+      28.6166958,
+      77.0331861
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451151238,
+    "name": "India Tech Instrumentation",
+    "category": "radiotechnics",
+    "tags": {
+      "addr:floor": "G",
+      "check_date": "2024-12-25",
+      "level": "0",
+      "name": "India Tech Instrumentation",
+      "shop": "radiotechnics"
+    },
+    "coord": [
+      28.6164436,
+      77.0331641
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451152144,
+    "name": "Pizza Yum",
+    "category": "restaurant",
+    "tags": {
+      "addr:floor": "G",
+      "amenity": "restaurant",
+      "check_date": "2024-12-25",
+      "level": "0",
+      "name": "Pizza Yum"
+    },
+    "coord": [
+      28.61651,
+      77.0331669
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451157224,
+    "name": "Bala Properties",
+    "category": "other",
+    "tags": {
+      "check_date": "2024-12-25",
+      "name": "Bala Properties",
+      "office": "estate_agent"
+    },
+    "coord": [
+      28.6167134,
+      77.0331854
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451167621,
+    "name": "Phone Buzz",
+    "category": "other",
+    "tags": {
+      "addr:floor": "G",
+      "check_date": "2024-12-25",
+      "craft": "electronics_repair",
+      "level": "0",
+      "name": "Phone Buzz"
+    },
+    "coord": [
+      28.6167409,
+      77.0331676
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451167622,
+    "name": "Goyal Creation",
+    "category": "clothes",
+    "tags": {
+      "addr:floor": "G",
+      "check_date": "2024-12-25",
+      "level": "0",
+      "name": "Goyal Creation",
+      "shop": "clothes"
+    },
+    "coord": [
+      28.6167959,
+      77.0331662
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451167623,
+    "name": "Iconic Salon",
+    "category": "hairdresser",
+    "tags": {
+      "check_date": "2024-12-25",
+      "name": "Iconic Salon",
+      "opening_hours": "09:30-20:00",
+      "shop": "hairdresser",
+      "wheelchair": "yes"
+    },
+    "coord": [
+      28.6168035,
+      77.0331654
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451171298,
+    "name": "Diamond Unisex Salon",
+    "category": "hairdresser",
+    "tags": {
+      "check_date": "2024-12-25",
+      "name": "Diamond Unisex Salon",
+      "shop": "hairdresser"
+    },
+    "coord": [
+      28.616881,
+      77.0331647
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451177806,
+    "name": "Moon Star Imaging And Path Lab",
+    "category": "doctors",
+    "tags": {
+      "addr:floor": "G",
+      "amenity": "doctors",
+      "check_date": "2024-12-25",
+      "healthcare": "doctor",
+      "healthcare:speciality": "radiology",
+      "level": "0",
+      "name": "Moon Star Imaging And Path Lab"
+    },
+    "coord": [
+      28.6164963,
+      77.0331654
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451178960,
+    "name": "Aqua Pure जल",
+    "category": "water_filter",
+    "tags": {
+      "check_date": "2024-12-25",
+      "name": "Aqua Pure जल",
+      "shop": "water_filter"
+    },
+    "coord": [
+      28.6173816,
+      77.0331761
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451179075,
+    "name": "Pankaj Store",
+    "category": "general",
+    "tags": {
+      "check_date": "2024-12-25",
+      "name": "Pankaj Store",
+      "shop": "general"
+    },
+    "coord": [
+      28.61708,
+      77.033035
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451179076,
+    "name": "New Chaurasia Paan Palace",
+    "category": "fixme",
+    "tags": {
+      "amenity": "fixme",
+      "check_date": "2024-12-25",
+      "fixme": "type",
+      "fixme:type": "paan",
+      "name": "New Chaurasia Paan Palace"
+    },
+    "coord": [
+      28.617167,
+      77.033169
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451179077,
+    "name": "A1 Chaap Junction",
+    "category": "restaurant",
+    "tags": {
+      "amenity": "restaurant",
+      "check_date": "2024-12-25",
+      "name": "A1 Chaap Junction"
+    },
+    "coord": [
+      28.6172602,
+      77.033184
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451179079,
+    "name": "Flavours Of Swiss",
+    "category": "ice_cream",
+    "tags": {
+      "addr:floor": "G",
+      "amenity": "ice_cream",
+      "check_date": "2024-12-25",
+      "level": "0",
+      "name": "Flavours Of Swiss"
+    },
+    "coord": [
+      28.6174985,
+      77.033184
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451179080,
+    "name": "Galaxy Food Hub",
+    "category": "fast_food",
+    "tags": {
+      "addr:floor": "G",
+      "amenity": "fast_food",
+      "check_date": "2024-12-25",
+      "level": "0",
+      "name": "Galaxy Food Hub"
+    },
+    "coord": [
+      28.6175161,
+      77.033184
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451179081,
+    "name": "Angel Beauty Salon And Academy",
+    "category": "hairdresser",
+    "tags": {
+      "addr:floor": "G",
+      "check_date": "2024-12-25",
+      "level": "0",
+      "name": "Angel Beauty Salon And Academy",
+      "shop": "hairdresser"
+    },
+    "coord": [
+      28.6176256,
+      77.0331825
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451179084,
+    "name": "Durga Cosmetics And Gift Shop",
+    "category": "cosmetics",
+    "tags": {
+      "check_date": "2024-12-25",
+      "name": "Durga Cosmetics And Gift Shop",
+      "shop": "cosmetics"
+    },
+    "coord": [
+      28.6175805,
+      77.0331783
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451179085,
+    "name": "Harinder Medical Store",
+    "category": "pharmacy",
+    "tags": {
+      "addr:floor": "G",
+      "amenity": "pharmacy",
+      "check_date": "2024-12-25",
+      "healthcare": "pharmacy",
+      "level": "0",
+      "name": "Harinder Medical Store"
+    },
+    "coord": [
+      28.6176812,
+      77.0331654
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451189597,
+    "name": "Nautiyal Stationary",
+    "category": "stationery",
+    "tags": {
+      "check_date": "2024-12-25",
+      "name": "Nautiyal Stationary",
+      "shop": "stationery"
+    },
+    "coord": [
+      28.6168472,
+      77.0331647
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451199516,
+    "name": "New China Town",
+    "category": "restaurant",
+    "tags": {
+      "amenity": "restaurant",
+      "check_date": "2024-12-25",
+      "name": "New China Town"
+    },
+    "coord": [
+      28.6173234,
+      77.0331911
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451208595,
+    "name": "Shivam Jewellers",
+    "category": "jewelry",
+    "tags": {
+      "check_date": "2024-12-25",
+      "name": "Shivam Jewellers",
+      "shop": "jewelry",
+      "start_date": "2011"
+    },
+    "coord": [
+      28.6169649,
+      77.0331726
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451242112,
+    "name": "Ch. Amar Singh Gahlot Chowk",
+    "category": "fixme",
+    "tags": {
+      "amenity": "fixme",
+      "check_date": "2024-12-25",
+      "fixme": "type",
+      "fixme:type": "chowk",
+      "name": "Ch. Amar Singh Gahlot Chowk"
+    },
+    "coord": [
+      28.6171056,
+      77.0331198
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451242330,
+    "name": "Sewak Properties",
+    "category": "other",
+    "tags": {
+      "addr:floor": "G",
+      "check_date": "2024-12-25",
+      "level": "0",
+      "name": "Sewak Properties",
+      "office": "estate_agent"
+    },
+    "coord": [
+      28.6177138,
+      77.0331555
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451266866,
+    "name": "Radhey Fashion Readymade Garments",
+    "category": "clothes",
+    "tags": {
+      "check_date": "2024-12-25",
+      "name": "Radhey Fashion Readymade Garments",
+      "shop": "clothes"
+    },
+    "coord": [
+      28.6173496,
+      77.0331804
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451274431,
+    "name": "श्री Anand Artificial Jewellery And Cosmetics",
+    "category": "fashion_accessories",
+    "tags": {
+      "check_date": "2024-12-25",
+      "name": "श्री Anand Artificial Jewellery And Cosmetics",
+      "shop": "fashion_accessories"
+    },
+    "coord": [
+      28.6174185,
+      77.0331733
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451274918,
+    "name": "Momo Ghar",
+    "category": "fast_food",
+    "tags": {
+      "amenity": "fast_food",
+      "check_date": "2024-12-25",
+      "name": "Momo Ghar"
+    },
+    "coord": [
+      28.6174748,
+      77.033189
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12451274919,
+    "name": "Yumiverse",
+    "category": "cafe",
+    "tags": {
+      "amenity": "cafe",
+      "check_date": "2024-12-25",
+      "level": "1",
+      "name": "Yumiverse"
+    },
+    "coord": [
+      28.617491,
+      77.0331947
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488334249,
+    "name": "Club Viva",
+    "category": "fitness_centre",
+    "tags": {
+      "check_date": "2025-01-10",
+      "leisure": "fitness_centre",
+      "name": "Club Viva"
+    },
+    "coord": [
+      28.6115265,
+      77.0331871
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488336370,
+    "name": "Grand Elysium",
+    "category": "events_venue",
+    "tags": {
+      "amenity": "events_venue",
+      "check_date": "2025-01-10",
+      "name": "Grand Elysium"
+    },
+    "coord": [
+      28.6116186,
+      77.0331409
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488337177,
+    "name": "Dream Home Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Dream Home Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6120616,
+      77.0319851
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488345859,
+    "name": "New Balaji Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "New Balaji Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6113108,
+      77.0319662
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488345860,
+    "name": "Old Balaji Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Old Balaji Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6113041,
+      77.0321774
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488345861,
+    "name": "Shri Krishna Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Shri Krishna Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6123614,
+      77.031766
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488345879,
+    "name": "Om Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Om Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6122096,
+      77.0319546
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488348507,
+    "name": "Sai Residency",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Sai Residency",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6115795,
+      77.0314588
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488366567,
+    "name": "Lakshmi Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Lakshmi Apartment",
+      "name:hi": "लक्ष्मी अपार्टमेंट",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6119445,
+      77.0313912
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488367498,
+    "name": "Sai Niketan",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Sai Niketan",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6112793,
+      77.0316825
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488369611,
+    "name": "Bansuri Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Bansuri Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6115304,
+      77.0319314
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488374982,
+    "name": "Sai Vatika Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Sai Vatika Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6115257,
+      77.0321622
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488383099,
+    "name": "Sai Niwas Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Sai Niwas Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.61185,
+      77.0322199
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488397232,
+    "name": "University Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "University Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6123715,
+      77.0323035
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488397233,
+    "name": "Astha Kunj Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Astha Kunj Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6120711,
+      77.0325062
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488406189,
+    "name": "Sai Samridhi Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Sai Samridhi Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6123805,
+      77.0319538
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488414554,
+    "name": "Pabrai's Fresh And Naturelle",
+    "category": "ice_cream",
+    "tags": {
+      "amenity": "ice_cream",
+      "check_date": "2025-01-10",
+      "name": "Pabrai's Fresh And Naturelle"
+    },
+    "coord": [
+      28.6105364,
+      77.033661
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488430378,
+    "name": "Sai Astha Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Sai Astha Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6105014,
+      77.0327925
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12488441681,
+    "name": "Sai Awas Apartment",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Sai Awas Apartment",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6105118,
+      77.0331629
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12509304667,
+    "name": "Lalaji Sweets",
+    "category": "confectionery",
+    "tags": {
+      "check_date": "2025-01-17",
+      "name": "Lalaji Sweets",
+      "shop": "confectionery"
+    },
+    "coord": [
+      28.6105622,
+      77.0316841
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12509365143,
+    "name": "Sai Niwas",
+    "category": "other",
+    "tags": {
+      "landuse": "residential",
+      "name": "Sai Niwas",
+      "residential": "apartments"
+    },
+    "coord": [
+      28.6112227,
+      77.0323211
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12528765157,
+    "name": "Masoom Duniya(School For Special Children)",
+    "category": "other",
+    "tags": {
+      "check_date": "2025-01-24",
+      "name": "Masoom Duniya(School For Special Children)",
+      "office": "ngo"
+    },
+    "coord": [
+      28.617594,
+      77.0328185
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12543291383,
+    "name": "Safal",
+    "category": "greengrocer",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:postcode": "110078",
+      "addr:street": "Azad Hind Fauj Marg",
+      "name": "Safal",
+      "operator": "NSUT",
+      "shop": "greengrocer"
+    },
+    "coord": [
+      28.612143,
+      77.0363525
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12582070370,
+    "name": "Mother Dairy",
+    "category": "dairy",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:postcode": "110078",
+      "addr:street": "Azad Hind Fauj Marg",
+      "brand": "Mother Dairy",
+      "brand:wikidata": "Q6917320",
+      "name": "Mother Dairy",
+      "operator": "NSUT",
+      "shop": "dairy"
+    },
+    "coord": [
+      28.6121472,
+      77.0363524
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12633639389,
+    "name": "Jagdamba Associates Builders And Developers",
+    "category": "other",
+    "tags": {
+      "addr:floor": "G",
+      "check_date": "2025-03-03",
+      "level": "0",
+      "name": "Jagdamba Associates Builders And Developers",
+      "office": "estate_agent"
+    },
+    "coord": [
+      28.6161829,
+      77.0325664
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12633639390,
+    "name": "Rollick n Frolic",
+    "category": "kindergarten",
+    "tags": {
+      "addr:floor": "1",
+      "amenity": "kindergarten",
+      "check_date": "2025-03-03",
+      "level": "1",
+      "name": "Rollick n Frolic"
+    },
+    "coord": [
+      28.6161703,
+      77.0326027
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12633639391,
+    "name": "Pasta Express",
+    "category": "fast_food",
+    "tags": {
+      "addr:floor": "G",
+      "amenity": "fast_food",
+      "check_date": "2025-03-03",
+      "level": "0",
+      "name": "Pasta Express"
+    },
+    "coord": [
+      28.6160698,
+      77.0326977
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12633639392,
+    "name": "Bhatia Associates",
+    "category": "other",
+    "tags": {
+      "addr:floor": "G",
+      "check_date": "2025-03-03",
+      "level": "0",
+      "name": "Bhatia Associates",
+      "office": "estate_agent"
+    },
+    "coord": [
+      28.6159224,
+      77.0331584
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12633639393,
+    "name": "A K Fashion",
+    "category": "clothes",
+    "tags": {
+      "addr:floor": "G",
+      "check_date": "2025-03-03",
+      "level": "0",
+      "name": "A K Fashion",
+      "shop": "clothes"
+    },
+    "coord": [
+      28.6157495,
+      77.0331872
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12633639394,
+    "name": "Namaste Taste Hub",
+    "category": "restaurant",
+    "tags": {
+      "addr:floor": "G",
+      "amenity": "restaurant",
+      "check_date": "2025-03-03",
+      "cuisine": "indian",
+      "level": "0",
+      "name": "Namaste Taste Hub"
+    },
+    "coord": [
+      28.615687,
+      77.0329069
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12633639395,
+    "name": "Hair N Care Unisex Salon",
+    "category": "hairdresser",
+    "tags": {
+      "addr:floor": "G",
+      "check_date": "2025-03-03",
+      "level": "0",
+      "name": "Hair N Care Unisex Salon",
+      "shop": "hairdresser"
+    },
+    "coord": [
+      28.6155065,
+      77.0327907
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12633639396,
+    "name": "Common Services Centre",
+    "category": "internet_cafe",
+    "tags": {
+      "addr:floor": "G",
+      "amenity": "internet_cafe",
+      "check_date": "2025-03-03",
+      "level": "0",
+      "name": "Common Services Centre"
+    },
+    "coord": [
+      28.6155376,
+      77.0327699
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12633639397,
+    "name": "Kohli's Restaurant",
+    "category": "restaurant",
+    "tags": {
+      "addr:floor": "G",
+      "amenity": "restaurant",
+      "check_date": "2025-03-03",
+      "cuisine": "indian",
+      "level": "0",
+      "name": "Kohli's Restaurant"
+    },
+    "coord": [
+      28.6145524,
+      77.0331704
+    ]
+  },
+  {
+    "type": "node",
+    "id": 12633639398,
+    "name": "Chill Point",
+    "category": "fast_food",
+    "tags": {
+      "addr:floor": "G",
+      "amenity": "fast_food",
+      "check_date": "2025-03-03",
+      "level": "0",
+      "name": "Chill Point"
+    },
+    "coord": [
+      28.614461,
+      77.0331689
+    ]
+  },
+  {
+    "type": "node",
+    "id": 13131304832,
+    "name": "buggu cafe",
+    "category": "other",
+    "tags": {
+      "name": "buggu cafe"
+    },
+    "coord": [
+      28.6045914,
+      77.0375407
+    ]
+  },
+  {
+    "type": "node",
+    "id": 13647498111,
+    "name": "Phase 1",
+    "category": "other",
+    "tags": {
+      "name": "Phase 1",
+      "place": "locality"
+    },
+    "coord": [
+      28.6046477,
+      77.0362529
+    ]
+  },
+  {
+    "type": "node",
+    "id": 13647498112,
+    "name": "Dwarka Sector-3",
+    "category": "other",
+    "tags": {
+      "name": "Dwarka Sector-3",
+      "place": "locality"
+    },
+    "coord": [
+      28.6077066,
+      77.0402808
+    ]
+  },
+  {
+    "type": "node",
+    "id": 13647498113,
+    "name": "Sri Chand Park",
+    "category": "other",
+    "tags": {
+      "name": "Sri Chand Park",
+      "place": "locality"
+    },
+    "coord": [
+      28.6117016,
+      77.0442557
+    ]
+  },
+  {
+    "type": "node",
+    "id": 13647498114,
+    "name": "Mansa Ram Park",
+    "category": "other",
+    "tags": {
+      "name": "Mansa Ram Park",
+      "place": "locality"
+    },
+    "coord": [
+      28.6167988,
+      77.0440934
+    ]
+  },
+  {
+    "type": "way",
+    "id": 24576821,
+    "name": "Azad Hind Fauj Marg",
+    "category": "secondary",
+    "tags": {
+      "cycleway:both": "no",
+      "highway": "secondary",
+      "lit": "yes",
+      "name": "Azad Hind Fauj Marg",
+      "name:etymology:wikidata": "Q156062",
+      "oneway": "yes",
+      "sidewalk:left": "yes",
+      "surface": "asphalt"
+    },
+    "coord": [
+      28.612131642857143,
+      77.03358594761904
+    ]
+  },
+  {
+    "type": "way",
+    "id": 36801843,
+    "name": "Palam Najafgarh Road",
+    "category": "secondary",
+    "tags": {
+      "highway": "secondary",
+      "name": "Palam Najafgarh Road",
+      "oneway": "yes"
+    },
+    "coord": [
+      28.603265370000003,
+      77.0531208175
+    ]
+  },
+  {
+    "type": "way",
+    "id": 36801848,
+    "name": "Azad Hind Fauj Marg",
+    "category": "secondary",
+    "tags": {
+      "cycleway:both": "no",
+      "highway": "secondary",
+      "lit": "yes",
+      "name": "Azad Hind Fauj Marg",
+      "name:etymology:wikidata": "Q156062",
+      "oneway": "yes",
+      "sidewalk:left": "yes",
+      "source": "yahoo",
+      "surface": "asphalt"
+    },
+    "coord": [
+      28.613323944444446,
+      77.03338534444444
+    ]
+  },
+  {
+    "type": "way",
+    "id": 103172953,
+    "name": "Dwarka Greens Road",
+    "category": "tertiary",
+    "tags": {
+      "highway": "tertiary",
+      "name": "Dwarka Greens Road"
+    },
+    "coord": [
+      28.60627599047619,
+      77.02868560952382
+    ]
+  },
+  {
+    "type": "way",
+    "id": 103172954,
+    "name": "Old Palam Road",
+    "category": "tertiary",
+    "tags": {
+      "highway": "tertiary",
+      "name": "Old Palam Road"
+    },
+    "coord": [
+      28.612776224242424,
+      77.02976050606061
+    ]
+  },
+  {
+    "type": "way",
+    "id": 168951962,
+    "name": "Sector 3 Road",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "Sector 3 Road"
+    },
+    "coord": [
+      28.60497804285714,
+      77.04071037142856
+    ]
+  },
+  {
+    "type": "way",
+    "id": 209499017,
+    "name": "Deen Dayal Upadhyay College",
+    "category": "college",
+    "tags": {
+      "amenity": "college",
+      "barrier": "wall",
+      "name": "Deen Dayal Upadhyay College",
+      "name:etymology:wikidata": "Q3631426",
+      "short_name": "DDUC"
+    },
+    "coord": [
+      28.60551575,
+      77.0379603
+    ]
+  },
+  {
+    "type": "way",
+    "id": 222468243,
+    "name": "St. Thomas Malakara Catholic Church",
+    "category": "place_of_worship",
+    "tags": {
+      "amenity": "place_of_worship",
+      "name": "St. Thomas Malakara Catholic Church",
+      "religion": "christian"
+    },
+    "coord": [
+      28.61614296,
+      77.03392822
+    ]
+  },
+  {
+    "type": "way",
+    "id": 260279692,
+    "name": "Usha Mata Mandir",
+    "category": "place_of_worship",
+    "tags": {
+      "amenity": "place_of_worship",
+      "name": "Usha Mata Mandir",
+      "religion": "hindu"
+    },
+    "coord": [
+      28.617873566666663,
+      77.03540953333334
+    ]
+  },
+  {
+    "type": "way",
+    "id": 299687973,
+    "name": "Iskcon Temple Road",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "Iskcon Temple Road",
+      "oneway": "yes",
+      "surface": "asphalt"
+    },
+    "coord": [
+      28.604810726666667,
+      77.03100291999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 299687974,
+    "name": "Iskcon Temple Road",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "Iskcon Temple Road",
+      "oneway": "yes",
+      "surface": "asphalt"
+    },
+    "coord": [
+      28.604728533333333,
+      77.03055562
+    ]
+  },
+  {
+    "type": "way",
+    "id": 351081649,
+    "name": "Main Electric Substation",
+    "category": "service",
+    "tags": {
+      "building": "service",
+      "name": "Main Electric Substation",
+      "operator": "NSUT",
+      "power": "substation",
+      "start_date": "1999-04-26"
+    },
+    "coord": [
+      28.60766946,
+      77.04082944000001
+    ]
+  },
+  {
+    "type": "way",
+    "id": 351554984,
+    "name": "Gahlan Apartment",
+    "category": "yes",
+    "tags": {
+      "addr:city": "Dwarka",
+      "addr:housenumber": "Kh No. 27/24",
+      "addr:postcode": "110078",
+      "addr:street": "Azad Hind Fauj Marg",
+      "addr:unit": "Mohit Nagar",
+      "building": "yes",
+      "name": "Gahlan Apartment"
+    },
+    "coord": [
+      28.608184819999998,
+      77.03401782
+    ]
+  },
+  {
+    "type": "way",
+    "id": 351555021,
+    "name": "Servo Tech",
+    "category": "yes",
+    "tags": {
+      "building": "yes",
+      "name": "Servo Tech"
+    },
+    "coord": [
+      28.607289780000002,
+      77.0314885
+    ]
+  },
+  {
+    "type": "way",
+    "id": 352511730,
+    "name": "Admin Block",
+    "category": "office",
+    "tags": {
+      "building": "office",
+      "name": "Admin Block",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.609846721153847,
+      77.03708175961539
+    ]
+  },
+  {
+    "type": "way",
+    "id": 369835482,
+    "name": "Chaudhary Prem Singh Dalal Marg",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "Chaudhary Prem Singh Dalal Marg"
+    },
+    "coord": [
+      28.616600816666665,
+      77.033118575
+    ]
+  },
+  {
+    "type": "way",
+    "id": 369837714,
+    "name": "Sector 3 Road",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "Sector 3 Road"
+    },
+    "coord": [
+      28.606021,
+      77.04404778333334
+    ]
+  },
+  {
+    "type": "way",
+    "id": 396234587,
+    "name": "Shivam Apartment",
+    "category": "yes",
+    "tags": {
+      "building": "yes",
+      "name": "Shivam Apartment"
+    },
+    "coord": [
+      28.6072813,
+      77.0317621
+    ]
+  },
+  {
+    "type": "way",
+    "id": 423391598,
+    "name": "गली संख्या ५",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "गली संख्या ५",
+      "name:en": "Street no 5",
+      "name:hi": "गली संख्या ५"
+    },
+    "coord": [
+      28.6178795,
+      77.03110745000001
+    ]
+  },
+  {
+    "type": "way",
+    "id": 423391616,
+    "name": "गली संख्या ६",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "गली संख्या ६",
+      "name:en": "Street no 6",
+      "name:hi": "गली संख्या ६"
+    },
+    "coord": [
+      28.61735515,
+      77.03117415
+    ]
+  },
+  {
+    "type": "way",
+    "id": 423391676,
+    "name": "गली संख्या ८",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "गली संख्या ८",
+      "name:en": "Street no 8",
+      "name:hi": "गली संख्या ८"
+    },
+    "coord": [
+      28.616779299999997,
+      77.03087675
+    ]
+  },
+  {
+    "type": "way",
+    "id": 423391686,
+    "name": "गली संख्या ९",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "गली संख्या ९",
+      "name:en": "Street no 9",
+      "name:hi": "गली संख्या ९",
+      "surface": "asphalt"
+    },
+    "coord": [
+      28.616404925,
+      77.0309019
+    ]
+  },
+  {
+    "type": "way",
+    "id": 423391732,
+    "name": "गली संख्या ७",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "गली संख्या ७",
+      "name:en": "Street no 7",
+      "name:hi": "गली संख्या ७"
+    },
+    "coord": [
+      28.617004025,
+      77.030608675
+    ]
+  },
+  {
+    "type": "way",
+    "id": 423391739,
+    "name": "गली नं १",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "गली नं १",
+      "name:en": "Street no 1",
+      "name:hi": "गली नं १"
+    },
+    "coord": [
+      28.61374827142857,
+      77.03145405714285
+    ]
+  },
+  {
+    "type": "way",
+    "id": 423400643,
+    "name": "Street Number 9",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "Street Number 9"
+    },
+    "coord": [
+      28.6174645,
+      77.0333822
+    ]
+  },
+  {
+    "type": "way",
+    "id": 423400661,
+    "name": "Street Number 8",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "Street Number 8"
+    },
+    "coord": [
+      28.61793115,
+      77.0325396
+    ]
+  },
+  {
+    "type": "way",
+    "id": 585189785,
+    "name": "Mall Road",
+    "category": "secondary",
+    "tags": {
+      "highway": "secondary",
+      "name": "Mall Road",
+      "oneway": "yes"
+    },
+    "coord": [
+      28.60351285,
+      77.039739775
+    ]
+  },
+  {
+    "type": "way",
+    "id": 815127175,
+    "name": "Mall Road",
+    "category": "secondary",
+    "tags": {
+      "highway": "secondary",
+      "name": "Mall Road",
+      "oneway": "yes"
+    },
+    "coord": [
+      28.60511875,
+      77.037107325
+    ]
+  },
+  {
+    "type": "way",
+    "id": 951821835,
+    "name": "Vice Chancellor's House",
+    "category": "yes",
+    "tags": {
+      "addr:city": "Dwarka",
+      "addr:district": "South West Delhi",
+      "addr:postcode": "110078",
+      "addr:street": "NSUT Main Road",
+      "building": "yes",
+      "building:levels": "3",
+      "height": "15",
+      "name": "Vice Chancellor's House"
+    },
+    "coord": [
+      28.606763400000002,
+      77.03629412941176
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148762,
+    "name": "Dr AP.J Abdul Kalam Lecture Theatre Complex",
+    "category": "university",
+    "tags": {
+      "building": "university",
+      "name": "Dr AP.J Abdul Kalam Lecture Theatre Complex",
+      "operator": "NSUT",
+      "ref": "APJ",
+      "start_date": "2021-01-23"
+    },
+    "coord": [
+      28.61197383,
+      77.03706281999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148763,
+    "name": "Students' Centre",
+    "category": "cafe",
+    "tags": {
+      "amenity": "cafe",
+      "building": "yes",
+      "name": "Students' Centre",
+      "operational_status": "closed",
+      "operator": "NSUT",
+      "outdoor_seating": "yes",
+      "start_date": "2018-09-26"
+    },
+    "coord": [
+      28.611663088888886,
+      77.03691145555555
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148764,
+    "name": "Smart Class",
+    "category": "university",
+    "tags": {
+      "alt_name": "S Block",
+      "building": "university",
+      "name": "Smart Class",
+      "operator": "NSUT",
+      "start_date": "2016-03-09"
+    },
+    "coord": [
+      28.6120106375,
+      77.0376644625
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148766,
+    "name": "Fashion Technology Block",
+    "category": "university",
+    "tags": {
+      "alt_name": "Multi Purpose Centre",
+      "building": "university",
+      "name": "Fashion Technology Block",
+      "operator": "NSUT",
+      "ref": "MPC"
+    },
+    "coord": [
+      28.611370964285715,
+      77.03907032857144
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148767,
+    "name": "Parking for Govt. Vehicles",
+    "category": "service",
+    "tags": {
+      "access": "private",
+      "foot": "yes",
+      "highway": "service",
+      "incline": "up",
+      "level": "-1;0",
+      "name": "Parking for Govt. Vehicles",
+      "service": "parking_aisle"
+    },
+    "coord": [
+      28.6094923,
+      77.03683405
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148789,
+    "name": "towards SAC",
+    "category": "steps",
+    "tags": {
+      "highway": "steps",
+      "incline": "down",
+      "name": "towards SAC"
+    },
+    "coord": [
+      28.61028215,
+      77.03884694999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148794,
+    "name": "Training and Placement Building",
+    "category": "university",
+    "tags": {
+      "building": "university",
+      "name": "Training and Placement Building",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.60857012105263,
+      77.03957289473685
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148795,
+    "name": "Alaknanda Hostel",
+    "category": "yes",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:postcode": "110078",
+      "building": "yes",
+      "guest_house": "student_accommodation",
+      "name": "Alaknanda Hostel",
+      "operator": "NSUT",
+      "tourism": "hostel"
+    },
+    "coord": [
+      28.608039029999997,
+      77.03957097
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952148796,
+    "name": "Parking for Deans & HODs",
+    "category": "service",
+    "tags": {
+      "access": "private",
+      "foot": "yes",
+      "highway": "service",
+      "incline": "up",
+      "level": "-1;0",
+      "name": "Parking for Deans & HODs",
+      "service": "parking_aisle"
+    },
+    "coord": [
+      28.610015349999998,
+      77.03666824999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398066,
+    "name": "Kaveri Hostel",
+    "category": "yes",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:postcode": "110078",
+      "air_conditioning": "yes",
+      "building": "yes",
+      "guest_house": "student_accommodation",
+      "name": "Kaveri Hostel",
+      "old_name": "Type I Quarters",
+      "operator": "NSUT",
+      "ref": "GH 2",
+      "tourism": "hostel"
+    },
+    "coord": [
+      28.613742226666666,
+      77.03844978222222
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398067,
+    "name": "Type II Quarters",
+    "category": "apartments",
+    "tags": {
+      "addr:flats": "1-32",
+      "building": "apartments",
+      "building:levels": "4",
+      "name": "Type II Quarters"
+    },
+    "coord": [
+      28.613590197959184,
+      77.03780179183673
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398069,
+    "name": "Type II + III Quarters",
+    "category": "apartments",
+    "tags": {
+      "addr:flats": "1-24",
+      "building": "apartments",
+      "building:levels": "4",
+      "name": "Type II + III Quarters"
+    },
+    "coord": [
+      28.613276112121213,
+      77.03795941212121
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398072,
+    "name": "Electric Substation",
+    "category": "service",
+    "tags": {
+      "building": "service",
+      "name": "Electric Substation",
+      "power": "substation"
+    },
+    "coord": [
+      28.61344656,
+      77.03670264
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398073,
+    "name": "Type II + III Quarters",
+    "category": "apartments",
+    "tags": {
+      "addr:flats": "25-48",
+      "building": "apartments",
+      "building:levels": "4",
+      "name": "Type II + III Quarters"
+    },
+    "coord": [
+      28.612924624324325,
+      77.03804022162163
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398080,
+    "name": "Guest House",
+    "category": "yes",
+    "tags": {
+      "access": "private",
+      "building": "yes",
+      "building:levels": "2",
+      "guest_house": "guest_house",
+      "name": "Guest House",
+      "operator": "NSUT",
+      "tourism": "guest_house"
+    },
+    "coord": [
+      28.608123040625,
+      77.038167521875
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398088,
+    "name": "J. C. Bose Hostel",
+    "category": "yes",
+    "tags": {
+      "building": "yes",
+      "guest_house": "student_accommodation",
+      "name": "J. C. Bose Hostel",
+      "operator": "NSUT",
+      "tourism": "hostel"
+    },
+    "coord": [
+      28.613635476923076,
+      77.03431358461538
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398096,
+    "name": "Electric Substation",
+    "category": "service",
+    "tags": {
+      "building": "service",
+      "name": "Electric Substation",
+      "operator": "NSUT",
+      "power": "substation"
+    },
+    "coord": [
+      28.60849107142857,
+      77.0373518
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398104,
+    "name": "Parking for Faculty & Students",
+    "category": "parking",
+    "tags": {
+      "amenity": "parking",
+      "name": "Parking for Faculty & Students",
+      "operator": "NSUT",
+      "operator:type": "university"
+    },
+    "coord": [
+      28.6106085375,
+      77.0359701
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398106,
+    "name": "Electric Substation",
+    "category": "yes",
+    "tags": {
+      "building": "yes",
+      "name": "Electric Substation",
+      "operator": "NSUT",
+      "power": "substation"
+    },
+    "coord": [
+      28.61151985714286,
+      77.03807232857142
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952398107,
+    "name": "Medical Centre",
+    "category": "yes",
+    "tags": {
+      "building": "yes",
+      "healthcare": "clinic",
+      "name": "Medical Centre",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.611698399999998,
+      77.03858936666667
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952634312,
+    "name": "DDUC Sports Complex",
+    "category": "school",
+    "tags": {
+      "building": "school",
+      "building:levels": "2",
+      "name": "DDUC Sports Complex"
+    },
+    "coord": [
+      28.605995673333332,
+      77.03882067333333
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952634325,
+    "name": "Parking for Staff & Students",
+    "category": "parking",
+    "tags": {
+      "amenity": "parking",
+      "name": "Parking for Staff & Students",
+      "operator": "NSUT",
+      "operator:type": "university"
+    },
+    "coord": [
+      28.60903480416667,
+      77.03616267083333
+    ]
+  },
+  {
+    "type": "way",
+    "id": 952787109,
+    "name": "Electric Substation",
+    "category": "service",
+    "tags": {
+      "building": "service",
+      "name": "Electric Substation",
+      "operator": "NSUT",
+      "power": "substation"
+    },
+    "coord": [
+      28.607741299999997,
+      77.03599077999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 984175156,
+    "name": "Kabaddi Ground",
+    "category": "pitch",
+    "tags": {
+      "leisure": "pitch",
+      "name": "Kabaddi Ground",
+      "sport": "kabaddi"
+    },
+    "coord": [
+      28.60953318,
+      77.0410124
+    ]
+  },
+  {
+    "type": "way",
+    "id": 984175157,
+    "name": "Sports Complex",
+    "category": "sports_centre",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "Sports Complex",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.610393675,
+      77.0413652375
+    ]
+  },
+  {
+    "type": "way",
+    "id": 989260087,
+    "name": "Pump House",
+    "category": "service",
+    "tags": {
+      "building": "service",
+      "man_made": "pumping_station",
+      "name": "Pump House",
+      "pumping_station": "water",
+      "start_date": "1999-04-26"
+    },
+    "coord": [
+      28.6118836,
+      77.03910514
+    ]
+  },
+  {
+    "type": "way",
+    "id": 989260092,
+    "name": "Shopping Complex",
+    "category": "retail",
+    "tags": {
+      "building": "retail",
+      "name": "Shopping Complex"
+    },
+    "coord": [
+      28.612320795238094,
+      77.03752564761905
+    ]
+  },
+  {
+    "type": "way",
+    "id": 997968123,
+    "name": "Shaheed Ashfaq Ullah Fitness Park",
+    "category": "park",
+    "tags": {
+      "fitness_station": "yes",
+      "leisure": "park",
+      "name": "Shaheed Ashfaq Ullah Fitness Park",
+      "name:etymology:wikidata": "Q1571670",
+      "operator": "NSUT",
+      "start_date": "2021-10-22"
+    },
+    "coord": [
+      28.609363533333333,
+      77.0395632
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1081701745,
+    "name": "स्वर्गीय श्री साधु राम व्यास मार्ग",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "स्वर्गीय श्री साधु राम व्यास मार्ग"
+    },
+    "coord": [
+      28.616776072727273,
+      77.0335473
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1082242339,
+    "name": "Sector 3 Road",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "Sector 3 Road"
+    },
+    "coord": [
+      28.6060589,
+      77.04172015
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1082242340,
+    "name": "Sector 3 Road",
+    "category": "residential",
+    "tags": {
+      "bridge": "yes",
+      "highway": "residential",
+      "layer": "1",
+      "name": "Sector 3 Road"
+    },
+    "coord": [
+      28.606059899999998,
+      77.04186960000001
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1159245450,
+    "name": "Sulahkul Bridge",
+    "category": "footway",
+    "tags": {
+      "bridge": "yes",
+      "highway": "footway",
+      "layer": "1",
+      "level": "1",
+      "name": "Sulahkul Bridge",
+      "name:hi": "सुलहाकुल सेतु"
+    },
+    "coord": [
+      28.60778565,
+      77.0350766
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1171910515,
+    "name": "Chaudhary Prem Singh Dalal Marg",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "Chaudhary Prem Singh Dalal Marg"
+    },
+    "coord": [
+      28.614797133333337,
+      77.0330813
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1175625276,
+    "name": "Shaheed Vatika",
+    "category": "garden",
+    "tags": {
+      "leisure": "garden",
+      "name": "Shaheed Vatika",
+      "operator": "NSUT",
+      "start_date": "2022-03-23"
+    },
+    "coord": [
+      28.608855996875,
+      77.035895353125
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178272974,
+    "name": "PWD",
+    "category": "yes",
+    "tags": {
+      "building": "yes",
+      "name": "PWD",
+      "name:full": "Public Works Department"
+    },
+    "coord": [
+      28.6135222,
+      77.03396255714286
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355677,
+    "name": "Guard House",
+    "category": "guardhouse",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.607206280000003,
+      77.04081156
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355678,
+    "name": "CCTV Control Room",
+    "category": "service",
+    "tags": {
+      "addr:city": "National Capital Territory of Delhi",
+      "addr:district": "South West Delhi",
+      "addr:postcode": "110078",
+      "addr:street": "Azad Hind Fauj Marg",
+      "building": "service",
+      "name": "CCTV Control Room",
+      "operator": "NSUT"
+    },
+    "coord": [
+      28.61140138,
+      77.03963139999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355679,
+    "name": "Water Treatment Plant",
+    "category": "service",
+    "tags": {
+      "building": "service",
+      "man_made": "wastewater_plant",
+      "name": "Water Treatment Plant",
+      "operator": "Hari Ions (India) Pvt. Ltd."
+    },
+    "coord": [
+      28.61179902,
+      77.03922659999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355685,
+    "name": "Guard House",
+    "category": "guardhouse",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.611422600000004,
+      77.03927926
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355688,
+    "name": "Guard House",
+    "category": "guardhouse",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.61032836,
+      77.04231922
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355689,
+    "name": "Pump House",
+    "category": "service",
+    "tags": {
+      "building": "service",
+      "man_made": "pumping_station",
+      "name": "Pump House",
+      "pumping_station": "water"
+    },
+    "coord": [
+      28.6098261,
+      77.04228592000001
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178355690,
+    "name": "Guard House",
+    "category": "guardhouse",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.61361716,
+      77.03669704
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1178384228,
+    "name": "Guard House",
+    "category": "guardhouse",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.60722108,
+      77.03946579999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1179782163,
+    "name": "Pump House",
+    "category": "construction",
+    "tags": {
+      "building": "construction",
+      "man_made": "pumping_station",
+      "name": "Pump House",
+      "pumping_station": "water"
+    },
+    "coord": [
+      28.615465410000002,
+      77.03830922
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1180003054,
+    "name": "Guard House",
+    "category": "guardhouse",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.61314064,
+      77.03370795999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1184939747,
+    "name": "Guard House",
+    "category": "guardhouse",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.608541179999996,
+      77.03524908
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1184939748,
+    "name": "Guard House",
+    "category": "guardhouse",
+    "tags": {
+      "building": "guardhouse",
+      "name": "Guard House"
+    },
+    "coord": [
+      28.60844196,
+      77.03528157999999
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1210748444,
+    "name": "Street Number 4",
+    "category": "service",
+    "tags": {
+      "access": "private",
+      "highway": "service",
+      "name": "Street Number 4"
+    },
+    "coord": [
+      28.616510516666665,
+      77.04324735
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1349987784,
+    "name": "MBD Arya Model School",
+    "category": "school",
+    "tags": {
+      "amenity": "school",
+      "name": "MBD Arya Model School"
+    },
+    "coord": [
+      28.611954933333337,
+      77.03072332222222
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1428925100,
+    "name": "Old Palam Road",
+    "category": "tertiary",
+    "tags": {
+      "highway": "tertiary",
+      "name": "Old Palam Road"
+    },
+    "coord": [
+      28.605951633333333,
+      77.03494586666666
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1428926603,
+    "name": "Chaudhary Prem Singh Dalal Marg",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "Chaudhary Prem Singh Dalal Marg"
+    },
+    "coord": [
+      28.61839016,
+      77.03312522
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1428927916,
+    "name": "Shukker Bazar Road",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "Shukker Bazar Road"
+    },
+    "coord": [
+      28.61065304285714,
+      77.03036637142858
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1428955888,
+    "name": "Street Number 4",
+    "category": "residential",
+    "tags": {
+      "highway": "residential",
+      "name": "Street Number 4"
+    },
+    "coord": [
+      28.6173345,
+      77.04325006
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1474140342,
+    "name": "Mall Road",
+    "category": "secondary",
+    "tags": {
+      "highway": "secondary",
+      "name": "Mall Road",
+      "oneway": "yes"
+    },
+    "coord": [
+      28.603830233333337,
+      77.03902143333333
+    ]
+  },
+  {
+    "type": "way",
+    "id": 1474140344,
+    "name": "Mall Road",
+    "category": "secondary",
+    "tags": {
+      "highway": "secondary",
+      "name": "Mall Road",
+      "oneway": "yes"
+    },
+    "coord": [
+      28.60536135,
+      77.03701405000001
+    ]
+  }
+]
