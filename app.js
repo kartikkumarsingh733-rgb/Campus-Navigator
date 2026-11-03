@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
     buildingLayerGroup: null,
     networkLayerGroup: null,
     mstLayerGroup: null,
-    showBuildings: true,
     showNetwork: false,
 
     // Geolocation & Live Walk Tracking State
@@ -1643,15 +1642,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // -----------------------------------------------------------------
   document.getElementById("btn-recenter").addEventListener("click", () => {
     map.flyTo(campusCenter, 16.5, { duration: 1 });
-  });
-
-  document.getElementById("btn-toggle-buildings").addEventListener("click", () => {
-    state.showBuildings = !state.showBuildings;
-    if (state.showBuildings) {
-      map.addLayer(state.buildingLayerGroup);
-    } else {
-      map.removeLayer(state.buildingLayerGroup);
-    }
   });
 
   document.getElementById("btn-toggle-network").addEventListener("click", () => {
