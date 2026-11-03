@@ -30,9 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     selectedEnd: "apj_complex",
     selectedLocationId: "block_6",
     accessibleOnly: false,
-    weatherFactor: 1.0,
-    blockedEdgeIds: new Set(),
-    rushEdgeIds: new Set(),
     activeRoutePolyline: null,
     activeRouteGlow: null,
     activeRouteDashes: null,
@@ -313,6 +310,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 50);
     } else if (viewId === "view-directory") {
       renderDirectoryGrid();
+    } else if (viewId === "view-resource-allocation") {
+      renderDPIntervals();
+      renderDPKnapsack();
+      renderMSTTab("kruskal");
     }
   }
 
@@ -652,17 +653,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const endNode = dstLm.nearest_node;
 
     const options = {
-      blockedEdges: state.blockedEdgeIds,
-      accessibleOnly: state.accessibleOnly,
-      weatherFactor: state.weatherFactor,
-      rushEdges: state.rushEdgeIds
+      accessibleOnly: state.accessibleOnly
     };
 
     let result;
     if (state.selectedAlgo === "dijkstra") {
       result = algos.runDijkstra(adjacency, startNode, endNode, nodes, options);
-    } else if (state.selectedAlgo === "astar") {
-      result = algos.runAStar(adjacency, startNode, endNode, nodes, options);
     } else if (state.selectedAlgo === "bfs") {
       result = algos.runBFS(adjacency, startNode, endNode, nodes, options);
     } else if (state.selectedAlgo === "dfs") {
@@ -700,7 +696,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const algoNames = {
       dijkstra: "Dijkstra's Algorithm (Min-Heap)",
-      astar: "A* Heuristic Search",
       bfs: "Breadth-First Search (BFS)",
       dfs: "Depth-First Search (DFS)"
     };
@@ -914,9 +909,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // -----------------------------------------------------------------
-  // 10. VIEW 3: Campus Location Directory Grid
+  // 10. VIEW 3: Campus Location Directory Grid (AVL Tree & Hash Table)
   // -----------------------------------------------------------------
   let currentDirectoryFilter = "all";
+
+  // Data Structures: Balanced Search Tree (AVL Tree) and Custom Hash Table
+  const landmarkAVLTree = new algos.AVLTree();
+  const landmarkHashTable = new algos.CampusHashTable(37);
+
+  landmarks.forEach(lm => {
+    landmarkAVLTree.insert(lm.name, lm);
+    landmarkHashTable.set(lm.id, lm);
+  });
 
   function renderDirectoryGrid() {
     const grid = document.getElementById("directory-cards-grid");
@@ -925,7 +929,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     grid.innerHTML = "";
 
-    const filtered = landmarks.filter(lm => {
+    // Query Balanced Search Tree for prefix matches if search input is active
+    let candidates = landmarks;
+    if (searchVal !== "") {
+      const avlMatches = landmarkAVLTree.searchPrefix(searchVal);
+      if (avlMatches && avlMatches.length > 0) {
+        candidates = avlMatches;
+      }
+    }
+
+    const filtered = candidates.filter(lm => {
       const matchCat = (currentDirectoryFilter === "all") || (lm.category.toLowerCase().includes(currentDirectoryFilter.toLowerCase()));
       const matchSearch = (searchVal === "") ||
         lm.name.toLowerCase().includes(searchVal) ||
@@ -934,7 +947,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return matchCat && matchSearch;
     });
 
-    countLabel.textContent = `Showing ${filtered.length} of ${landmarks.length} campus facilities`;
+    const avlStats = landmarkAVLTree.getTreeStats();
+    const htStats = landmarkHashTable.stats();
+
+    countLabel.innerHTML = `Showing ${filtered.length} of ${landmarks.length} campus facilities • <span id="dsa-avl-badge" style="color: var(--primary); font-weight: 600;">AVL Tree: Height ${avlStats.height}, Balanced (${avlStats.isBalanced ? 'Yes' : 'No'}) • Hash Table: ${htStats.totalKeys} keys, Load ${htStats.loadFactor}</span>`;
     document.getElementById("dir-all-count").textContent = landmarks.length;
 
     filtered.forEach(lm => {
@@ -1366,97 +1382,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // -----------------------------------------------------------------
-  // 12. Viva Simulation Sandbox & Modals
+  // 12. Algorithm Comparison Benchmark Modal (Dijkstra vs BFS vs DFS)
   // -----------------------------------------------------------------
-  const modalViva = document.getElementById("modal-viva");
-  document.getElementById("btn-open-viva-modal").addEventListener("click", () => {
-    modalViva.classList.add("active");
-  });
-
-  // Road closures
-  const btnBlockAdmin = document.getElementById("sim-block-admin");
-  const badgeBlockAdmin = document.getElementById("badge-block-admin");
-  let isAdminBlocked = false;
-
-  btnBlockAdmin.addEventListener("click", () => {
-    isAdminBlocked = !isAdminBlocked;
-    if (isAdminBlocked) {
-      btnBlockAdmin.classList.add("active");
-      badgeBlockAdmin.textContent = "Closed";
-      badgeBlockAdmin.style.color = "var(--danger)";
-      state.blockedEdgeIds.add("e_8810045404_admin_west_entrance");
-      state.blockedEdgeIds.add("e_admin_west_entrance_8812965151");
-    } else {
-      btnBlockAdmin.classList.remove("active");
-      badgeBlockAdmin.textContent = "Normal";
-      badgeBlockAdmin.style.color = "var(--text-muted)";
-      state.blockedEdgeIds.delete("e_8810045404_admin_west_entrance");
-      state.blockedEdgeIds.delete("e_admin_west_entrance_8812965151");
-    }
-    calculateAndDisplayRoute();
-  });
-
-  const btnBlockMoksha = document.getElementById("sim-block-moksha");
-  const badgeBlockMoksha = document.getElementById("badge-block-moksha");
-  let isMokshaBlocked = false;
-
-  btnBlockMoksha.addEventListener("click", () => {
-    isMokshaBlocked = !isMokshaBlocked;
-    if (isMokshaBlocked) {
-      btnBlockMoksha.classList.add("active");
-      badgeBlockMoksha.textContent = "Closed";
-      badgeBlockMoksha.style.color = "var(--danger)";
-      state.blockedEdgeIds.add("e_8810045322_8812965134");
-    } else {
-      btnBlockMoksha.classList.remove("active");
-      badgeBlockMoksha.textContent = "Normal";
-      badgeBlockMoksha.style.color = "var(--text-muted)";
-      state.blockedEdgeIds.delete("e_8810045322_8812965134");
-    }
-    calculateAndDisplayRoute();
-  });
-
-  const btnToggleRain = document.getElementById("sim-toggle-rain");
-  const badgeRain = document.getElementById("badge-rain");
-  let isRain = false;
-
-  btnToggleRain.addEventListener("click", () => {
-    isRain = !isRain;
-    if (isRain) {
-      btnToggleRain.classList.add("active");
-      badgeRain.textContent = "Mud Penalty (2.5x)";
-      badgeRain.style.color = "var(--secondary)";
-      state.weatherFactor = 2.5;
-    } else {
-      btnToggleRain.classList.remove("active");
-      badgeRain.textContent = "Off";
-      badgeRain.style.color = "var(--text-muted)";
-      state.weatherFactor = 1.0;
-    }
-    calculateAndDisplayRoute();
-  });
-
-  const btnToggleRush = document.getElementById("sim-toggle-rush");
-  const badgeRush = document.getElementById("badge-rush");
-  let isRush = false;
-
-  btnToggleRush.addEventListener("click", () => {
-    isRush = !isRush;
-    if (isRush) {
-      btnToggleRush.classList.add("active");
-      badgeRush.textContent = "Congested";
-      badgeRush.style.color = "var(--accent)";
-      edges.slice(10, 35).forEach(e => state.rushEdgeIds.add(e.id));
-    } else {
-      btnToggleRush.classList.remove("active");
-      badgeRush.textContent = "Off";
-      badgeRush.style.color = "var(--text-muted)";
-      state.rushEdgeIds.clear();
-    }
-    calculateAndDisplayRoute();
-  });
-
-  // Benchmark Comparison Modal
   const modalBenchmark = document.getElementById("modal-benchmark");
   document.getElementById("btn-compare-all").addEventListener("click", () => {
     const srcId = startSelect.value;
@@ -1468,25 +1395,22 @@ document.addEventListener("DOMContentLoaded", () => {
       startNode = state.userLocation ? state.userLocation.nearestNodeId : "2129002378";
     } else {
       const srcLm = landmarks.find(l => l.id === srcId);
-      srcName = srcLm.name;
-      startNode = srcLm.nearest_node;
+      srcName = srcLm ? srcLm.name : "Start";
+      startNode = srcLm ? srcLm.nearest_node : "2129002378";
     }
 
     const dstLm = landmarks.find(l => l.id === dstId);
+    if (!dstLm) return;
     document.getElementById("bm-src").textContent = srcName;
     document.getElementById("bm-dst").textContent = dstLm.name;
 
     const endNode = dstLm.nearest_node;
 
     const opts = {
-      blockedEdges: state.blockedEdgeIds,
-      accessibleOnly: state.accessibleOnly,
-      weatherFactor: state.weatherFactor,
-      rushEdges: state.rushEdgeIds
+      accessibleOnly: state.accessibleOnly
     };
 
     const dRes = algos.runDijkstra(adjacency, startNode, endNode, nodes, opts);
-    const aRes = algos.runAStar(adjacency, startNode, endNode, nodes, opts);
     const bRes = algos.runBFS(adjacency, startNode, endNode, nodes, opts);
     const dfRes = algos.runDFS(adjacency, startNode, endNode, nodes, opts);
 
@@ -1497,102 +1421,33 @@ document.addEventListener("DOMContentLoaded", () => {
         <td><strong>${dRes.distance} m</strong></td>
         <td>${dRes.nodesVisited}</td>
         <td>${dRes.executionTimeMs} ms</td>
-        <td><span class="badge badge-academic">Guaranteed Optimal</span></td>
-      </tr>
-      <tr>
-        <td><strong>A* Search (Haversine)</strong></td>
-        <td><strong>${aRes.distance} m</strong></td>
-        <td>${aRes.nodesVisited} (Target Directed)</td>
-        <td>${aRes.executionTimeMs} ms</td>
-        <td><span class="badge badge-landmarks">Optimal (Admissible)</span></td>
+        <td><span class="badge badge-academic">Guaranteed Optimal (Metric)</span></td>
       </tr>
       <tr>
         <td><strong>BFS (Breadth-First)</strong></td>
         <td>${bRes.distance} m</td>
         <td>${bRes.nodesVisited}</td>
         <td>${bRes.executionTimeMs} ms</td>
-        <td><span class="badge badge-sports">Min Hops (${bRes.hops || 0})</span></td>
+        <td><span class="badge badge-sports">Min Hops (${bRes.hops || 0} turns)</span></td>
       </tr>
       <tr>
         <td><strong>DFS (Depth-First)</strong></td>
         <td>${dfRes.distance} m</td>
         <td>${dfRes.nodesVisited}</td>
         <td>${dfRes.executionTimeMs} ms</td>
-        <td><span class="badge badge-gates">Sub-optimal Path</span></td>
+        <td><span class="badge badge-gates">Unguided Path Traversal</span></td>
       </tr>
     `;
 
     modalBenchmark.classList.add("active");
   });
 
-  // Campus MST Modal
-  const modalMst = document.getElementById("modal-mst");
-  document.getElementById("btn-show-mst").addEventListener("click", () => {
-    modalViva.classList.remove("active");
-    modalMst.classList.add("active");
-    runMSTComputation("kruskal");
-  });
-
-  document.getElementById("btn-run-kruskal").addEventListener("click", () => runMSTComputation("kruskal"));
-  document.getElementById("btn-run-prim").addEventListener("click", () => runMSTComputation("prim"));
-
-  function runMSTComputation(algoType) {
-    const statusEl = document.getElementById("mst-status");
-    statusEl.textContent = `Computing ${algoType.toUpperCase()} MST across 28 campus landmarks...`;
-
-    setTimeout(() => {
-      let mstResult;
-      if (algoType === "kruskal") {
-        mstResult = algos.runKruskalMST(landmarks, adjacency, nodes);
-      } else {
-        mstResult = algos.runPrimMST(landmarks, adjacency, nodes, "admin_block");
-      }
-
-      document.getElementById("mst-length").textContent = `${mstResult.totalLengthMeters} m`;
-      const costEst = (mstResult.totalLengthMeters * 450).toLocaleString("en-IN");
-      document.getElementById("mst-cost").textContent = `₹${costEst}`;
-      document.getElementById("mst-landmarks").textContent = `${mstResult.connectedLandmarksCount} / ${landmarks.length}`;
-      statusEl.textContent = `Completed in ${mstResult.executionTimeMs} ms (${mstResult.algorithm})`;
-
-      const tbody = document.getElementById("mst-table-body");
-      tbody.innerHTML = "";
-      mstResult.treeEdges.forEach((e, idx) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>#${idx + 1}</td>
-          <td>${e.sourceName}</td>
-          <td>${e.targetName}</td>
-          <td>${Math.round(e.dist)} m</td>
-        `;
-        tbody.appendChild(row);
-      });
-
-      if (state.mstLayerGroup) map.removeLayer(state.mstLayerGroup);
-      state.mstLayerGroup = L.layerGroup().addTo(map);
-
-      mstResult.treeEdges.forEach(e => {
-        if (e.path) {
-          const coords = e.path.map(nid => nodes[nid]);
-          L.polyline(coords, {
-            color: "#06b6d4",
-            weight: 3.5,
-            opacity: 0.85,
-            dashArray: "4, 4"
-          }).addTo(state.mstLayerGroup);
-        }
-      });
-    }, 50);
-  }
-
-  // Campus DP Event Optimizer
-  const modalDp = document.getElementById("modal-dp");
-  document.getElementById("btn-show-dp").addEventListener("click", () => {
-    modalViva.classList.remove("active");
-    modalDp.classList.add("active");
-  });
-
-  const sampleCampusEvents = [
-    { name: "Moksha EDM Star Night", society: "Moksha Council", venue: "Moksha Arena", start: 18, end: 22, utility: 95 },
+  // -----------------------------------------------------------------
+  // 13. VIEW 4: Campus Resource Allocation & Network Optimization
+  // Dynamic Programming (Interval Scheduling & 0/1 Knapsack) + MST (Kruskal & Prim)
+  // -----------------------------------------------------------------
+  const sampleFestEvents = [
+    { name: "Moksha EDM Star Night", society: "Moksha Council", venue: "Moksha Stage", start: 18, end: 22, utility: 95 },
     { name: "Inaugural Keynote & Convocation", society: "Admin / VC Office", venue: "Admin Audi", start: 9, end: 12, utility: 90 },
     { name: "HackNSUT 24-Hour Hackathon", society: "CSI / IEEE", venue: "APJ Complex", start: 10, end: 18, utility: 88 },
     { name: "Cross-Campus Debate Finals", society: "Debating Society", venue: "Mini Audi", start: 10, end: 13, utility: 72 },
@@ -1602,28 +1457,139 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Acoustic Sunset Jam", society: "Crescendo Music Soc", venue: "Nescii Lawns", start: 17, end: 20, utility: 82 }
   ];
 
-  document.getElementById("btn-run-dp").addEventListener("click", () => {
-    const dpRes = algos.runDPEventAllocation(sampleCampusEvents);
-    const box = document.getElementById("dp-results-box");
-    box.style.display = "flex";
+  const sampleDepartmentProposals = [
+    { name: "AI High-Compute GPU Cluster", dept: "Computer Science & Eng (CSE)", cost: 10, utility: 95 },
+    { name: "Robotics & Automation Arena Kits", dept: "ICE & Automation", cost: 5, utility: 60 },
+    { name: "Digital IEEE/ACM Library Subscription", dept: "Central Library", cost: 4, utility: 55 },
+    { name: "Smart Campus IoT Environmental Sensors", dept: "Information Tech (IT)", cost: 7, utility: 70 },
+    { name: "Semiconductor Cleanroom Testbeds", dept: "ECE", cost: 8, utility: 75 },
+    { name: "Sports Complex Athletic Equipment", dept: "Sports Department", cost: 3, utility: 40 }
+  ];
 
-    document.getElementById("dp-score").textContent = `${dpRes.maxUtilityScore} pts`;
-    document.getElementById("dp-count").textContent = `${dpRes.scheduledEvents.length} / ${sampleCampusEvents.length}`;
+  // Subtab switching inside View 4
+  document.querySelectorAll(".resource-subtab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".resource-subtab").forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      const targetSubtaskId = tab.getAttribute("data-subtask");
+      document.querySelectorAll(".subtask-panel").forEach(p => {
+        p.style.display = (p.id === targetSubtaskId) ? "block" : "none";
+      });
+    });
+  });
 
-    const tbody = document.getElementById("dp-schedule-tbody");
+  // Task 1: Weighted Interval Scheduling DP
+  function renderDPIntervals() {
+    const res = algos.runDPEventAllocation(sampleFestEvents);
+    document.getElementById("dp-sched-score").textContent = `${res.maxUtilityScore} pts`;
+    document.getElementById("dp-sched-count").textContent = `${res.scheduledEvents.length} / ${sampleFestEvents.length}`;
+    
+    const approvedNames = new Set(res.scheduledEvents.map(e => e.name));
+    const tbody = document.getElementById("dp-sched-tbody");
     tbody.innerHTML = "";
-    dpRes.scheduledEvents.forEach(ev => {
+
+    sampleFestEvents.forEach(ev => {
+      const isApproved = approvedNames.has(ev.name);
       const row = document.createElement("tr");
+      if (isApproved) row.className = "best-algo";
       row.innerHTML = `
         <td><strong>${ev.name}</strong></td>
         <td>${ev.society}</td>
         <td><span class="badge badge-hangouts">${ev.venue}</span></td>
         <td>${ev.start}:00 - ${ev.end}:00</td>
         <td><strong>${ev.utility} pts</strong></td>
+        <td>
+          <span class="badge ${isApproved ? 'badge-academic' : 'badge-gates'}">
+            ${isApproved ? '✓ Approved (Optimal)' : '✗ Conflict Excluded'}
+          </span>
+        </td>
       `;
       tbody.appendChild(row);
     });
-  });
+  }
+
+  // Task 2: 0/1 Knapsack DP
+  function renderDPKnapsack() {
+    const budgetSelect = document.getElementById("knapsack-budget-select");
+    const budget = budgetSelect ? parseInt(budgetSelect.value, 10) : 20;
+    const res = algos.runDPKnapsack(sampleDepartmentProposals, budget);
+
+    document.getElementById("knap-score").textContent = `${res.maxUtilityScore} pts`;
+    document.getElementById("knap-cost").textContent = `₹${res.totalCost}.0 Lakhs`;
+    document.getElementById("knap-remaining").textContent = `₹${res.remainingCapacity}.0 Lakhs`;
+    document.getElementById("knap-count").textContent = `${res.allocatedItems.length} / ${sampleDepartmentProposals.length}`;
+
+    const fundedNames = new Set(res.allocatedItems.map(p => p.name));
+    const tbody = document.getElementById("knap-tbody");
+    tbody.innerHTML = "";
+
+    sampleDepartmentProposals.forEach(p => {
+      const isFunded = fundedNames.has(p.name);
+      const row = document.createElement("tr");
+      if (isFunded) row.className = "best-algo";
+      row.innerHTML = `
+        <td><strong>${p.name}</strong></td>
+        <td>${p.dept}</td>
+        <td>₹${p.cost}.0 Lakhs</td>
+        <td><strong>${p.utility} pts</strong></td>
+        <td>
+          <span class="badge ${isFunded ? 'badge-academic' : 'badge-gates'}">
+            ${isFunded ? '✓ Funded (Selected)' : '✗ Unfunded (Capacity Limit)'}
+          </span>
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+  }
+
+  // Task 3: Kruskal & Prim MST
+  function renderMSTTab(algoType = "kruskal") {
+    let res;
+    if (algoType === "kruskal") {
+      res = algos.runKruskalMST(landmarks, adjacency, nodes);
+    } else {
+      res = algos.runPrimMST(landmarks, adjacency, nodes, "admin_block");
+    }
+
+    document.getElementById("mst-tab-length").textContent = `${res.totalLengthMeters} m`;
+    const costEst = (res.totalLengthMeters * 450).toLocaleString("en-IN");
+    document.getElementById("mst-tab-cost").textContent = `₹${costEst}`;
+    document.getElementById("mst-tab-landmarks").textContent = `${res.connectedLandmarksCount} / ${landmarks.length}`;
+    document.getElementById("mst-tab-edges").textContent = `${res.treeEdges.length} Links`;
+
+    const tbody = document.getElementById("mst-tab-tbody");
+    tbody.innerHTML = "";
+    res.treeEdges.forEach((e, idx) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>#${idx + 1}</td>
+        <td><strong>${e.sourceName}</strong></td>
+        <td><strong>${e.targetName}</strong></td>
+        <td>${Math.round(e.dist)} m</td>
+      `;
+      tbody.appendChild(row);
+    });
+  }
+
+  const btnRunDpSched = document.getElementById("btn-run-dp-schedule");
+  if (btnRunDpSched) btnRunDpSched.addEventListener("click", renderDPIntervals);
+
+  const btnRunKnap = document.getElementById("btn-run-knapsack");
+  if (btnRunKnap) btnRunKnap.addEventListener("click", renderDPKnapsack);
+
+  const budgetSel = document.getElementById("knapsack-budget-select");
+  if (budgetSel) budgetSel.addEventListener("change", renderDPKnapsack);
+
+  const btnRunKruskalTab = document.getElementById("btn-run-kruskal-tab");
+  if (btnRunKruskalTab) btnRunKruskalTab.addEventListener("click", () => renderMSTTab("kruskal"));
+
+  const btnRunPrimTab = document.getElementById("btn-run-prim-tab");
+  if (btnRunPrimTab) btnRunPrimTab.addEventListener("click", () => renderMSTTab("prim"));
+
+  // Initial population of Resource Allocation tables
+  renderDPIntervals();
+  renderDPKnapsack();
+  renderMSTTab("kruskal");
 
   // Modal Closers
   document.querySelectorAll(".close-modal").forEach((btn) => {

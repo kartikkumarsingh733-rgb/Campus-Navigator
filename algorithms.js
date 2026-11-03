@@ -1,5 +1,6 @@
 // NSUT Dwarka Smart Campus Navigation & Resource Optimizer
-// Core Data Structures & Graph Algorithms for Viva / End-Sem Project
+// Core Data Structures & Graph Algorithms
+// Allowed Algorithms: BFS, DFS, Dijkstra, MST (Kruskal/Prim), Balanced Search Tree (AVL), Hashing, Dynamic Programming
 
 // -------------------------------------------------------------
 // 1. Min-Heap Priority Queue (Data Structure for Dijkstra & Prim)
@@ -91,7 +92,7 @@ class DSU {
       return i;
     }
     if (this.parent[i] !== i) {
-      this.parent[i] = this.find(this.parent[i]); // Path compression
+      this.parent[i] = this.find(this.parent[i]); // Path compression: O(1) amortized
     }
     return this.parent[i];
   }
@@ -112,6 +113,274 @@ class DSU {
       return true;
     }
     return false;
+  }
+}
+
+// -------------------------------------------------------------
+// 3. Custom Hash Table with Polynomial Rolling Hash & Separate Chaining
+// (Data Structure: Hashing for O(1) Landmark & Graph Lookups)
+// -------------------------------------------------------------
+class CampusHashTable {
+  constructor(size = 37) {
+    this.size = size;
+    this.buckets = new Array(size).fill(null).map(() => []);
+    this.count = 0;
+  }
+
+  _hash(key) {
+    const str = String(key);
+    let hash = 0;
+    const prime = 31;
+    for (let i = 0; i < str.length; i++) {
+      hash = (hash * prime + str.charCodeAt(i)) % this.size;
+    }
+    return Math.abs(hash);
+  }
+
+  set(key, value) {
+    const idx = this._hash(key);
+    const bucket = this.buckets[idx];
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i].key === key) {
+        bucket[i].value = value;
+        return;
+      }
+    }
+    bucket.push({ key, value });
+    this.count++;
+  }
+
+  get(key) {
+    const idx = this._hash(key);
+    const bucket = this.buckets[idx];
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i].key === key) {
+        return bucket[i].value;
+      }
+    }
+    return undefined;
+  }
+
+  has(key) {
+    return this.get(key) !== undefined;
+  }
+
+  delete(key) {
+    const idx = this._hash(key);
+    const bucket = this.buckets[idx];
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i].key === key) {
+        bucket.splice(i, 1);
+        this.count--;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  keys() {
+    const result = [];
+    for (const bucket of this.buckets) {
+      for (const entry of bucket) {
+        result.push(entry.key);
+      }
+    }
+    return result;
+  }
+
+  values() {
+    const result = [];
+    for (const bucket of this.buckets) {
+      for (const entry of bucket) {
+        result.push(entry.value);
+      }
+    }
+    return result;
+  }
+
+  stats() {
+    let emptyBuckets = 0;
+    let maxCollisions = 0;
+    for (const bucket of this.buckets) {
+      if (bucket.length === 0) emptyBuckets++;
+      if (bucket.length > maxCollisions) maxCollisions = bucket.length;
+    }
+    return {
+      totalKeys: this.count,
+      tableSize: this.size,
+      loadFactor: parseFloat((this.count / this.size).toFixed(2)),
+      emptyBuckets,
+      maxCollisions
+    };
+  }
+}
+
+// -------------------------------------------------------------
+// 4. Balanced Search Tree: AVL Tree with Rotations (O(log N) Search)
+// (Data Structure: Balanced Search Tree for Directory & Landmark Indexing)
+// -------------------------------------------------------------
+class AVLNode {
+  constructor(key, value) {
+    this.key = key;           // Lexicographical sorting key (e.g. facility name)
+    this.value = value;       // Facility object metadata
+    this.height = 1;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class AVLTree {
+  constructor() {
+    this.root = null;
+    this.size = 0;
+  }
+
+  getHeight(node) {
+    return node ? node.height : 0;
+  }
+
+  getBalanceFactor(node) {
+    return node ? this.getHeight(node.left) - this.getHeight(node.right) : 0;
+  }
+
+  updateHeight(node) {
+    if (node) {
+      node.height = 1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
+    }
+  }
+
+  // Right Rotation (LL Imbalance)
+  rotateRight(y) {
+    const x = y.left;
+    const T2 = x.right;
+
+    x.right = y;
+    y.left = T2;
+
+    this.updateHeight(y);
+    this.updateHeight(x);
+
+    return x;
+  }
+
+  // Left Rotation (RR Imbalance)
+  rotateLeft(x) {
+    const y = x.right;
+    const T2 = y.left;
+
+    y.left = x;
+    x.right = T2;
+
+    this.updateHeight(x);
+    this.updateHeight(y);
+
+    return y;
+  }
+
+  insert(key, value) {
+    const _insert = (node, k, v) => {
+      if (!node) {
+        this.size++;
+        return new AVLNode(k, v);
+      }
+
+      if (k < node.key) {
+        node.left = _insert(node.left, k, v);
+      } else if (k > node.key) {
+        node.right = _insert(node.right, k, v);
+      } else {
+        node.value = v; // Update existing
+        return node;
+      }
+
+      this.updateHeight(node);
+      const balance = this.getBalanceFactor(node);
+
+      // Case 1: Left-Left
+      if (balance > 1 && k < node.left.key) {
+        return this.rotateRight(node);
+      }
+      // Case 2: Right-Right
+      if (balance < -1 && k > node.right.key) {
+        return this.rotateLeft(node);
+      }
+      // Case 3: Left-Right
+      if (balance > 1 && k > node.left.key) {
+        node.left = this.rotateLeft(node.left);
+        return this.rotateRight(node);
+      }
+      // Case 4: Right-Left
+      if (balance < -1 && k < node.right.key) {
+        node.right = this.rotateRight(node.right);
+        return this.rotateLeft(node);
+      }
+
+      return node;
+    };
+
+    this.root = _insert(this.root, key, value);
+  }
+
+  search(key) {
+    let curr = this.root;
+    while (curr) {
+      if (key === curr.key) return curr.value;
+      if (key < curr.key) curr = curr.left;
+      else curr = curr.right;
+    }
+    return null;
+  }
+
+  // Prefix matching search (e.g. for autocomplete in directory)
+  searchPrefix(prefix) {
+    const p = prefix.toLowerCase();
+    const matches = [];
+    const _traverse = (node) => {
+      if (!node) return;
+      if (node.key.toLowerCase().startsWith(p) || (node.value && node.value.name && node.value.name.toLowerCase().includes(p))) {
+        matches.push(node.value);
+      }
+      _traverse(node.left);
+      _traverse(node.right);
+    };
+    _traverse(this.root);
+    return matches;
+  }
+
+  inOrderTraversal() {
+    const result = [];
+    const _inOrder = (node) => {
+      if (!node) return;
+      _inOrder(node.left);
+      result.push({ key: node.key, value: node.value, height: node.height });
+      _inOrder(node.right);
+    };
+    _inOrder(this.root);
+    return result;
+  }
+
+  rangeSearch(low, high) {
+    const result = [];
+    const _range = (node) => {
+      if (!node) return;
+      if (low < node.key) _range(node.left);
+      if (low <= node.key && node.key <= high) {
+        result.push(node.value);
+      }
+      if (high > node.key) _range(node.right);
+    };
+    _range(this.root);
+    return result;
+  }
+
+  getTreeStats() {
+    return {
+      size: this.size,
+      height: this.getHeight(this.root),
+      rootKey: this.root ? this.root.key : null,
+      balanceFactor: this.getBalanceFactor(this.root),
+      isBalanced: Math.abs(this.getBalanceFactor(this.root)) <= 1
+    };
   }
 }
 
@@ -149,13 +418,14 @@ function calculateBearing(p1, p2) {
 }
 
 // -------------------------------------------------------------
-// 3. Dijkstra's Algorithm (Min-Heap Priority Queue)
+// 5. Dijkstra's Algorithm (Min-Heap Priority Queue)
+// Solves: Guaranteed shortest-distance pedestrian routing (O((V + E) log V))
 // -------------------------------------------------------------
 function runDijkstra(graph, startNode, endNode, nodesCoord, options = {}) {
   startNode = String(startNode);
   endNode = String(endNode);
   const t0 = performance.now();
-  const { blockedEdges = new Set(), accessibleOnly = false, weatherFactor = 1.0, rushEdges = new Set() } = options;
+  const { accessibleOnly = false } = options;
 
   const dist = {};
   const prev = {};
@@ -179,24 +449,11 @@ function runDijkstra(graph, startNode, endNode, nodesCoord, options = {}) {
     const neighbors = graph[u] || [];
     for (const edge of neighbors) {
       const v = edge.to;
-      const edgeId = edge.edgeId;
-
-      // Skip blocked pathways (e.g. simulated construction)
-      if (blockedEdges.has(edgeId)) continue;
 
       // Skip non-accessible paths (steps/stairs) if wheelchair/accessibility requested
       if (accessibleOnly && edge.type === 'steps') continue;
 
-      // Weight multiplier (weather / congestion)
-      let weight = edge.dist;
-      if (edge.type === 'path' || edge.type === 'track') {
-        weight *= weatherFactor; // Unpaved paths penalty during rain
-      }
-      if (rushEdges.has(edgeId)) {
-        weight *= 1.8; // Peak rush congestion penalty
-      }
-
-      const alt = currentDist + weight;
+      const alt = currentDist + edge.dist;
       if (dist[v] === undefined || alt < dist[v]) {
         dist[v] = alt;
         prev[v] = { node: u, dist: edge.dist, type: edge.type };
@@ -215,7 +472,7 @@ function runDijkstra(graph, startNode, endNode, nodesCoord, options = {}) {
       distance: 0,
       nodesVisited: nodesVisitedCount,
       executionTimeMs: Math.max(0.01, parseFloat(executionTimeMs.toFixed(3))),
-      error: "No connected path found (pathway may be blocked or stairs avoided)."
+      error: "No connected path found."
     };
   }
 
@@ -239,115 +496,20 @@ function runDijkstra(graph, startNode, endNode, nodesCoord, options = {}) {
     algorithm: "Dijkstra's Algorithm",
     path,
     distance: Math.round(exactGeometricDistance),
-    weightedDistance: Math.round(dist[endNode]),
     nodesVisited: nodesVisitedCount,
     executionTimeMs: Math.max(0.01, parseFloat(executionTimeMs.toFixed(3)))
   };
 }
 
 // -------------------------------------------------------------
-// 4. A* Search Algorithm (Haversine Heuristic)
-// -------------------------------------------------------------
-function runAStar(graph, startNode, endNode, nodesCoord, options = {}) {
-  startNode = String(startNode);
-  endNode = String(endNode);
-  const t0 = performance.now();
-  const { blockedEdges = new Set(), accessibleOnly = false, weatherFactor = 1.0, rushEdges = new Set() } = options;
-
-  const targetCoord = nodesCoord[endNode];
-  if (!targetCoord) return { success: false, error: "Target node coordinates missing" };
-
-  const gScore = {};
-  const fScore = {};
-  const prev = {};
-  const visited = new Set();
-  const pq = new MinHeap();
-
-  gScore[startNode] = 0;
-  const initialH = haversineDistance(nodesCoord[startNode], targetCoord);
-  fScore[startNode] = initialH;
-  pq.push({ id: startNode, priority: initialH });
-
-  let nodesVisitedCount = 0;
-
-  while (!pq.isEmpty()) {
-    const { id: u } = pq.pop();
-
-    if (visited.has(u)) continue;
-    visited.add(u);
-    nodesVisitedCount++;
-
-    if (u === endNode) break;
-
-    const neighbors = graph[u] || [];
-    for (const edge of neighbors) {
-      const v = edge.to;
-      const edgeId = edge.edgeId;
-
-      if (blockedEdges.has(edgeId)) continue;
-      if (accessibleOnly && edge.type === 'steps') continue;
-
-      let weight = edge.dist;
-      if (edge.type === 'path' || edge.type === 'track') weight *= weatherFactor;
-      if (rushEdges.has(edgeId)) weight *= 1.8;
-
-      const tentativeG = gScore[u] + weight;
-      if (gScore[v] === undefined || tentativeG < gScore[v]) {
-        prev[v] = { node: u, dist: edge.dist };
-        gScore[v] = tentativeG;
-        const h = haversineDistance(nodesCoord[v], targetCoord);
-        fScore[v] = tentativeG + h;
-        pq.push({ id: v, priority: fScore[v] });
-      }
-    }
-  }
-
-  const executionTimeMs = performance.now() - t0;
-
-  if (gScore[endNode] === undefined) {
-    return {
-      success: false,
-      algorithm: "A* Search",
-      path: [],
-      distance: 0,
-      nodesVisited: nodesVisitedCount,
-      executionTimeMs: Math.max(0.01, parseFloat(executionTimeMs.toFixed(3))),
-      error: "No path found"
-    };
-  }
-
-  const path = [];
-  let curr = endNode;
-  let exactGeometricDistance = 0;
-  while (curr !== startNode) {
-    path.push(curr);
-    const p = prev[curr];
-    if (!p) break;
-    exactGeometricDistance += p.dist;
-    curr = p.node;
-  }
-  path.push(startNode);
-  path.reverse();
-
-  return {
-    success: true,
-    algorithm: "A* Search",
-    path,
-    distance: Math.round(exactGeometricDistance),
-    weightedDistance: Math.round(gScore[endNode]),
-    nodesVisited: nodesVisitedCount,
-    executionTimeMs: Math.max(0.01, parseFloat(executionTimeMs.toFixed(3)))
-  };
-}
-
-// -------------------------------------------------------------
-// 5. Breadth-First Search (BFS) - Unweighted Shortest Hops
+// 6. Breadth-First Search (BFS) - Unweighted Fewest Hops / Intersections
+// Solves: Minimum turn & junction navigation; Graph connectivity audit
 // -------------------------------------------------------------
 function runBFS(graph, startNode, endNode, nodesCoord, options = {}) {
   startNode = String(startNode);
   endNode = String(endNode);
   const t0 = performance.now();
-  const { blockedEdges = new Set(), accessibleOnly = false } = options;
+  const { accessibleOnly = false } = options;
 
   const queue = [startNode];
   const visited = new Set([startNode]);
@@ -368,7 +530,6 @@ function runBFS(graph, startNode, endNode, nodesCoord, options = {}) {
     for (const edge of neighbors) {
       const v = edge.to;
       if (visited.has(v)) continue;
-      if (blockedEdges.has(edge.edgeId)) continue;
       if (accessibleOnly && edge.type === 'steps') continue;
 
       visited.add(v);
@@ -415,13 +576,14 @@ function runBFS(graph, startNode, endNode, nodesCoord, options = {}) {
 }
 
 // -------------------------------------------------------------
-// 6. Depth-First Search (DFS) - Path Exploration
+// 7. Depth-First Search (DFS) - Deep Path Traversal
+// Solves: Path exploration, reachability & comparative benchmark
 // -------------------------------------------------------------
 function runDFS(graph, startNode, endNode, nodesCoord, options = {}) {
   startNode = String(startNode);
   endNode = String(endNode);
   const t0 = performance.now();
-  const { blockedEdges = new Set(), accessibleOnly = false } = options;
+  const { accessibleOnly = false } = options;
 
   const stack = [startNode];
   const visited = new Set();
@@ -444,7 +606,6 @@ function runDFS(graph, startNode, endNode, nodesCoord, options = {}) {
     for (const edge of neighbors) {
       const v = edge.to;
       if (visited.has(v)) continue;
-      if (blockedEdges.has(edge.edgeId)) continue;
       if (accessibleOnly && edge.type === 'steps') continue;
 
       if (!prev[v]) {
@@ -492,14 +653,12 @@ function runDFS(graph, startNode, endNode, nodesCoord, options = {}) {
 }
 
 // -------------------------------------------------------------
-// 7. Kruskal's Algorithm (Minimum Spanning Tree - Campus Connectivity)
-// Solves: Minimum fiber-optic cable / pipeline layout connecting campus landmarks
+// 8. Kruskal's Algorithm (Minimum Spanning Tree)
+// Solves: Campus Infrastructure Connectivity (fiber-optic / pipeline cabling layout)
 // -------------------------------------------------------------
 function runKruskalMST(landmarks, graph, nodesCoord) {
   const t0 = performance.now();
 
-  // Create an overlay complete graph between all 27 landmark nodes
-  // using Dijkstra shortest path distances as edge weights
   const landmarkNodes = landmarks.map(lm => lm.nearest_node);
   const n = landmarkNodes.length;
   const candidateEdges = [];
@@ -549,13 +708,12 @@ function runKruskalMST(landmarks, graph, nodesCoord) {
 }
 
 // -------------------------------------------------------------
-// 8. Prim's Algorithm (Minimum Spanning Tree)
-// Starts from Admin Block and greedily expands
+// 9. Prim's Algorithm (Minimum Spanning Tree)
+// Solves: Vertex-Centric Infrastructure Expansion starting from Admin Block
 // -------------------------------------------------------------
 function runPrimMST(landmarks, graph, nodesCoord, startLandmarkId = "admin_block") {
   const t0 = performance.now();
 
-  const landmarkNodes = landmarks.map(lm => lm.nearest_node);
   const startLm = landmarks.find(l => l.id === startLandmarkId) || landmarks[0];
   const startNode = startLm.nearest_node;
 
@@ -563,7 +721,6 @@ function runPrimMST(landmarks, graph, nodesCoord, startLandmarkId = "admin_block
   const mstEdges = [];
   let totalLength = 0;
 
-  // Min-Heap of available edges to non-MST landmarks
   const pq = new MinHeap();
 
   function addLandmarkEdges(u) {
@@ -611,18 +768,13 @@ function runPrimMST(landmarks, graph, nodesCoord, startLandmarkId = "admin_block
 }
 
 // -------------------------------------------------------------
-// 9. Resource / Event Allocation Optimizer (Dynamic Programming)
-// Syllabus: "dynamic programming for selected resource-allocation tasks"
-// Problem: Given campus venues (Admin Audi, APJ Halls, Moksha Stage, SAC)
-// and multiple college fest events with [startTime, endTime, expectedAttendance, utilityScore],
-// select the optimal subset of non-overlapping events to maximize total utility/impact!
+// 10. Dynamic Programming: Task 1 - Weighted Interval Scheduling
+// Solves: Non-conflicting Fest & Venue Allocation with Maximum Utility (O(N log N))
 // -------------------------------------------------------------
-function runDPEventAllocation(events, timeSlotLimit = 12) {
-  // Sort events by finish time
+function runDPEventAllocation(events) {
   const sorted = [...events].sort((a, b) => a.end - b.end);
   const n = sorted.length;
 
-  // Find latest non-conflicting event index for each event (binary search or scan)
   function findLatestNonConflict(i) {
     for (let j = i - 1; j >= 0; j--) {
       if (sorted[j].end <= sorted[i].start) {
@@ -669,7 +821,50 @@ function runDPEventAllocation(events, timeSlotLimit = 12) {
 }
 
 // -------------------------------------------------------------
-// 10. Generate Turn-by-Turn Navigation Directions
+// 11. Dynamic Programming: Task 2 - 0/1 Knapsack Resource Allocation
+// Solves: Department Equipment & Budget Capacity Allocation (O(N · W))
+// -------------------------------------------------------------
+function runDPKnapsack(items, capacity) {
+  const n = items.length;
+  // dp[i][w] = max utility with subset of first i items within capacity w
+  const dp = Array.from({ length: n + 1 }, () => new Array(capacity + 1).fill(0));
+
+  for (let i = 1; i <= n; i++) {
+    const { cost, utility } = items[i - 1];
+    for (let w = 0; w <= capacity; w++) {
+      if (cost <= w) {
+        dp[i][w] = Math.max(dp[i - 1][w], dp[i - 1][w - cost] + utility);
+      } else {
+        dp[i][w] = dp[i - 1][w];
+      }
+    }
+  }
+
+  // Backtrack to find selected items
+  const selected = [];
+  let w = capacity;
+  for (let i = n; i > 0 && w > 0; i--) {
+    if (dp[i][w] !== dp[i - 1][w]) {
+      selected.push(items[i - 1]);
+      w -= items[i - 1].cost;
+    }
+  }
+  selected.reverse();
+
+  const totalCost = selected.reduce((sum, item) => sum + item.cost, 0);
+
+  return {
+    algorithm: "0/1 Knapsack via Dynamic Programming (O(N · W))",
+    maxUtilityScore: dp[n][capacity],
+    totalCost,
+    remainingCapacity: capacity - totalCost,
+    allocatedItems: selected,
+    totalItemsConsidered: n
+  };
+}
+
+// -------------------------------------------------------------
+// 12. Turn-by-Turn Cardinal Directions Generator
 // -------------------------------------------------------------
 function generateDirections(pathNodeIds, nodesCoord, landmarks) {
   if (!pathNodeIds || pathNodeIds.length < 2) return [];
@@ -677,7 +872,6 @@ function generateDirections(pathNodeIds, nodesCoord, landmarks) {
   const directions = [];
   const coords = pathNodeIds.map(id => nodesCoord[id]);
 
-  // Find start and end landmark names
   const startCoord = coords[0];
   const endCoord = coords[coords.length - 1];
 
@@ -702,14 +896,12 @@ function generateDirections(pathNodeIds, nodesCoord, landmarks) {
     const currentBearing = calculateBearing(coords[i], coords[i + 1]);
     let turnAngle = (currentBearing - lastBearing + 540) % 360 - 180;
 
-    // Check if near any landmark
     const nearbyLm = landmarks.find(lm => {
       const c = lm.coords || [lm.lat, lm.lon];
       return c && c.length === 2 && haversineDistance(coords[i], c) < 30;
     });
     const landmarkHint = nearbyLm ? ` (passing by ${nearbyLm.name})` : "";
 
-    // Check for special indoor breezeways & campus gates
     const currNodeId = pathNodeIds[i];
     if (currNodeId === "admin_west_entrance") {
       directions.push({
@@ -786,19 +978,22 @@ function getCardinal(angle) {
   return directions[index];
 }
 
-// Export functions to window
+// Global Export
 window.CampusAlgorithms = {
   MinHeap,
   DSU,
+  CampusHashTable,
+  AVLTree,
+  AVLNode,
   haversineDistance,
+  calculateBearing,
   runDijkstra,
-  runAStar,
   runBFS,
   runDFS,
   runKruskalMST,
   runPrimMST,
   runDPEventAllocation,
+  runDPKnapsack,
   generateDirections,
   generateTurnByTurn: generateDirections
 };
-
