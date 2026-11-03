@@ -96,6 +96,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // 3. Render Campus Buildings Footprints (GeoJSON)
   // -----------------------------------------------------------------
   state.buildingLayerGroup = L.geoJSON(buildingsGeoJSON, {
+    filter: (feature) => {
+      const id = String(feature.properties?.id || "");
+      const name = String(feature.properties?.name || "");
+      if (id === "block_4_real" || id === "block_5_real" || id === "block_6_real" || id === "boys_hostels_quad") {
+        return false;
+      }
+      if (/quarter/i.test(name) || /type\s*[iIvV]+/i.test(name) || /boys.*hostel/i.test(name)) {
+        return false;
+      }
+      return true;
+    },
     style: (feature) => {
       const name = feature.properties?.name || "";
       let fillColor = "#cbd5e1";
@@ -107,23 +118,14 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (name.includes("Design")) {
         fillColor = "#e9d5ff"; // Purple tint for Design Block (Purple Circle)
         borderColor = "#a855f7";
-      } else if (name.includes("Block 6")) {
-        fillColor = "#38bdf8"; // Azure Sky for Block 6 (Top)
-        borderColor = "#0284c7";
-      } else if (name.includes("Block 4")) {
-        fillColor = "#818cf8"; // Indigo for Block 4 (Bottom-Left)
-        borderColor = "#4f46e5";
-      } else if (name.includes("Block 5")) {
-        fillColor = "#2dd4bf"; // Teal for Block 5 (Bottom-Right)
-        borderColor = "#0d9488";
       } else if (name.includes("Admin") || name.includes("Auditorium")) {
         fillColor = "#e0e7ff"; // Castle Lilac for Admin
         borderColor = "#6366f1";
       } else if (name.includes("APJ") || name.includes("Lecture")) {
         fillColor = "#bae6fd"; // Azure for APJ
         borderColor = "#0284c7";
-      } else if (name.includes("Hostel") || name.includes("Quarters")) {
-        fillColor = "#fed7aa"; // Warm peach/cottage brick for Hostels (Light Pink Circle)
+      } else if (name.includes("Hostel")) {
+        fillColor = "#fed7aa"; // Warm peach for Hostels
         borderColor = "#ea580c";
       } else if (name.includes("Library") || name.includes("SAC")) {
         fillColor = "#dbeafe"; // Blue for Library & SAC
