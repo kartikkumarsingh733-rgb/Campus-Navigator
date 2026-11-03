@@ -34,11 +34,12 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
         frun.font.color.rgb = RGBColor(148, 163, 184)
 
     # Color Palette
-    COLOR_PRIMARY = RGBColor(30, 58, 138)     # Deep Navy
-    COLOR_SECONDARY = RGBColor(2, 132, 199)   # Vibrant Blue / Cyan
-    COLOR_TEXT = RGBColor(15, 23, 42)         # Slate 900
-    COLOR_MUTED = RGBColor(71, 85, 105)       # Slate 600
-    COLOR_EMERALD = RGBColor(5, 150, 105)     # Success / Emerald
+    COLOR_PRIMARY = RGBColor(30, 58, 138)     # Deep Navy (#1E3A8A)
+    COLOR_SECONDARY = RGBColor(2, 132, 199)   # Vibrant Blue / Cyan (#0284C7)
+    COLOR_TEXT = RGBColor(15, 23, 42)         # Slate 900 (#0F172A)
+    COLOR_MUTED = RGBColor(71, 85, 105)       # Slate 600 (#475569)
+    COLOR_EMERALD = RGBColor(5, 150, 105)     # Success / Emerald (#059669)
+    COLOR_PURPLE = RGBColor(126, 34, 206)     # Deep Purple (#7E22CE)
 
     def set_cell_background(cell, fill_hex):
         shading = parse_xml(f'<w:shd {nsdecls("w")} w:fill="{fill_hex}"/>')
@@ -54,7 +55,7 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
 
     def add_title(text, subtitle=None):
         p = doc.add_paragraph()
-        p.paragraph_format.space_before = Pt(12)
+        p.paragraph_format.space_before = Pt(14)
         p.paragraph_format.space_after = Pt(2)
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         run = p.add_run(text)
@@ -244,14 +245,133 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     add_bullet(" HTML5 Geolocation API integration, live nearest-node snapping, turn-by-turn cardinal instructions, and walk simulation.", "Real-Time Tracking & User Experience:")
 
     # =========================================================================
-    # SECTION 2: SYSTEM ARCHITECTURE & METHODOLOGY
+    # SECTION 2: PROJECT ARCHITECTURE (EXAMINER-FOCUSED)
     # =========================================================================
-    add_heading_1("2. Methodology & Architectural Pipeline")
-    add_body(
-        "The project follows an end-to-end engineering pipeline from raw geospatial data extraction to interactive browser visualization:"
+    add_heading_1("2. Project Architecture & System Design")
+    
+    add_callout(
+        "\"CampusNav follows a Decoupled 4-Tier Client-Side Architecture. The Presentation Layer (HTML5/CSS3/Leaflet.js) handles UI "
+        "interactions and map rendering. When a user selects a destination, the Controller Layer (app.js) captures the event, retrieves GPS "
+        "coordinates, and snaps them to the nearest node in our Topological Graph Layer (graphData.js, 1,409 nodes, 1,564 edges). "
+        "It then calls the Algorithmic Engine (algorithms.js), which executes Dijkstra or A* using a custom Binary Min-Heap in sub-millisecond time. "
+        "The calculated path and bearing angles are returned to the controller to render the animated route polyline and turn-by-turn guidance. "
+        "Because the entire engine runs on the client side with zero backend latency, routing is instantaneous and works even offline.\"",
+        "30-SECOND ELEVATOR PITCH FOR YOUR PROFESSOR"
     )
 
-    add_heading_2("Stage 1: Geospatial Extraction & Data Sanitization")
+    add_heading_2("2.1 High-Level 4-Tier Architecture Diagram")
+    add_body(
+        "The system is organized into four distinct, loosely coupled architectural layers with clean separation of concerns:"
+    )
+
+    # Architecture Table Diagram
+    arch_tbl = doc.add_table(rows=5, cols=3)
+    arch_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
+    arch_headers = ["Layer / Tier", "Key Modules & Files", "Responsibilities & Core Functions"]
+    arch_tiers = [
+        ["Tier 1:\nPresentation &\nVisualization", 
+         "• index.html\n• styles.css\n• leaflet.js (v1.9.4)\n• leaflet.css", 
+         "• Interactive dual-tile Leaflet canvas (Carto Voyager street & Esri Satellite).\n• Glassmorphic floating navigation control panel & search bars.\n• Clean location name pill badges & interactive marker pins.\n• Animated path polylines, direction arrows & simulation walker marker."],
+        
+        ["Tier 2:\nApplication Controller\n& State Machine", 
+         "• app.js\n• HTML5 Geolocation API\n• Event Listeners", 
+         "• User event orchestration (origin/destination picks, algorithm switching).\n• Real-time GPS coordinate acquisition via watchPosition.\n• Spatial Snapping: queries graph to map user coordinates to nearest vertex.\n• Dynamic route rerouting, obstacle handling & environmental multipliers.\n• Turn-by-turn instruction synthesizer & walk simulation timer."],
+        
+        ["Tier 3:\nAlgorithmic & Data\nStructures Engine", 
+         "• algorithms.js\n• Binary Min-Heap\n• Disjoint Set Union (DSU)", 
+         "• Custom Binary Min-Heap Priority Queue: O(log V) push/pop operations.\n• Disjoint Set Union (DSU) with Path Compression & Union-by-Rank: O(α(n)).\n• Shortest Path Algorithms: Dijkstra, A* (Haversine heuristic), BFS, DFS.\n• Network Spanning: Kruskal's & Prim's Minimum Spanning Tree (MST).\n• Resource Scheduling: DP Weighted Interval Scheduling (O(n log n))."],
+        
+        ["Tier 4:\nGeospatial Graph\nData & Topology", 
+         "• graphData.js\n• Raw OSM Overpass Feed\n• Hand-curated POI DB", 
+         "• Topological Graph G = (V, E) of NSUT: |V| = 1,409 nodes, |E| = 1,564 edges.\n• GeoJSON node attributes: WGS-84 coordinates, junction IDs, types.\n• Edge attributes: weight in meters, highway tag, wheelchair accessibility flag.\n• 28 Landmark POIs across 7 categories (Academic, Hostels, Admin, etc.).\n• Indoor Breezeway & Corridor subgraphs (Admin Block, Block 6, Library gate)."]
+    ]
+
+    for c_i, h_text in enumerate(arch_headers):
+        c = arch_tbl.cell(0, c_i)
+        set_cell_background(c, "1E3A8A")
+        set_cell_margins(c, top=80, bottom=80, left=90, right=90)
+        p = c.paragraphs[0]
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        r = p.add_run(h_text)
+        r.font.bold = True
+        r.font.size = Pt(8.5)
+        r.font.color.rgb = RGBColor(255, 255, 255)
+
+    for r_i, r_data in enumerate(arch_tiers):
+        for c_i, val in enumerate(r_data):
+            c = arch_tbl.cell(r_i + 1, c_i)
+            bg = "F0F9FF" if r_i % 2 == 1 else "FFFFFF"
+            set_cell_background(c, bg)
+            set_cell_margins(c, top=70, bottom=70, left=90, right=90)
+            p = c.paragraphs[0]
+            p.alignment = WD_ALIGN_PARAGRAPH.CENTER if c_i == 0 else WD_ALIGN_PARAGRAPH.LEFT
+            r = p.add_run(val)
+            r.font.size = Pt(8.5)
+            if c_i == 0:
+                r.font.bold = True
+                r.font.color.rgb = COLOR_PRIMARY
+
+    p_spacer_arch = doc.add_paragraph()
+    p_spacer_arch.paragraph_format.space_after = Pt(8)
+
+    add_heading_2("2.2 Request-Response Execution Flow (Step-by-Step)")
+    add_body(
+        "To explain the runtime behavior during a viva, walk through this 5-step lifecycle when a user clicks 'Find Route':"
+    )
+    add_bullet(
+        "The user selects an origin (e.g. 'Main Gate') and a destination (e.g. 'APJ Complex') or enables 'Use My Current Location'. "
+        "The UI fires an event listener in app.js.",
+        "Step 1: Input & Geolocation Capture: "
+    )
+    add_bullet(
+        "app.js retrieves the coordinates. If arbitrary GPS coordinates are given, the Spatial Snapping Algorithm scans graphData.js "
+        "using Haversine distance minimization to locate the nearest walkable junction node V_start and V_end.",
+        "Step 2: Spatial Snapping: "
+    )
+    add_bullet(
+        "app.js invokes findShortestPath(startNodeId, endNodeId, options) in algorithms.js. "
+        "Depending on the selected mode (Dijkstra or A*), the algorithm pops vertices from the custom Min-Heap, evaluates neighboring edges "
+        "subject to accessibility and weather filters, relaxes distance costs, and reaches the goal.",
+        "Step 3: Graph Traversal & Heuristic Search: "
+    )
+    add_bullet(
+        "The path is reconstructed via the prev predecessor map. For every consecutive node pair, the initial geodetic forward bearing θ is calculated. "
+        "Angular changes are classified into human-readable instructions: 'Turn sharp left heading toward Moksha Ground', 'Continue straight for 45m', etc.",
+        "Step 4: Path Backtracking & Turn-by-Turn Synthesis: "
+    )
+    add_bullet(
+        "The ordered coordinate array is returned to app.js, which clears previous map layers, renders a glowing polyline onto the Leaflet canvas, "
+        "zooms to fit the route bounds, populates the turn-by-turn panel, and initiates the animated walker cursor.",
+        "Step 5: Vector Polyline & UI Rendering: "
+    )
+
+    add_heading_2("2.3 Key Architectural Strengths to Highlight in Viva")
+    add_bullet(
+        "Eliminates network round-trip delays, API rate-limiting, and server hosting expenses. Route calculations execute in under 2 milliseconds directly in the browser V8 engine.",
+        "Zero Backend Dependency (Pure Client-Side Edge Execution): "
+    )
+    add_bullet(
+        "The complete graph of 1,409 nodes and 1,564 edges occupies only ~1.6 MB in JavaScript memory, easily running on low-end budget smartphones.",
+        "Minimal Memory Footprint: "
+    )
+    add_bullet(
+        "The presentation UI is completely separated from graph traversal logic. Swapping Leaflet for MapLibre or Google Maps requires modifying only the rendering layer without touching algorithms.js.",
+        "Modular Decoupled Design: "
+    )
+    add_bullet(
+        "Because all graph data and algorithms are bundled locally, the entire navigation system can function without an active internet connection once loaded as a PWA (Progressive Web App).",
+        "Offline-Ready Resilience: "
+    )
+
+    # =========================================================================
+    # SECTION 3: METHODOLOGY & DATA EXTRACTION
+    # =========================================================================
+    add_heading_1("3. Methodology & Geospatial Data Pipeline")
+    add_body(
+        "The project follows a rigorous end-to-end engineering pipeline from raw satellite data extraction to browser visualization:"
+    )
+
+    add_heading_2("Stage 1: Geospatial Extraction & Boundary Clipping")
     add_body(
         "Raw geospatial data for the bounding box [28.6040, 77.0315] to [28.6160, 77.0440] was ingested using the OpenStreetMap (OSM) Overpass API. "
         "Overpass nodes and ways were filtered by highway tags: footway, path, pedestrian, service, steps, and living_street. "
@@ -287,11 +407,11 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     )
 
     # =========================================================================
-    # SECTION 3: MATHEMATICAL FORMULATIONS
+    # SECTION 4: MATHEMATICAL FORMULATIONS
     # =========================================================================
-    add_heading_1("3. Core Mathematical Formulations")
+    add_heading_1("4. Core Mathematical Formulations")
     
-    add_heading_2("3.1 Haversine Great-Circle Distance Formula")
+    add_heading_2("4.1 Haversine Great-Circle Distance Formula")
     add_body(
         "Because Euclidean distance (sqrt(dx^2 + dy^2)) assumes a flat Euclidean plane, it introduces massive geometric distortion on spherical planetary surfaces. "
         "CampusNav calculates all edge weights and heuristic distances using the Haversine Formula over the WGS-84 Earth sphere:"
@@ -302,7 +422,7 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     add_body("c = 2 · atan2( √a, √(1 - a) )", bold_prefix="Angular Distance (c): ")
     add_body("Distance (d) = R · c   (meters)", bold_prefix="Final Ground Distance: ")
 
-    add_heading_2("3.2 Initial Geodetic Bearing (Turn-by-Turn Navigation)")
+    add_heading_2("4.2 Initial Geodetic Bearing (Turn-by-Turn Navigation)")
     add_body(
         "To calculate direction of travel (e.g. 'Turn sharp left heading North-East') between consecutive waypoints P1 and P2, the forward azimuth bearing θ is computed:"
     )
@@ -315,11 +435,11 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     )
 
     # =========================================================================
-    # SECTION 4: DATA STRUCTURES
+    # SECTION 5: DATA STRUCTURES
     # =========================================================================
-    add_heading_1("4. Fundamental Data Structures Implemented")
+    add_heading_1("5. Fundamental Data Structures Implemented")
     
-    add_heading_2("4.1 Custom Binary Min-Heap Priority Queue")
+    add_heading_2("5.1 Custom Binary Min-Heap Priority Queue")
     add_body(
         "Dijkstra's and Prim's algorithms require repeatedly extracting the minimum-distance vertex. A naive linear scan yields O(V) per extraction (O(V^2) total). "
         "CampusNav implements an in-memory Binary Min-Heap where each node satisfies: parent.priority <= children.priority."
@@ -328,7 +448,7 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     add_bullet("Replace root with last element, sink down by swapping with smaller child. Time Complexity: O(log V).", "Pop (Sink-Down): ")
     add_bullet("Check root element. Time Complexity: O(1).", "Peek / IsEmpty: ")
 
-    add_heading_2("4.2 Disjoint Set Union (DSU / Union-Find)")
+    add_heading_2("5.2 Disjoint Set Union (DSU / Union-Find)")
     add_body(
         "Kruskal's MST algorithm requires detecting whether two vertices belong to the same connected component in near-constant time to avoid cycles. "
         "CampusNav implements DSU with two crucial optimizations:"
@@ -350,7 +470,7 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
         "THEORETICAL PROOF: DSU COMPLEXITY"
     )
 
-    add_heading_2("4.3 Graph Adjacency List")
+    add_heading_2("5.3 Graph Adjacency List")
     add_body(
         "The graph is stored as an Adjacency List (Hash Map where key = nodeId, value = Array of Edge objects). "
         "Space Complexity is O(V + E). In contrast, an Adjacency Matrix would require O(V^2) space (~1,409^2 = 1.98 million entries), "
@@ -358,11 +478,11 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     )
 
     # =========================================================================
-    # SECTION 5: ROUTING ALGORITHMS
+    # SECTION 6: ROUTING ALGORITHMS
     # =========================================================================
-    add_heading_1("5. In-Depth Routing Algorithms & Comparison")
+    add_heading_1("6. In-Depth Routing Algorithms & Comparison")
     
-    add_heading_2("5.1 Dijkstra's Algorithm (Min-Heap Priority Queue)")
+    add_heading_2("6.1 Dijkstra's Algorithm (Min-Heap Priority Queue)")
     add_body(
         "Dijkstra's algorithm finds the shortest path from a starting node to all other nodes in a weighted graph with non-negative edge weights. "
         "CampusNav uses an early-exit optimization: as soon as the destination vertex u == endNode is popped from the priority queue, the algorithm terminates."
@@ -376,7 +496,7 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     )
     add_bullet("Time: O((V + E) log V). Space: O(V).", "Complexity: ")
 
-    add_heading_2("5.2 A* (A-Star) Search Algorithm")
+    add_heading_2("6.2 A* (A-Star) Search Algorithm")
     add_body(
         "A* enhances Dijkstra by directing search toward the goal using a heuristic evaluation function: f(n) = g(n) + h(n)."
     )
@@ -392,14 +512,14 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     )
     add_bullet("Time: O((V + E) log V) in worst-case; in practice visits 80% fewer nodes than Dijkstra. Space: O(V).", "Complexity: ")
 
-    add_heading_2("5.3 Breadth-First Search (BFS) - Unweighted Fewest Hops")
+    add_heading_2("6.3 Breadth-First Search (BFS) - Unweighted Fewest Hops")
     add_body(
         "BFS explores vertices level by level using a FIFO Queue. It treats all edges as having uniform weight (1 hop). "
         "BFS minimizes the total number of turns/intersections rather than physical metric meters. Useful for campus visitors seeking the simplest route with fewer path transitions."
     )
     add_bullet("Time: O(V + E). Space: O(V).", "Complexity: ")
 
-    add_heading_2("5.4 Depth-First Search (DFS) - Deep Path Exploration")
+    add_heading_2("6.4 Depth-First Search (DFS) - Deep Path Exploration")
     add_body(
         "DFS explores as deeply as possible along each branch before backtracking, using a LIFO Stack. "
         "In our application, DFS serves as an educational benchmark: it illustrates how unguided traversal produces convoluted, highly suboptimal paths "
@@ -447,16 +567,16 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     p_spacer2.paragraph_format.space_after = Pt(8)
 
     # =========================================================================
-    # SECTION 6: NETWORK OPTIMIZATION (MST)
+    # SECTION 7: NETWORK OPTIMIZATION (MST)
     # =========================================================================
-    add_heading_1("6. Campus Infrastructure Optimization (Minimum Spanning Tree)")
+    add_heading_1("7. Campus Infrastructure Optimization (Minimum Spanning Tree)")
     add_body(
         "Beyond individual pedestrian navigation, campus administrators face infrastructure layout challenges: connecting all 28 major landmarks "
         "with high-speed fiber-optic network cables, water distribution pipes, or security CCTV lines with the minimum total trenching and cabling cost. "
         "A Spanning Tree connects all V vertices using exactly V - 1 edges with zero cycles. The Minimum Spanning Tree (MST) minimizes the sum of edge weights."
     )
 
-    add_heading_2("6.1 Kruskal's Algorithm (Edge-Centric)")
+    add_heading_2("7.1 Kruskal's Algorithm (Edge-Centric)")
     add_bullet("Compute pairwise shortest walking distance between all landmark pairs using Dijkstra's algorithm.", "Step 1: ")
     add_bullet("Sort all candidate edges in non-decreasing order of weight. Time: O(E log E).", "Step 2: ")
     add_bullet("Iterate through sorted edges. For edge (u, v), check DSU.find(u) == DSU.find(v).", "Step 3: ")
@@ -464,7 +584,7 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     add_bullet("Stop when exactly |V_landmarks| - 1 edges have been added.", "Step 5: ")
     add_bullet("Total NSUT Fiber-Optic Cable Length: 3,569 meters across 26 tree links connecting all landmarks.", "NSUT Result: ")
 
-    add_heading_2("6.2 Prim's Algorithm (Vertex-Centric)")
+    add_heading_2("7.2 Prim's Algorithm (Vertex-Centric)")
     add_bullet("Start with an initial landmark (e.g. 'Admin Block' as the Central Server / Network Operation Center).", "Step 1: ")
     add_bullet("Maintain a set of in-tree landmarks inMST and a Min-Heap of edges crossing the cut from inMST to unvisited landmarks.", "Step 2: ")
     add_bullet("Extract min-weight cut edge (u, v). Add v to inMST, add edge to tree, and push all incident edges from v into Min-Heap.", "Step 3: ")
@@ -478,9 +598,9 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     )
 
     # =========================================================================
-    # SECTION 7: RESOURCE ALLOCATION (DYNAMIC PROGRAMMING)
+    # SECTION 8: RESOURCE ALLOCATION (DYNAMIC PROGRAMMING)
     # =========================================================================
-    add_heading_1("7. Campus Resource Allocation Optimizer (Dynamic Programming)")
+    add_heading_1("8. Campus Resource Allocation Optimizer (Dynamic Programming)")
     add_body(
         "A key requirement for college fests (e.g. Moksha, Taarangana) is venue scheduling: multiple student societies request prestigious venues "
         "(Main Auditorium, APJ Hall, Moksha Stage) with specific start times, end times, and expected attendance / utility scores. "
@@ -506,11 +626,11 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     add_bullet("Selected approved events (Debate, Taarangana Dance, Moksha Star Night) with 100% zero time conflicts and maximized 245 utility points.", "CampusNav Result: ")
 
     # =========================================================================
-    # SECTION 8: SPECIALIZED FEATURES (INDOOR, ACCESSIBILITY, GEO)
+    # SECTION 9: SPECIALIZED FEATURES (INDOOR, ACCESSIBILITY, GEO)
     # =========================================================================
-    add_heading_1("8. Advanced Real-World Engineering Features")
+    add_heading_1("9. Advanced Real-World Engineering Features")
     
-    add_heading_2("8.1 Indoor Corridor & Breezeway Walkway Modeling")
+    add_heading_2("9.1 Indoor Corridor & Breezeway Walkway Modeling")
     add_body(
         "On the real NSUT campus, pedestrians frequently cut through buildings rather than walking around exterior perimeters. CampusNav models these real shortcuts:"
     )
@@ -518,21 +638,21 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     add_bullet("Central indoor lobby hallway connecting Department of Computer Engineering (COE) to Information Technology (IT).", "Block 6 Central Lobby: ")
     add_bullet("Pedestrian transit gate linking the central academic courtyard to the Training & Placement Cell.", "Gate between Block 5 & Central Library: ")
 
-    add_heading_2("8.2 Accessibility Routing (Wheelchair & Reduced Mobility)")
+    add_heading_2("9.2 Accessibility Routing (Wheelchair & Reduced Mobility)")
     add_body(
         "All 1,564 edges carry an isAccessible boolean flag. Edges tagged as 'steps' or stairs are disqualified when the user activates the accessible toggle. "
         "The router automatically recalculates routes strictly along smooth paved paths, ramps, and elevator-accessible entrances."
     )
 
-    add_heading_2("8.3 Dynamic Environmental Factors")
+    add_heading_2("9.3 Dynamic Environmental Factors")
     add_bullet("Unpaved dirt paths ('track') receive a 1.5x weight penalty during rain simulation to guide users toward covered, paved walkways.", "Weather Multiplier: ")
     add_bullet("Corridors during class change intervals receive a 1.8x congestion multiplier, prompting Dijkstra to route through quieter alternate pathways.", "Rush-Hour Congestion: ")
     add_bullet("Users can simulate construction closures (e.g. Admin fountain repairs, Moksha stage construction) to observe live rerouting.", "Dynamic Road Closures: ")
 
     # =========================================================================
-    # SECTION 9: TECH STACK JUSTIFICATION
+    # SECTION 10: TECH STACK JUSTIFICATION
     # =========================================================================
-    add_heading_1("9. Technology Stack Selection & Architectural Rationale")
+    add_heading_1("10. Technology Stack Selection & Architectural Rationale")
     
     tech_tbl = doc.add_table(rows=6, cols=3)
     tech_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -573,9 +693,9 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
     p_spacer3.paragraph_format.space_after = Pt(8)
 
     # =========================================================================
-    # SECTION 10: VIVA QUESTIONS & ANSWERS
+    # SECTION 11: VIVA QUESTIONS & ANSWERS
     # =========================================================================
-    add_heading_1("10. Anticipated Viva Voce Questions & Model Answers")
+    add_heading_1("11. Anticipated Viva Voce Questions & Model Answers")
 
     viva_qa = [
         ("Q1: What is the exact graph representation used in CampusNav?",
@@ -606,7 +726,13 @@ def create_viva_document(output_path="CampusNav_Viva_Comprehensive_Notes.docx"):
          "The HTML5 Geolocation API returns a coordinates object with an accuracy radius. CampusNav filters out points with excessive inaccuracy (> 50m) and tests whether the position is inside the campus boundary. If valid, it executes Spatial Snapping to project the point onto the nearest graph vertex and computes a smooth transition link."),
 
         ("Q10: Why choose Leaflet.js over Google Maps JavaScript API?",
-         "Google Maps JavaScript API has a large bundle size (250KB+), requires external API keys with billing quotas, and renders map features on Google's closed proprietary servers. Leaflet.js is an open-source 42KB lightweight library that allows complete local control over custom SVG vector panes, custom divIcons, offline GeoJSON polygons, and zero external billing constraints.")
+         "Google Maps JavaScript API has a large bundle size (250KB+), requires external API keys with billing quotas, and renders map features on Google's closed proprietary servers. Leaflet.js is an open-source 42KB lightweight library that allows complete local control over custom SVG vector panes, custom divIcons, offline GeoJSON polygons, and zero external billing constraints."),
+
+        ("Q11: How do you explain the project architecture to an examiner in under a minute?",
+         "Explain the 4-tier client-side architecture: (1) Presentation Layer with Leaflet canvas and control UI; (2) Application Controller with state machine and GPS watcher; (3) Algorithmic Engine with Min-Heap, Dijkstra/A*, and DSU MST; (4) Topological Graph Data with 1,409 nodes and 1,564 edges. Explain that client-side execution delivers instantaneous sub-2ms routing with zero server latency."),
+
+        ("Q12: How does the application scale if new buildings or blocks are constructed at NSUT?",
+         "The graph topology in graphData.js is completely declarative. To add a new building, we append its junction nodes to the node list and connect them via bidirectional edge definitions with distance and accessibility tags. No algorithmic or controller code needs modification.")
     ]
 
     for q, a in viva_qa:
