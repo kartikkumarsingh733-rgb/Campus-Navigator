@@ -1366,6 +1366,24 @@ input:checked + .slider:before { transform: translateX(16px); }
 .marker-landmarks { border-color: #0284c7; background: #f0f9ff; }
 .marker-utility { border-color: #64748b; background: #f8fafc; }
 
+/* Custom Route Panes */
+.leaflet-pane.leaflet-route-pane,
+.leaflet-pane.leaflet-routeGlow-pane,
+.leaflet-pane.leaflet-routePane-pane,
+.leaflet-pane.leaflet-routeGlowPane-pane {
+  pointer-events: none !important;
+  z-index: 550 !important;
+}
+
+.leaflet-pane.leaflet-route-pane svg,
+.leaflet-pane.leaflet-routeGlow-pane svg,
+.leaflet-pane.leaflet-routePane-pane svg,
+.leaflet-pane.leaflet-routeGlowPane-pane svg {
+  max-width: none !important;
+  max-height: none !important;
+  pointer-events: none !important;
+}
+
 .route-polyline {
   filter: drop-shadow(0 2px 6px rgba(37, 99, 235, 0.4));
 }

@@ -81,6 +81,18 @@ document.addEventListener("DOMContentLoaded", () => {
     opacity: 1.0
   }).addTo(map);
 
+  // Dedicated z-indexed overlay panes for optimal route contrast
+  if (!map.getPane("routeGlowPane")) {
+    map.createPane("routeGlowPane");
+    map.getPane("routeGlowPane").style.zIndex = 540;
+    map.getPane("routeGlowPane").style.pointerEvents = "none";
+  }
+  if (!map.getPane("routePane")) {
+    map.createPane("routePane");
+    map.getPane("routePane").style.zIndex = 550;
+    map.getPane("routePane").style.pointerEvents = "none";
+  }
+
   // -----------------------------------------------------------------
   // 3. Render Campus Buildings Footprints (GeoJSON)
   // -----------------------------------------------------------------
@@ -266,23 +278,25 @@ document.addEventListener("DOMContentLoaded", () => {
       if (mapElement.parentElement !== target) {
         target.appendChild(mapElement);
       }
+      map.invalidateSize({ animate: false });
       setTimeout(() => {
         map.invalidateSize();
         if (state.activeRoutePolyline && state.activeRoutePolyline.getBounds && state.activeRoutePolyline.getBounds().isValid() && map.getSize().x > 0) {
           map.fitBounds(state.activeRoutePolyline.getBounds(), { padding: [40, 40], maxZoom: 18 });
         }
-      }, 60);
+      }, 50);
     } else if (viewId === "view-find-route") {
       const target = document.getElementById("route-map-wrapper");
       if (mapElement.parentElement !== target) {
         target.appendChild(mapElement);
       }
+      map.invalidateSize({ animate: false });
       setTimeout(() => {
         map.invalidateSize();
         if (state.activeRoutePolyline && state.activeRoutePolyline.getBounds && state.activeRoutePolyline.getBounds().isValid() && map.getSize().x > 0) {
           map.fitBounds(state.activeRoutePolyline.getBounds(), { padding: [40, 40], maxZoom: 18 });
         }
-      }, 60);
+      }, 50);
     } else if (viewId === "view-directory") {
       renderDirectoryGrid();
     }
@@ -678,33 +692,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const directionsContainer = document.getElementById("directions-container");
     directionsContainer.innerHTML = "";
 
-    const turnDirections = algos.generateTurnByTurn(result.path, nodes, landmarks);
+    try {
+      const getDirectionsFn = algos.generateDirections || algos.generateTurnByTurn;
+      const turnDirections = typeof getDirectionsFn === "function" ? getDirectionsFn(result.path, nodes, landmarks) : [];
 
-    if (srcId === "user_current_location" && state.userLocation) {
-      const leadStep = document.createElement("div");
-      leadStep.className = "direction-item";
-      leadStep.innerHTML = `
-        <div style="font-weight: 700; color: #0284c7; min-width: 20px;">0.</div>
-        <div>
-          <div>Walk <strong>${Math.round(state.userLocation.snapDistMeters)} meters</strong> from your current position to join the campus walkway.</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Connector Link</div>
-        </div>
-      `;
-      directionsContainer.appendChild(leadStep);
+      if (srcId === "user_current_location" && state.userLocation) {
+        const leadStep = document.createElement("div");
+        leadStep.className = "direction-item";
+        leadStep.innerHTML = `
+          <div style="font-weight: 700; color: #0284c7; min-width: 20px;">0.</div>
+          <div>
+            <div>Walk <strong>${Math.round(state.userLocation.snapDistMeters)} meters</strong> from your current position to join the campus walkway.</div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Connector Link</div>
+          </div>
+        `;
+        directionsContainer.appendChild(leadStep);
+      }
+
+      turnDirections.forEach((step) => {
+        const stepEl = document.createElement("div");
+        stepEl.className = "direction-item";
+        const dist = Math.round(step.distance !== undefined ? step.distance : (step.distanceMeters || 0));
+        stepEl.innerHTML = `
+          <div style="font-weight: 700; color: var(--primary); min-width: 20px;">${step.step}.</div>
+          <div>
+            <div>${step.instruction}</div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">${dist > 0 ? `Segment: ${dist}m` : "Waypoint"}</div>
+          </div>
+        `;
+        directionsContainer.appendChild(stepEl);
+      });
+    } catch (dirErr) {
+      console.warn("Turn-by-turn directions generation warning:", dirErr);
     }
-
-    turnDirections.forEach((step) => {
-      const stepEl = document.createElement("div");
-      stepEl.className = "direction-item";
-      stepEl.innerHTML = `
-        <div style="font-weight: 700; color: var(--primary); min-width: 20px;">${step.step}.</div>
-        <div>
-          <div>${step.instruction}</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Segment: ${step.distanceMeters}m</div>
-        </div>
-      `;
-      directionsContainer.appendChild(stepEl);
-    });
 
     // Clean up previous route layers & animations
     if (state.activeRoutePolyline) map.removeLayer(state.activeRoutePolyline);
@@ -717,15 +737,23 @@ document.addEventListener("DOMContentLoaded", () => {
       state.routeTraceAnimationId = null;
     }
 
+    // Ensure map layout is current before rendering
+    map.invalidateSize({ animate: false });
+
     // Ensure dedicated z-indexed panes above building footprints
     if (!map.getPane("routeGlowPane")) {
       map.createPane("routeGlowPane");
       map.getPane("routeGlowPane").style.zIndex = 540;
+      map.getPane("routeGlowPane").style.pointerEvents = "none";
     }
     if (!map.getPane("routePane")) {
       map.createPane("routePane");
       map.getPane("routePane").style.zIndex = 550;
+      map.getPane("routePane").style.pointerEvents = "none";
     }
+
+    const glowPane = map.getPane("routeGlowPane") ? "routeGlowPane" : "overlayPane";
+    const linePane = map.getPane("routePane") ? "routePane" : "overlayPane";
 
     // Assemble complete geographic latLng path
     let latLngPath = result.path.map(nid => nodes[nid]).filter(Boolean);
@@ -746,17 +774,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Layer 1: Glowing underlay polyline (Cyan ambient glow)
     state.activeRouteGlow = L.polyline(latLngPath, {
-      pane: "routeGlowPane",
+      pane: glowPane,
       color: "#0284c7",
       weight: 10,
-      opacity: 0.45,
+      opacity: 0.5,
       lineCap: "round",
       lineJoin: "round"
     }).addTo(map);
 
-    // Layer 2: Solid vibrant path
-    state.activeRoutePolyline = L.polyline([], {
-      pane: "routePane",
+    // Layer 2: Solid vibrant path - initialized immediately with full path so it is 100% visible
+    state.activeRoutePolyline = L.polyline(latLngPath, {
+      pane: linePane,
       color: "#2563eb",
       weight: 6,
       opacity: 1.0,
@@ -765,8 +793,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }).addTo(map);
 
     // Layer 3: Animated directional flow overlay
-    state.activeRouteDashes = L.polyline([], {
-      pane: "routePane",
+    state.activeRouteDashes = L.polyline(latLngPath, {
+      pane: linePane,
       color: "#ffffff",
       weight: 3.5,
       opacity: 0.95,
@@ -810,13 +838,17 @@ document.addEventListener("DOMContentLoaded", () => {
       zIndexOffset: 3500
     }).addTo(map);
 
+    // Bring all route elements to the absolute front
+    state.activeRouteGlow.bringToFront();
+    state.activeRoutePolyline.bringToFront();
+    state.activeRouteDashes.bringToFront();
+    state.routeStartMarker.bringToFront();
+    state.routeEndMarker.bringToFront();
+
     // Progressive tracing animation from origin to destination
     const totalPts = latLngPath.length;
-    if (totalPts <= 2) {
-      state.activeRoutePolyline.setLatLngs(latLngPath);
-      state.activeRouteDashes.setLatLngs(latLngPath);
-    } else {
-      const traceDuration = Math.min(750, Math.max(300, totalPts * 18));
+    if (totalPts > 2) {
+      const traceDuration = Math.min(700, Math.max(300, totalPts * 16));
       const traceStart = performance.now();
 
       function traceStep(now) {
@@ -842,8 +874,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Auto-fit map viewport to route with padding
     const routeBounds = L.latLngBounds(latLngPath);
-    if (routeBounds.isValid() && map.getSize().x > 0) {
-      map.fitBounds(routeBounds, { padding: [50, 50], maxZoom: 18 });
+    if (routeBounds.isValid()) {
+      try {
+        map.fitBounds(routeBounds, { padding: [50, 50], maxZoom: 18 });
+      } catch (fbErr) {
+        console.warn("fitBounds warning:", fbErr);
+      }
     }
 
     if (state.currentView === "view-find-route" && window.innerWidth <= 1024) {

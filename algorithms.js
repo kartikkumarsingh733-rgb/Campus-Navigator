@@ -798,6 +798,7 @@ window.CampusAlgorithms = {
   runKruskalMST,
   runPrimMST,
   runDPEventAllocation,
-  generateDirections
+  generateDirections,
+  generateTurnByTurn: generateDirections
 };
 
