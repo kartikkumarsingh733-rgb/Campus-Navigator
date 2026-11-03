@@ -143,9 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     onEachFeature: (feature, layer) => {
       if (feature.properties && feature.properties.name) {
-        const isCoreBlock = ["Block 6", "Block 4", "Block 5", "Admin Block", "Design Block", "Boys' Hostels", "Campus Lake"].some(b => feature.properties.name.includes(b));
         layer.bindTooltip(`<strong>${feature.properties.name}</strong>`, {
-          permanent: isCoreBlock,
+          permanent: false,
           direction: "center",
           className: "building-tooltip"
         });
@@ -154,45 +153,59 @@ document.addEventListener("DOMContentLoaded", () => {
   }).addTo(map);
 
   // -----------------------------------------------------------------
-  // 4. Render Landmark Markers with Custom Illustrated DivIcons
+  // 4. Render Landmark Markers with Clean Location Name Badges
   // -----------------------------------------------------------------
-  const categoryIcons = {
-    "Gates": "🚪",
-    "Academic": "🏛️",
-    "Hostels": "🏠",
-    "Food & Hangouts": "☕",
-    "Admin": "🏰",
-    "Sports": "⚽",
-    "Utility": "🛠️",
-    "Hangouts": "🌳",
-    "Landmarks": "⛲"
-  };
+  function getCleanLandmarkName(lm) {
+    const customNames = {
+      main_gate: "Main Gate",
+      north_gate: "North Gate",
+      mandir: "Campus Mandir",
+      boys_hostels: "Boys' Hostels",
+      design_block: "Design Block",
+      admin_block: "Admin Block",
+      central_fountain: "Central Fountain",
+      block_6: "Block 6",
+      block_4: "Block 4",
+      block_5: "Block 5",
+      mini_audi: "Mini Audi",
+      central_library: "Central Library",
+      sac: "SAC",
+      apj_complex: "APJ Complex",
+      student_center: "Student Center",
+      amul_ground: "Amul Kiosk",
+      smart_block: "Smart Block",
+      stationery: "Stationery",
+      clinic: "Campus Clinic",
+      kaveri_hostel: "Kaveri Hostel",
+      girls_hostels: "Girls' Hostels",
+      tnp_building: "TnP Cell",
+      sports_grounds: "Sports Complex",
+      parking_west: "West Parking",
+      nescii_lawns: "Nescii Lawns",
+      moksha_ground: "Moksha Ground",
+      mgmt_block: "Management Block",
+      campus_lake: "Campus Lake"
+    };
+    return customNames[lm.id] || lm.name.split("(")[0].trim() || lm.name;
+  }
 
   const markersGroup = L.layerGroup().addTo(map);
 
   landmarks.forEach((lm) => {
-    let iconChar = categoryIcons[lm.category] || "📍";
-    if (lm.id === "block_6") iconChar = "6️⃣";
-    if (lm.id === "block_4") iconChar = "4️⃣";
-    if (lm.id === "block_5") iconChar = "5️⃣";
-    if (lm.id === "design_block") iconChar = "🎨";
-    if (lm.id === "campus_lake") iconChar = "🌊";
-    if (lm.id === "mini_audi") iconChar = "🎭";
-    if (lm.id === "admin_block") iconChar = "🏰";
-    if (lm.id === "central_fountain") iconChar = "⛲";
-    if (lm.id === "central_library") iconChar = "📚";
-    if (lm.id === "apj_complex") iconChar = "🎓";
-    if (lm.id === "mandir") iconChar = "🛕";
-    if (lm.id === "clinic") iconChar = "🏥";
-    if (lm.id === "sports_grounds") iconChar = "⚽";
-    if (lm.id === "amul_ground") iconChar = "🍦";
+    const displayName = getCleanLandmarkName(lm);
+    const catClass = getCategoryClass(lm.category);
 
     const customIcon = L.divIcon({
-      className: "custom-div-icon",
-      html: `<div class="campus-marker-icon marker-${getCategoryClass(lm.category)}" title="${lm.name}">${iconChar}</div>`,
-      iconSize: [34, 34],
-      iconAnchor: [17, 17],
-      popupAnchor: [0, -17]
+      className: "campus-name-div-icon",
+      html: `
+        <div class="campus-name-marker marker-${catClass}" data-id="${lm.id}" title="${lm.name}">
+          <span class="marker-category-dot"></span>
+          <span class="marker-label-text">${displayName}</span>
+        </div>
+      `,
+      iconSize: null,
+      iconAnchor: [0, 0],
+      popupAnchor: [0, -14]
     });
 
     const marker = L.marker(lm.coords, { icon: customIcon });
@@ -201,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div style="font-family: var(--font-family); min-width: 230px;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
           <h3 style="font-size: 15px; font-weight: 800; margin: 0; color: #0f172a;">${lm.name}</h3>
-          <span class="item-badge badge-${getCategoryClass(lm.category)}" style="font-size: 10px;">${lm.category}</span>
+          <span class="item-badge badge-${catClass}" style="font-size: 10px;">${lm.category}</span>
         </div>
         <p style="font-size: 12px; color: #475569; margin-bottom: 12px; line-height: 1.4;">${lm.description}</p>
         <div style="display: flex; gap: 8px;">
@@ -470,6 +483,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".location-list-item").forEach(item => {
       item.classList.toggle("selected", item.dataset.id === lmId);
     });
+
+    document.querySelectorAll(".campus-name-marker").forEach(el => {
+      el.classList.toggle("selected", el.dataset.id === lmId);
+    });
   }
 
   document.getElementById("btn-set-start-from-card").addEventListener("click", () => {
@@ -487,6 +504,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btn-close-loc-card").addEventListener("click", () => {
     document.getElementById("sel-loc-name").textContent = "Select a campus location";
     document.getElementById("sel-loc-desc").textContent = "Click any marker on the map or select from the list below to view detailed facility info.";
+    document.querySelectorAll(".campus-name-marker").forEach(el => {
+      el.classList.remove("selected");
+    });
   });
 
   function renderMapLocationsList() {
