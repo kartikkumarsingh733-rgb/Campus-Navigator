@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
     rushEdgeIds: new Set(),
     activeRoutePolyline: null,
     activeRouteGlow: null,
+    activeRouteDashes: null,
+    routeStartMarker: null,
+    routeEndMarker: null,
+    routeTraceAnimationId: null,
     currentRouteResult: null,
     markersMap: {},
     baseTileLayer: null,
@@ -264,7 +268,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       setTimeout(() => {
         map.invalidateSize();
-      }, 50);
+        if (state.activeRoutePolyline && state.activeRoutePolyline.getBounds && state.activeRoutePolyline.getBounds().isValid() && map.getSize().x > 0) {
+          map.fitBounds(state.activeRoutePolyline.getBounds(), { padding: [40, 40], maxZoom: 18 });
+        }
+      }, 60);
     } else if (viewId === "view-find-route") {
       const target = document.getElementById("route-map-wrapper");
       if (mapElement.parentElement !== target) {
@@ -272,10 +279,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       setTimeout(() => {
         map.invalidateSize();
-        if (state.activeRoutePolyline) {
-          map.fitBounds(state.activeRoutePolyline.getBounds(), { padding: [40, 40] });
+        if (state.activeRoutePolyline && state.activeRoutePolyline.getBounds && state.activeRoutePolyline.getBounds().isValid() && map.getSize().x > 0) {
+          map.fitBounds(state.activeRoutePolyline.getBounds(), { padding: [40, 40], maxZoom: 18 });
         }
-      }, 50);
+      }, 60);
     } else if (viewId === "view-directory") {
       renderDirectoryGrid();
     }
@@ -312,7 +319,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (state.activeRouteGlow) state.activeRouteGlow.bringToFront();
     if (state.activeRoutePolyline) state.activeRoutePolyline.bringToFront();
+    if (state.activeRouteDashes) state.activeRouteDashes.bringToFront();
     markersGroup.bringToFront();
+    if (state.routeStartMarker) state.routeStartMarker.bringToFront();
+    if (state.routeEndMarker) state.routeEndMarker.bringToFront();
     if (state.userMarker) state.userMarker.bringToFront();
   }
 
@@ -537,6 +547,17 @@ document.addEventListener("DOMContentLoaded", () => {
   startSelect.value = state.selectedStart;
   endSelect.value = state.selectedEnd;
 
+  // Immediate recalculation and tracing whenever dropdown options change
+  startSelect.addEventListener("change", () => {
+    state.selectedStart = startSelect.value;
+    calculateAndDisplayRoute();
+  });
+
+  endSelect.addEventListener("change", () => {
+    state.selectedEnd = endSelect.value;
+    calculateAndDisplayRoute();
+  });
+
   document.getElementById("swap-points").addEventListener("click", () => {
     const temp = startSelect.value;
     startSelect.value = endSelect.value;
@@ -570,7 +591,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!srcId || !dstId) return;
 
     if (srcId === dstId) {
-      alert("Please select different start and destination locations.");
+      showGeoBanner("⚠️ Start and destination are the same. Please choose different locations.", "#f59e0b", 3500);
       return;
     }
 
@@ -616,11 +637,14 @@ document.addEventListener("DOMContentLoaded", () => {
     state.currentRouteResult = result;
     const resultsBox = document.getElementById("route-results");
 
-    if (!result || !result.success) {
-      alert(result?.error || "Could not find a walkable path between the selected locations (check if path is blocked or stairs avoided).");
+    if (!result || !result.success || !result.path || result.path.length === 0) {
+      showGeoBanner("⚠️ No walkable path found between selected locations.", "#ef4444", 4000);
       resultsBox.style.display = "none";
       if (state.activeRoutePolyline) map.removeLayer(state.activeRoutePolyline);
       if (state.activeRouteGlow) map.removeLayer(state.activeRouteGlow);
+      if (state.activeRouteDashes) map.removeLayer(state.activeRouteDashes);
+      if (state.routeStartMarker) map.removeLayer(state.routeStartMarker);
+      if (state.routeEndMarker) map.removeLayer(state.routeEndMarker);
       return;
     }
 
@@ -682,42 +706,153 @@ document.addEventListener("DOMContentLoaded", () => {
       directionsContainer.appendChild(stepEl);
     });
 
-    // Render Animated Polyline on Map
+    // Clean up previous route layers & animations
     if (state.activeRoutePolyline) map.removeLayer(state.activeRoutePolyline);
     if (state.activeRouteGlow) map.removeLayer(state.activeRouteGlow);
-
-    let latLngPath = result.path.map(nid => nodes[nid]);
-    if (srcId === "user_current_location" && startPointCoords) {
-      latLngPath = [startPointCoords, ...latLngPath];
+    if (state.activeRouteDashes) map.removeLayer(state.activeRouteDashes);
+    if (state.routeStartMarker) map.removeLayer(state.routeStartMarker);
+    if (state.routeEndMarker) map.removeLayer(state.routeEndMarker);
+    if (state.routeTraceAnimationId) {
+      cancelAnimationFrame(state.routeTraceAnimationId);
+      state.routeTraceAnimationId = null;
     }
 
-    state.activeRouteGlow = L.polyline(latLngPath, {
-      color: "#0284c7",
-      weight: 9,
-      opacity: 0.35,
-      lineCap: "round",
-      lineJoin: "round"
-    }).addTo(map);
+    // Ensure dedicated z-indexed panes above building footprints
+    if (!map.getPane("routeGlowPane")) {
+      map.createPane("routeGlowPane");
+      map.getPane("routeGlowPane").style.zIndex = 540;
+    }
+    if (!map.getPane("routePane")) {
+      map.createPane("routePane");
+      map.getPane("routePane").style.zIndex = 550;
+    }
 
-    state.activeRoutePolyline = L.polyline(latLngPath, {
-      color: "#0284c7",
-      weight: 5,
-      opacity: 0.95,
-      className: "route-polyline",
-      lineCap: "round",
-      lineJoin: "round"
-    }).addTo(map);
-
-    if (state.currentView === "view-find-route") {
-      map.fitBounds(state.activeRoutePolyline.getBounds(), { padding: [40, 40] });
-      if (window.innerWidth <= 1024) {
-        setTimeout(() => {
-          const visCard = document.querySelector(".route-visualization-card");
-          if (visCard) {
-            visCard.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }, 120);
+    // Assemble complete geographic latLng path
+    let latLngPath = result.path.map(nid => nodes[nid]).filter(Boolean);
+    if (srcId === "user_current_location" && startPointCoords) {
+      latLngPath = [startPointCoords, ...latLngPath];
+    } else if (startPointCoords) {
+      const first = latLngPath[0];
+      if (first && (first[0] !== startPointCoords[0] || first[1] !== startPointCoords[1])) {
+        latLngPath = [startPointCoords, ...latLngPath];
       }
+    }
+
+    const dstCoords = dstLm.coords;
+    const last = latLngPath[latLngPath.length - 1];
+    if (dstCoords && last && (last[0] !== dstCoords[0] || last[1] !== dstCoords[1])) {
+      latLngPath = [...latLngPath, dstCoords];
+    }
+
+    // Layer 1: Glowing underlay polyline (Cyan ambient glow)
+    state.activeRouteGlow = L.polyline(latLngPath, {
+      pane: "routeGlowPane",
+      color: "#0284c7",
+      weight: 10,
+      opacity: 0.45,
+      lineCap: "round",
+      lineJoin: "round"
+    }).addTo(map);
+
+    // Layer 2: Solid vibrant path
+    state.activeRoutePolyline = L.polyline([], {
+      pane: "routePane",
+      color: "#2563eb",
+      weight: 6,
+      opacity: 1.0,
+      lineCap: "round",
+      lineJoin: "round"
+    }).addTo(map);
+
+    // Layer 3: Animated directional flow overlay
+    state.activeRouteDashes = L.polyline([], {
+      pane: "routePane",
+      color: "#ffffff",
+      weight: 3.5,
+      opacity: 0.95,
+      dashArray: "8, 14",
+      className: "route-polyline-flow",
+      lineCap: "round",
+      lineJoin: "round"
+    }).addTo(map);
+
+    // Drop Start and Destination endpoint badges
+    const startIcon = L.divIcon({
+      className: "route-endpoint-div-icon",
+      html: `
+        <div class="endpoint-badge badge-start">
+          <span class="dot-live"></span>
+          <span>START</span>
+        </div>
+      `,
+      iconSize: [64, 26],
+      iconAnchor: [32, 28]
+    });
+
+    const endIcon = L.divIcon({
+      className: "route-endpoint-div-icon",
+      html: `
+        <div class="endpoint-badge badge-dest">
+          <span>🏁 DEST</span>
+        </div>
+      `,
+      iconSize: [64, 26],
+      iconAnchor: [32, 28]
+    });
+
+    state.routeStartMarker = L.marker(latLngPath[0], {
+      icon: startIcon,
+      zIndexOffset: 3500
+    }).addTo(map);
+
+    state.routeEndMarker = L.marker(latLngPath[latLngPath.length - 1], {
+      icon: endIcon,
+      zIndexOffset: 3500
+    }).addTo(map);
+
+    // Progressive tracing animation from origin to destination
+    const totalPts = latLngPath.length;
+    if (totalPts <= 2) {
+      state.activeRoutePolyline.setLatLngs(latLngPath);
+      state.activeRouteDashes.setLatLngs(latLngPath);
+    } else {
+      const traceDuration = Math.min(750, Math.max(300, totalPts * 18));
+      const traceStart = performance.now();
+
+      function traceStep(now) {
+        const elapsed = now - traceStart;
+        const progress = Math.min(1, elapsed / traceDuration);
+        const count = Math.max(2, Math.min(totalPts, Math.ceil(progress * totalPts)));
+        const slice = latLngPath.slice(0, count);
+
+        state.activeRoutePolyline.setLatLngs(slice);
+        state.activeRouteDashes.setLatLngs(slice);
+
+        if (progress < 1) {
+          state.routeTraceAnimationId = requestAnimationFrame(traceStep);
+        } else {
+          state.activeRoutePolyline.setLatLngs(latLngPath);
+          state.activeRouteDashes.setLatLngs(latLngPath);
+          state.routeTraceAnimationId = null;
+        }
+      }
+
+      state.routeTraceAnimationId = requestAnimationFrame(traceStep);
+    }
+
+    // Auto-fit map viewport to route with padding
+    const routeBounds = L.latLngBounds(latLngPath);
+    if (routeBounds.isValid() && map.getSize().x > 0) {
+      map.fitBounds(routeBounds, { padding: [50, 50], maxZoom: 18 });
+    }
+
+    if (state.currentView === "view-find-route" && window.innerWidth <= 1024) {
+      setTimeout(() => {
+        const visCard = document.querySelector(".route-visualization-card");
+        if (visCard) {
+          visCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 120);
     }
   }
 

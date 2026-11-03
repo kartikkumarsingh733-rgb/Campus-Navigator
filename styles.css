@@ -1367,14 +1367,61 @@ input:checked + .slider:before { transform: translateX(16px); }
 .marker-utility { border-color: #64748b; background: #f8fafc; }
 
 .route-polyline {
-  stroke-dasharray: 8, 8;
-  animation: dashAnimation 1.5s linear infinite;
+  filter: drop-shadow(0 2px 6px rgba(37, 99, 235, 0.4));
 }
 
-@keyframes dashAnimation {
-  to {
-    stroke-dashoffset: -16;
+.route-polyline-flow {
+  stroke-dasharray: 8, 14;
+  animation: flowAnimation 1.2s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes flowAnimation {
+  from {
+    stroke-dashoffset: 22;
   }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.route-endpoint-div-icon {
+  background: transparent;
+  border: none;
+}
+
+.endpoint-badge {
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateY(-4px);
+  animation: bounceIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bounceIn {
+  from { transform: translateY(-4px) scale(0.6); opacity: 0; }
+  to { transform: translateY(-4px) scale(1); opacity: 1; }
+}
+
+.badge-start {
+  background: #065f46;
+  color: #ffffff;
+  border: 2px solid #34d399;
+}
+
+.badge-dest {
+  background: #991b1b;
+  color: #ffffff;
+  border: 2px solid #f87171;
 }
 
 /* Building Tooltip */
